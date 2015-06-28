@@ -20,6 +20,26 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        Schema::create('study_fields', function (Blueprint $table) {
+            $table->increments('id');
+            $table->text('name');
+        });
+
+        Schema::create('location_regions', function (Blueprint $table) {
+            $table->increments('id');
+            $table->text('name');
+        });
+
+        Schema::create('location_municipalities', function (Blueprint $table) {
+            $table->increments('id');
+            $table->text('name');
+        });
+
+        Schema::create('study_terms', function (Blueprint $table) {
+            $table->increments('id');
+            $table->text('name');
+        });
     }
 
     /**
@@ -30,5 +50,9 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::drop('users');
+        Schema::drop('study_fields');
+        Schema::drop('location_municipalities');
+        Schema::drop('location_regions');
+        Schema::drop('study_terms');
     }
 }
