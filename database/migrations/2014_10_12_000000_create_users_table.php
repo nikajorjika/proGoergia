@@ -24,21 +24,27 @@ class CreateUsersTable extends Migration
         Schema::create('study_fields', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name');
+            $table->timestamps();
         });
 
         Schema::create('location_regions', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name');
+            $table->timestamps();
         });
 
         Schema::create('location_municipalities', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('region_id')->unsigned();
+            $table->foreign('region_id')->references('id')->on('location_regions');
             $table->text('name');
+            $table->timestamps();
         });
 
         Schema::create('study_terms', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name');
+            $table->timestamps();
         });
     }
 

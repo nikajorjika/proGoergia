@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
+Route::post('/add_study_field', 'AddController@store_study_field');
+Route::get('/add_study_field', 'AddController@add_study_field');
+Route::post('/add_study_term', 'AddController@store_study_term');
+Route::get('/add_study_term', 'AddController@add_study_term');
+Route::post('/add_location_municipality', 'AddController@store_location_municipality');
+Route::get('/add_location_municipality', 'AddController@add_location_municipality');
+Route::post('/add_location_region', 'AddController@store_location_region');
+Route::get('/add_location_region', 'AddController@add_location_region');
