@@ -75,4 +75,23 @@ class AddController extends Controller
 
         return redirect('/add_location_region');
     }
+
+    public function add_announcement()
+    {
+        $study_fields   = StudyField::lists('name', 'id');
+        $study_terms    = StudyTerm::lists('name', 'id');
+        $municipalities = LocationMunicipality::lists('name', 'id');
+
+        $type           = array(
+            0 => 'ვატარებ',
+            1 => 'ვეძებ'
+        );
+
+        return view('add_forms.add_announcement', [
+            'study_fields'   => $study_fields,
+            'study_terms'    => $study_terms,
+            'municipalities' => $municipalities,
+            'type'           => $type
+        ]);
+    }
 }
