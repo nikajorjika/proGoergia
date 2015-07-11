@@ -41,19 +41,16 @@
 </div>
 <div class="form-group">
     {!! Form::label('region', 'ჩატარების ადგილი: ') !!}
-    {!! Form::select('region',  with_empty($regions->toArray(),'აირჩიეთ რეგიონი'),null, ['class' => 'form-control']) !!}
+    {!! Form::select('region',  with_empty($regions->toArray(),'აირჩიეთ რეგიონი'),null, ['class' => 'region form-control']) !!}
 </div>
 <div class="form-group" id="municipalities">
     {!! Form::label('location_municipalities', 'მუნიციპალიტეტები: ') !!}
-    {{--@for($i=0; $i<=count($municipalities); $i++)--}}
-        {{--@if(isset($municipalities[$i]))--}}
-            {{--</br>--}}
-        {{--<div id='checkbox_{{$i}}'>--}}
-            {{--{!! Form::label('municipalities', $municipalities[$i]) !!}--}}
-            {{--{!! Form::checkbox('municipalities[]', $i , null, ['id' => $i, 'class' => 'form-control']) !!}--}}
-        {{--</div>--}}
-        {{--@endif--}}
-    {{--@endfor--}}
+    @foreach($municipality_regions as $municipality)
+        <div class="all_m" style="display: none" data_region="{{ $municipality['region']->id }}" data_municipality="{{ $municipality['municipality']->id }}">
+            {!! Form::label('municipalities[]', $municipality['municipality']->name) !!}
+            {!! Form::checkbox('municipalities[]', $municipality['municipality']->id, null, ['class' => 'form-control']) !!}
+        </div>
+    @endforeach
 </div>
 
 <div class="form-group">
