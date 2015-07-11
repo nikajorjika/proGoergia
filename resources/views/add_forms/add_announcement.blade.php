@@ -1,3 +1,4 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 {!! Form::open(['action' => 'AddController@store_announcement' ]) !!}
 <h1>განცხადების დამატება</h1>
 
@@ -10,39 +11,54 @@
     {!! Form::textarea('short_desc', null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('long_desc', 'ვრცელი აღწერა: ') !!}
-    {!! Form::textarea('long_desc', null, ['class' => 'form-control']) !!}
-</div>
-<div class="form-group">
-    {!! Form::label('study_field', 'სწავლების სფერო: ') !!}
-    {!! Form::select('study_field', $study_fields, ['class' => 'form-control']) !!}
-</div>
-<div class="form-group">
-    {!! Form::label('study_term', 'სწავლების სფერო: ') !!}
-    {!! Form::select('study_term', $study_terms, ['class' => 'form-control']) !!}
-</div>
-<div class="form-group">
-    {!! Form::label('municipality', 'სწავლების სფერო: ') !!}
-    {!! Form::select('municipality', $municipalities, ['class' => 'form-control']) !!}
-</div>
-<div class="form-group">
-    {!! Form::label('quantity', 'მონაწილეთა რაოდენობა: ') !!}
-    {!! Form::input('number', 'quantity', null, ['class' => 'form-control']) !!}
-</div>
-<div class="form-group">
     {!! Form::label('file', 'ფაილის ატვირთვა: ') !!}
     {!! Form::file('file', ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('contact', 'საკონტაქტო პირი: ') !!}
-    {!! Form::text('contact', null, ['class' => 'form-control']) !!}
+    {!! Form::label('header', 'ვებ ბმული(Link): ')!!}
+    {!! Form::text('header', null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('type', 'ვატარებ თუ ვეძებ: ') !!}
-    {!! Form::select('type', $type, ['class' => 'form-control']) !!}
+    {!! Form::label('study_field', 'სწავლების სფერო: ') !!}
+
+    @for($i=0; $i<=count($study_fields); $i++)
+        @if(isset($study_fields[$i]))
+        </br>
+        {!! Form::label('field', $study_fields[$i]) !!}
+        {!! Form::checkbox('study_field[]', $i , null, ['id' => $i, 'class' => 'form-control']) !!}
+        @endif
+    @endfor
+</div>
+<div class="form-group">
+    {!! Form::label('study_term', 'სწავლების ფორმა: ') !!}
+    @for($i=0; $i<=count($study_terms); $i++)
+        @if(isset($study_terms[$i]))
+            </br>
+            {!! Form::label('field', $study_terms[$i]) !!}
+            {!! Form::checkbox('study_term[]', $i , null, ['id' => $i, 'class' => 'form-control']) !!}
+        @endif
+    @endfor
+</div>
+<div class="form-group">
+    {!! Form::label('region', 'ჩატარების ადგილი: ') !!}
+    {!! Form::select('region',  with_empty($regions->toArray(),'აირჩიეთ რეგიონი'),null, ['class' => 'form-control']) !!}
+</div>
+<div class="form-group" id="municipalities">
+    {!! Form::label('location_municipalities', 'მუნიციპალიტეტები: ') !!}
+    {{--@for($i=0; $i<=count($municipalities); $i++)--}}
+        {{--@if(isset($municipalities[$i]))--}}
+            {{--</br>--}}
+        {{--<div id='checkbox_{{$i}}'>--}}
+            {{--{!! Form::label('municipalities', $municipalities[$i]) !!}--}}
+            {{--{!! Form::checkbox('municipalities[]', $i , null, ['id' => $i, 'class' => 'form-control']) !!}--}}
+        {{--</div>--}}
+        {{--@endif--}}
+    {{--@endfor--}}
 </div>
 
 <div class="form-group">
     {!! Form::submit('დამატება', ['class' => 'btn btn-primary form-control'])!!}
 </div>
 {!! Form::close() !!}
+
+{!! Html::script('js/script.js'); !!}

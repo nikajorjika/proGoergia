@@ -81,7 +81,7 @@ class AddController extends Controller
         $study_fields   = StudyField::lists('name', 'id');
         $study_terms    = StudyTerm::lists('name', 'id');
         $municipalities = LocationMunicipality::lists('name', 'id');
-
+        $regions = LocationRegion::lists('name', 'id');
         $type           = array(
             0 => 'ვატარებ',
             1 => 'ვეძებ'
@@ -90,8 +90,14 @@ class AddController extends Controller
         return view('add_forms.add_announcement', [
             'study_fields'   => $study_fields,
             'study_terms'    => $study_terms,
+            'regions' => $regions,
             'municipalities' => $municipalities,
             'type'           => $type
         ]);
+    }
+
+    public function store_announcement()
+    {
+        return(input::all());
     }
 }

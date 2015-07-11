@@ -29,6 +29,11 @@ require __DIR__.'/../vendor/autoload.php';
 
 $compiledPath = __DIR__.'/cache/compiled.php';
 
+function with_empty($selectList, $emptyLabel='') {
+	return array(''=>$emptyLabel) + $selectList;
+}
+
 if (file_exists($compiledPath)) {
     require $compiledPath;
 }
+
