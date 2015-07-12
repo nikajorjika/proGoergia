@@ -1,61 +1,141 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-{!! Form::open(['action' => 'AddController@store_announcement' ]) !!}
+@extends('master')
+
+@section('body')
+{!! Form::open(['action' => 'AddController@store_announcement', 'class' => 'form-horizontal']) !!}
 <h1>განცხადების დამატება</h1>
 
 <div class="form-group">
-    {!! Form::label('header', 'სათაური: ')!!}
-    {!! Form::text('header', null, ['class' => 'form-control']) !!}
+    {!! Form::label('header', 'სათაური: ', ['class' => 'col-sm-2 control-label'])!!}
+    <div class="col-sm-10">
+        {!! Form::text('header', null, ['class' => 'form-control']) !!}
+    </div>
 </div>
 <div class="form-group">
-    {!! Form::label('short_desc', 'მოკლე აღწერა: ') !!}
-    {!! Form::textarea('short_desc', null, ['class' => 'form-control']) !!}
+    {!! Form::label('short_desc', 'მოკლე აღწერა: ', ['class' => 'col-sm-2 control-label']) !!}
+    <div class="col-sm-10">
+        {!! Form::textarea('short_desc', null, ['class' => 'form-control']) !!}
+    </div>
 </div>
 <div class="form-group">
-    {!! Form::label('file', 'ფაილის ატვირთვა: ') !!}
-    {!! Form::file('file', ['class' => 'form-control']) !!}
+    {!! Form::label('file', 'ფაილის ატვირთვა: ', ['class' => 'col-sm-2 control-label']) !!}
+    <div class="col-sm-10">
+        {!! Form::file('file', ['class' => 'form-control']) !!}
+    </div>
 </div>
 <div class="form-group">
-    {!! Form::label('header', 'ვებ ბმული(Link): ')!!}
-    {!! Form::text('header', null, ['class' => 'form-control']) !!}
+    {!! Form::label('header', 'ვებ ბმული(Link): ', ['class' => 'col-sm-2 control-label'])!!}
+    <div class="col-sm-10">
+        {!! Form::text('header', null, ['class' => 'form-control']) !!}
+    </div>
 </div>
 <div class="form-group">
-    {!! Form::label('study_field', 'სწავლების სფერო: ') !!}
-
-    @for($i=0; $i<=count($study_fields); $i++)
-        @if(isset($study_fields[$i]))
-        </br>
-        {!! Form::label('field', $study_fields[$i]) !!}
-        {!! Form::checkbox('study_field[]', $i , null, ['id' => $i, 'class' => 'form-control']) !!}
-        @endif
-    @endfor
+    <div class="col-sm-2 control-label">
+        სწავლების სფერო:
+    </div>
+    <div class="col-sm-10">
+        @for($i=0; $i<=count($study_fields); $i++)
+            @if(isset($study_fields[$i]))
+                <div class="checkbox">
+                    <label>
+                        {!! Form::checkbox('study_field[]', $i , null, ['id' => $i, 'class' => '']) !!}
+                        {{ $study_fields[$i] }}
+                    </label>
+                </div>
+            @endif
+        @endfor
+    </div>
 </div>
 <div class="form-group">
-    {!! Form::label('study_term', 'სწავლების ფორმა: ') !!}
-    @for($i=0; $i<=count($study_terms); $i++)
-        @if(isset($study_terms[$i]))
-            </br>
-            {!! Form::label('field', $study_terms[$i]) !!}
-            {!! Form::checkbox('study_term[]', $i , null, ['id' => $i, 'class' => 'form-control']) !!}
-        @endif
-    @endfor
+    <div class="col-sm-2 control-label">
+        სწავლების ფორმა:
+    </div>
+    <div class="col-sm-10">
+        @for($i=0; $i<=count($study_terms); $i++)
+            @if(isset($study_terms[$i]))
+                <div class="checkbox">
+                    <label>
+                        {!! Form::checkbox('study_term[]', $i , null, ['id' => $i, 'class' => '']) !!}
+                        {{ $study_terms[$i] }}
+                    </label>
+                </div>
+            @endif
+        @endfor
+    </div>
 </div>
 <div class="form-group">
-    {!! Form::label('region', 'ჩატარების ადგილი: ') !!}
-    {!! Form::select('region',  with_empty($regions->toArray(),'აირჩიეთ რეგიონი'),null, ['class' => 'region form-control']) !!}
+    {!! Form::label('region', 'ჩატარების ადგილი: ', ['class' => 'col-sm-2 control-label']) !!}
+    <div class="col-sm-10">
+        {!! Form::select('region', with_empty($regions->toArray(),'აირჩიეთ რეგიონი'), null, ['class' => 'region form-control']) !!}
+    </div>
 </div>
 <div class="form-group" id="municipalities">
-    {!! Form::label('location_municipalities', 'მუნიციპალიტეტები: ') !!}
-    @foreach($municipality_regions as $municipality)
-        <div class="all_m" style="display: none" data_region="{{ $municipality['region']->id }}" data_municipality="{{ $municipality['municipality']->id }}">
-            {!! Form::label('municipalities[]', $municipality['municipality']->name) !!}
-            {!! Form::checkbox('municipalities[]', $municipality['municipality']->id, null, ['class' => 'form-control']) !!}
+    <div class="col-sm-2 control-label">
+        მუნიციპალიტეტები:
+    </div>
+    <div class="col-sm-10">
+        <div class="checkbox all_muni">
+            <label>
+                {!! Form::checkbox('all_checked', 'all_checked', null, ['class' => '']) !!}
+                ნებისმიერი
+            </label>
         </div>
-    @endforeach
+        @foreach($municipality_regions as $municipality)
+            <div class="checkbox" style="display: none">
+                <label class="all_m" data_region="{{ $municipality['region']->id }}" data_municipality="{{ $municipality['municipality']->id }}">
+                    {!! Form::checkbox('municipalities[]', $municipality['municipality']->id, null, ['class' => '']) !!}
+                    {{ $municipality['municipality']->name }}
+                </label>
+            </div>
+        @endforeach
+    </div>
+</div>
+<div class="form-group">
+    {!! Form::label('time', 'ჩატარების დრო: ', ['class' => 'col-sm-2 control-label']) !!}
+    <div class="col-sm-10">
+        {!! Form::select('time', [1 => 'ნებისმიერი', 2 => 'კვარტალი', 3 => 'თვე'], null, ['class' => 'time form-control']) !!}
+    </div>
+</div>
+<div class="form-group" id="municipalities">
+    <div class="col-sm-2 control-label">
+        პერიოდი:
+    </div>
+    <div class="col-sm-10">
+        <div class="any-period">
+            <div class="checkbox">
+                <label>
+                    {!! Form::checkbox('any_time[]', 1, null, ['class' => '']) !!}
+                    ნებისმიერი
+                </label>
+            </div>
+        </div>
+        <div class="quarter" style="display: none">
+            @foreach($quarter as $key => $qua)
+                <div class="checkbox">
+                    <label>
+                        {!! Form::checkbox('quarter[]', $key, null, ['class' => '']) !!}
+                        {{ $qua }}
+                    </label>
+                </div>
+            @endforeach
+        </div>
+        <div class="month" style="display: none">
+            @foreach($month as $key => $mon)
+                <div class="checkbox">
+                    <label>
+                        {!! Form::checkbox('month[]', $key, null, ['class' => '']) !!}
+                        {{ $mon }}
+                    </label>
+                </div>
+            @endforeach
+        </div>
+    </div>
 </div>
 
 <div class="form-group">
-    {!! Form::submit('დამატება', ['class' => 'btn btn-primary form-control'])!!}
+    <div class="col-sm-10">&nbsp;</div>
+    <div class="col-sm-2">
+        {!! Form::submit('დამატება', ['class' => 'btn btn-primary form-control'])!!}
+    </div>
 </div>
 {!! Form::close() !!}
-
-{!! Html::script('js/script.js'); !!}
+@stop

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 
 class AddController extends Controller
@@ -81,6 +82,7 @@ class AddController extends Controller
         $study_fields   = StudyField::lists('name', 'id');
         $study_terms    = StudyTerm::lists('name', 'id');
         $municipalities = LocationMunicipality::all();
+
         $municipality_regions = array();
         foreach ($municipalities as $m) {
             $municipality_regions[] = array(
@@ -88,20 +90,23 @@ class AddController extends Controller
                 'region'       => $m->region,
             );
         }
-        /*echo '<pre>';
-        print_r($municipality_regions);
-        exit;*/
+
         $regions        = LocationRegion::lists('name', 'id');
         $type           = array(
             0 => 'ვატარებ',
             1 => 'ვეძებ'
         );
 
+        $quarter  = Config::get('localvariables.quarter');
+        $month    = Config::get('localvariables.month');
+
         return view('add_forms.add_announcement', [
             'study_fields'         => $study_fields,
             'study_terms'          => $study_terms,
             'regions'              => $regions,
             'municipality_regions' => $municipality_regions,
+            'quarter'              => $quarter,
+            'month'                => $month,
             'type'                 => $type
         ]);
     }
