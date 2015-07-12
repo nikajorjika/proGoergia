@@ -5,15 +5,15 @@
 <h1>განცხადების დამატება</h1>
 
 <div class="form-group">
-    {!! Form::label('header', 'სათაური: ', ['class' => 'col-sm-2 control-label'])!!}
+    {!! Form::label('name', 'სათაური: ', ['class' => 'col-sm-2 control-label'])!!}
     <div class="col-sm-10">
-        {!! Form::text('header', null, ['class' => 'form-control']) !!}
+        {!! Form::text('name', null, ['class' => 'form-control']) !!}
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('short_desc', 'მოკლე აღწერა: ', ['class' => 'col-sm-2 control-label']) !!}
+    {!! Form::label('description', 'მოკლე აღწერა: ', ['class' => 'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
-        {!! Form::textarea('short_desc', null, ['class' => 'form-control']) !!}
+        {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
     </div>
 </div>
 <div class="form-group">
@@ -23,9 +23,9 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('header', 'ვებ ბმული(Link): ', ['class' => 'col-sm-2 control-label'])!!}
+    {!! Form::label('link', 'ვებ ბმული(Link): ', ['class' => 'col-sm-2 control-label'])!!}
     <div class="col-sm-10">
-        {!! Form::text('header', null, ['class' => 'form-control']) !!}
+        {!! Form::text('link', null, ['class' => 'form-control']) !!}
     </div>
 </div>
 <div class="form-group">
@@ -33,12 +33,12 @@
         სწავლების სფერო:
     </div>
     <div class="col-sm-10">
-        @for($i=0; $i<=count($study_fields); $i++)
-            @if(isset($study_fields[$i]))
+        @for($i=0; $i<=count($fields); $i++)
+            @if(isset($fields[$i]))
                 <div class="checkbox">
                     <label>
-                        {!! Form::checkbox('study_field[]', $i , null, ['id' => $i, 'class' => '']) !!}
-                        {{ $study_fields[$i] }}
+                        {!! Form::checkbox('field[]', $i , null, ['id' => $i, 'class' => '']) !!}
+                        {{ $fields[$i] }}
                     </label>
                 </div>
             @endif
@@ -50,12 +50,12 @@
         სწავლების ფორმა:
     </div>
     <div class="col-sm-10">
-        @for($i=0; $i<=count($study_terms); $i++)
-            @if(isset($study_terms[$i]))
+        @for($i=0; $i<=count($terms); $i++)
+            @if(isset($terms[$i]))
                 <div class="checkbox">
                     <label>
-                        {!! Form::checkbox('study_term[]', $i , null, ['id' => $i, 'class' => '']) !!}
-                        {{ $study_terms[$i] }}
+                        {!! Form::checkbox('term[]', $i , null, ['id' => $i, 'class' => '']) !!}
+                        {{ $terms[$i] }}
                     </label>
                 </div>
             @endif

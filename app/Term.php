@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Training;
-class StudyField extends Model
+class Term extends Model
 {
     protected $fillable = array('name');
     public function trainings()

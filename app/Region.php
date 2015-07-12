@@ -3,14 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\LocationMunicipality;
+use App\Municipality;
 
-class LocationRegion extends Model
+class Region extends Model
 {
     protected $fillable = array('name');
 
     public function get_municipalities()
     {
-        return $this->hasMany('App\LocationMunicipality','region_id');
+        return $this->hasMany('App\Municipality','region_id');
     }
 }

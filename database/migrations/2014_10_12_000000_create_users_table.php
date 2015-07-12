@@ -30,53 +30,53 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('study_fields', function (Blueprint $table) {
+        Schema::create('fields', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->text('name');
             $table->timestamps();
         });
-        Schema::create('study_fields_training', function (Blueprint $table) {
+        Schema::create('field_training', function (Blueprint $table) {
             $table->integer('training_id')->unsigned();
             $table->foreign('training_id')->references('id')->on('trainings')->onDelete('cascade');
             $table->integer('field_id')->unsigned();
-            $table->foreign('field_id')->references('id')->on('study_fields');
+            $table->foreign('field_id')->references('id')->on('fields');
             $table->timestamps();
         });
 
-        Schema::create('location_regions', function (Blueprint $table) {
+        Schema::create('regions', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->text('name');
             $table->timestamps();
         });
 
-        Schema::create('location_municipalities', function (Blueprint $table) {
+        Schema::create('municipalities', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('region_id')->unsigned();
-            $table->foreign('region_id')->references('id')->on('location_regions');
+            $table->foreign('region_id')->references('id')->on('regions');
             $table->text('name');
             $table->timestamps();
         });
 
-        Schema::create('location_municipalities_training', function (Blueprint $table) {
+        Schema::create('municipality_training', function (Blueprint $table) {
             $table->integer('training_id')->unsigned()->index();
             $table->foreign('training_id')->references('id')->on('trainings')->onDelete('cascade');
             $table->integer('municipality_id')->unsigned()->index();
-            $table->foreign('municipality_id')->references('id')->on('location_municipalities');
+            $table->foreign('municipality_id')->references('id')->on('municipalities');
             $table->text('name');
             $table->timestamps();
         });
 
-        Schema::create('study_terms', function (Blueprint $table) {
+        Schema::create('terms', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->text('name');
             $table->timestamps();
         });
 
-        Schema::create('study_term_training', function (Blueprint $table) {
+        Schema::create('term_training', function (Blueprint $table) {
             $table->integer('training_id')->unsigned()->index();
             $table->foreign('training_id')->references('id')->on('trainings')->onDelete('cascade');
             $table->integer('term_id')->unsigned()->index();
-            $table->foreign('term_id')->references('id')->on('study_terms');
+            $table->foreign('term_id')->references('id')->on('terms');
             $table->text('name');
             $table->timestamps();
         });
@@ -90,9 +90,12 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::drop('users');
-        Schema::drop('study_fields');
-        Schema::drop('location_municipalities');
-        Schema::drop('location_regions');
-        Schema::drop('study_terms');
+        Schema::drop('fields');
+        Schema::drop('municipalities');
+        Schema::drop('regions');
+        Schema::drop('municipality_training');
+        Schema::drop('field_training');
+        Schema::drop('term_training');
+        Schema::drop('trainings');
     }
 }

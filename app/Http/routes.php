@@ -12,14 +12,14 @@
 */
 
 Route::get('/', 'HomeController@index');
-Route::post('/add_study_field', 'AddController@store_study_field');
-Route::get('/add_study_field', 'AddController@add_study_field');
-Route::post('/add_study_term', 'AddController@store_study_term');
-Route::get('/add_study_term', 'AddController@add_study_term');
-Route::post('/add_location_municipality', 'AddController@store_location_municipality');
-Route::get('/add_location_municipality', 'AddController@add_location_municipality');
-Route::post('/add_location_region', 'AddController@store_location_region');
-Route::get('/add_location_region', 'AddController@add_location_region');
+Route::post('/add_field', 'AddController@store_field');
+Route::get('/add_field', 'AddController@add_field');
+Route::post('/add_term', 'AddController@store_term');
+Route::get('/add_term', 'AddController@add_term');
+Route::post('/add_municipality', 'AddController@store_municipality');
+Route::get('/add_municipality', 'AddController@add_municipality');
+Route::post('/add_region', 'AddController@store_region');
+Route::get('/add_region', 'AddController@add_region');
 Route::post('/add_announcement', 'AddController@store_announcement');
 Route::get('/add_announcement', 'AddController@add_announcement');
 Route::get('/municipalities/{id}', 'GetController@get_municipalities_by_id');

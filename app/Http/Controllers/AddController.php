@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\LocationMunicipality;
-use App\LocationRegion;
-use App\StudyField;
-use App\StudyTerm;
+use App\Municipality;
+use App\Region;
+use App\Field;
+use App\Term;
+use App\Training;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -15,73 +16,73 @@ use Illuminate\Support\Facades\Input;
 
 class AddController extends Controller
 {
-    public function add_study_field()
+    public function add_field()
     {
         return view('add_forms.add_form',[
-            'action' => 'AddController@store_study_field',
+            'action' => 'AddController@store_field',
             'header' => 'სწავლების სფეროს დამატება'
         ]);
     }
 
-    public function store_study_field()
+    public function store_field()
     {
-        StudyField::create(Input::all());
+        Field::create(Input::all());
 
-        return redirect('/add_study_field');
+        return redirect('/add_field');
     }
 
-    public function add_study_term()
+    public function add_term()
     {
         return view('add_forms.add_form', [
-            'action' => 'AddController@store_study_term',
+            'action' => 'AddController@store_term',
             'header' => 'სწავლების ფორმის დამატება'
         ]);
     }
-    public function store_study_term()
+    public function store_term()
     {
-        StudyTerm::create(Input::all());
+        Term::create(Input::all());
 
-        return redirect('/add_study_term');
+        return redirect('/add_term');
     }
 
-    public function add_location_municipality()
+    public function add_municipality()
     {
-        $regions = LocationRegion::all()->lists('name', 'id');
+        $regions = Region::all()->lists('name', 'id');
 
         return view('add_forms.add_form',[
-            'action'  => 'AddController@store_location_municipality',
+            'action'  => 'AddController@store_municipality',
             'header'  => 'ჩატარების ადგილის დამატება (მუნიციპალიტეტი)',
             'regions' => $regions
         ]);
     }
 
-    public function store_location_municipality()
+    public function store_municipality()
     {
-        LocationMunicipality::create(Input::all());
+        Municipality::create(Input::all());
 
-        return redirect('/add_location_municipality');
+        return redirect('/add_municipality');
     }
 
-    public function add_location_region()
+    public function add_region()
     {
         return view('add_forms.add_form', [
-            'action' => 'AddController@store_location_region',
+            'action' => 'AddController@store_region',
             'header' => 'ჩატარების ადგილის დამატება (რეგიონული ცენტრი)'
         ]);
     }
 
-    public function store_location_region()
+    public function store_region()
     {
-        LocationRegion::create(Input::all());
+        Region::create(Input::all());
 
-        return redirect('/add_location_region');
+        return redirect('/add_region');
     }
 
     public function add_announcement()
     {
-        $study_fields   = StudyField::lists('name', 'id');
-        $study_terms    = StudyTerm::lists('name', 'id');
-        $municipalities = LocationMunicipality::all();
+        $fields   = Field::lists('name', 'id');
+        $terms    = Term::lists('name', 'id');
+        $municipalities = Municipality::all();
 
         $municipality_regions = array();
         foreach ($municipalities as $m) {
@@ -91,7 +92,7 @@ class AddController extends Controller
             );
         }
 
-        $regions        = LocationRegion::lists('name', 'id');
+        $regions        = Region::lists('name', 'id');
         $type           = array(
             0 => 'ვატარებ',
             1 => 'ვეძებ'
@@ -101,10 +102,10 @@ class AddController extends Controller
         $month    = Config::get('localvariables.month');
 
         return view('add_forms.add_announcement', [
-            'study_fields'         => $study_fields,
-            'study_terms'          => $study_terms,
+            'fields'               => $fields,
+            'terms'                => $terms,
             'regions'              => $regions,
-            'municipality_regions' => $municipality_regions,
+            'municipality_regions'              => $municipality_regions,
             'quarter'              => $quarter,
             'month'                => $month,
             'type'                 => $type
@@ -113,6 +114,17 @@ class AddController extends Controller
 
     public function store_announcement()
     {
-        return(input::all());
+        $training = Training::create(input::all());
+        foreach (input::get('term') as $term) {
+            $training->terms()->attach($term);
+            }
+        foreach (input::get('field') as $field) {
+            $training->fields()->attach($field);
+            }
+        foreach (input::get('municipalities') as $municipality) {
+            $training->municipalities()->attach($municipality);
+        }
+        $training->save();
+        return 'Object saved';
     }
 }

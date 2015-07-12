@@ -4,21 +4,23 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use App\StudyField;
-use App\StudyTerm;
-use App\LocationMunicipality;
+use App\Field;
+use App\Term;
+use App\Municipality;
 class Training extends Model
 {
+    protected $fillable = ['name', 'description', 'file', 'link'];
+
     public function terms()
     {
-        return $this->belongsToMany('App\StudyTerm')->withTimestamps();
+        return $this->belongsToMany('App\Term')->withTimestamps();
     }
     public function fields()
     {
-        return $this->belongsToMany('App\StudyField')->withTimestamps();
+        return $this->belongsToMany('App\Field')->withTimestamps();
     }
     public function municipalities()
     {
-        return $this->belongsToMany('App\LocationMunicipality')->withTimestamps();
+        return $this->belongsToMany('App\Municipality')->withTimestamps();
     }
 }
