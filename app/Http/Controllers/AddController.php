@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Month;
 use App\Municipality;
+use App\Quarter;
 use App\Region;
 use App\Field;
 use App\Term;
@@ -98,8 +100,8 @@ class AddController extends Controller
             1 => 'ვეძებ'
         );
 
-        $quarter  = Config::get('localvariables.quarter');
-        $month    = Config::get('localvariables.month');
+        $quarter  = Quarter::all()->lists('name','id');
+        $month    = Month::all()->lists('name','id');
 
         return view('add_forms.add_announcement', [
             'fields'               => $fields,
@@ -118,11 +120,18 @@ class AddController extends Controller
         foreach (input::get('term') as $term) {
             $training->terms()->attach($term);
             }
-        foreach (input::get('field') as $field) {
-            $training->fields()->attach($field);
+        $training->fields()->attach(input::get('field'));
+        $training->municipalities()->attach(input::get('municipalities'));
+        if(!is_null(input::get('quarter'))) {
+            foreach (input::get('quarter') as $quarter) {
+                $training->quarters()->attach($quarter);
             }
-        foreach (input::get('municipalities') as $municipality) {
-            $training->municipalities()->attach($municipality);
+        }
+        if(!is_null(input::get('month'))){
+            foreach (input::get('month') as $month) {
+
+                $training->months()->attach($month);
+            }
         }
         $training->save();
         return 'Object saved';

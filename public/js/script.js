@@ -3,24 +3,22 @@
  */
 $(document).ready(function(){
     $('#region').change(function() {
-        var m          = $('#municipalities')
-            , region   = $(this).val()
-            , all_m    = m.find('.all_m')
-            , all_muni = $('.all_muni');
+        var region   = $(this).val();
 
-        if (region == 1 || !region) {
-            all_muni.css('display', 'block');
-        } else {
-            all_muni.css('display', 'none');
-        }
-
-        $(all_m).each(function() {
-            if ($(this).attr('data_region') == region) {
-                $(this).parent('.checkbox').css('display', 'block');
-            } else {
-                $(this).parent('.checkbox').css('display', 'none');
-            }
+        $.ajax({
+                method: "GET",
+                url: "/municipalities/"+region
+        }).done(function(data){
+            var select = $('#municipalities-select');
+            select.html('');
+            $(data).each(function(){
+               var    id   =  $(this)[0].id
+                   ,  name =  $(this)[0].name;
+                select.append('<option value='+id+'>'+name+'</option>');
+            });
         });
+
+
     });
 
     $('#time').change(function() {

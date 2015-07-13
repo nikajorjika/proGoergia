@@ -23,4 +23,14 @@ class Training extends Model
     {
         return $this->belongsToMany('App\Municipality')->withTimestamps();
     }
+
+    public function quarters()
+    {
+        return $this->belongsToMany('App\Quarter')->withTimestamps();
+    }
+
+    public function months()
+    {
+        return $this->belongsToMany('App\Month')->withTimestamps();
+    }
 }

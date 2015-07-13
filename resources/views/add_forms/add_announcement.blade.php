@@ -33,16 +33,7 @@
         სწავლების სფერო:
     </div>
     <div class="col-sm-10">
-        @for($i=0; $i<=count($fields); $i++)
-            @if(isset($fields[$i]))
-                <div class="checkbox">
-                    <label>
-                        {!! Form::checkbox('field[]', $i , null, ['id' => $i, 'class' => '']) !!}
-                        {{ $fields[$i] }}
-                    </label>
-                </div>
-            @endif
-        @endfor
+        {!! Form::select('field', with_empty($fields->toArray(),'აირჩიეთ სფერო'), null, ['class' => 'field form-control']) !!}
     </div>
 </div>
 <div class="form-group">
@@ -73,12 +64,9 @@
         მუნიციპალიტეტები:
     </div>
     <div class="col-sm-10">
-        <div class="checkbox all_muni">
-            <label>
-                {!! Form::checkbox('all_checked', 'all_checked', null, ['class' => '']) !!}
-                ნებისმიერი
-            </label>
-        </div>
+        <select name="municipalities" id="municipalities-select" class="municipalities form-control">
+
+        </select>
         @foreach($municipality_regions as $municipality)
             <div class="checkbox" style="display: none">
                 <label class="all_m" data_region="{{ $municipality['region']->id }}" data_municipality="{{ $municipality['municipality']->id }}">
@@ -92,7 +80,7 @@
 <div class="form-group">
     {!! Form::label('time', 'ჩატარების დრო: ', ['class' => 'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
-        {!! Form::select('time', [1 => 'ნებისმიერი', 2 => 'კვარტალი', 3 => 'თვე'], null, ['class' => 'time form-control']) !!}
+        {!! Form::select('time', [1 => 'აირჩიეთ ჩატარების დრო', 2 => 'კვარტალი', 3 => 'თვე'], null, ['class' => 'time form-control']) !!}
     </div>
 </div>
 <div class="form-group" id="municipalities">
@@ -100,14 +88,6 @@
         პერიოდი:
     </div>
     <div class="col-sm-10">
-        <div class="any-period">
-            <div class="checkbox">
-                <label>
-                    {!! Form::checkbox('any_time[]', 1, null, ['class' => '']) !!}
-                    ნებისმიერი
-                </label>
-            </div>
-        </div>
         <div class="quarter" style="display: none">
             @foreach($quarter as $key => $qua)
                 <div class="checkbox">
