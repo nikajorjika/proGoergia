@@ -15,6 +15,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
 
 class AddController extends Controller
 {
@@ -107,33 +108,77 @@ class AddController extends Controller
             'fields'               => $fields,
             'terms'                => $terms,
             'regions'              => $regions,
-            'municipality_regions'              => $municipality_regions,
+            'municipality_regions' => $municipality_regions,
             'quarter'              => $quarter,
             'month'                => $month,
             'type'                 => $type
         ]);
     }
 
-    public function store_announcement()
+    public function store_announcement(Request $request)
     {
-        $training = Training::create(input::all());
+        $rules = array(
+            'term'   => 'required',
+            'field'  => 'required',
+            'region' => 'required',
+        );
+
+        $messages = array(
+            'term.required'    => 'სწავლების ფორმა სავალდებულოა',
+            'field.required'   => 'სწავლების სფერო სავალდებულოა',
+            'region.required'  => 'ჩატარების ადგილი სავალდებულოა',
+        );
+
+        if (input::get('time') == 2) {
+            $rules['quarter']             = 'required';
+            $messages['quarter.required'] = 'ჩატარების პერიოდი სავალდებულია';
+        }
+
+        if (input::get('time') == 3) {
+            $rules['month']             = 'required';
+            $messages['month.required'] = 'ჩატარების პერიოდი სავალდებულია';
+        }
+
+        $input    = input::all();
+        $file     = Input::file('file');
+        if (isset($file) && !empty($file)) {
+            $extension = $file->getClientOriginalExtension();
+            if ($extension != 'pdf') {
+                //return redirect('add_announcement/' . true);
+            }
+        }
+
+        $this->validate($request, $rules, $messages);
+
+        if (isset($file) && !empty($file)) {
+            $file_name        = str_random(10) . '.' .$file->getClientOriginalExtension();
+            $destinationPath  = 'training_pdf';
+            $file->move($destinationPath, $file_name);
+            $input['file']    = $file_name;
+        }
+
+        $training             = Training::create($input);
+
         foreach (input::get('term') as $term) {
             $training->terms()->attach($term);
-            }
+        }
+
         $training->fields()->attach(input::get('field'));
         $training->municipalities()->attach(input::get('municipalities'));
+
         if(!is_null(input::get('quarter'))) {
             foreach (input::get('quarter') as $quarter) {
                 $training->quarters()->attach($quarter);
             }
         }
+
         if(!is_null(input::get('month'))){
             foreach (input::get('month') as $month) {
-
                 $training->months()->attach($month);
             }
         }
         $training->save();
+
         return 'Object saved';
     }
 }

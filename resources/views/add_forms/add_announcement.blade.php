@@ -1,7 +1,19 @@
 @extends('master')
 
 @section('body')
-{!! Form::open(['action' => 'AddController@store_announcement', 'class' => 'form-horizontal']) !!}
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+            @if (isset($pdf_error) && !empty($pdf_error))
+                <li>{{ $pdf_error }}</li>
+            @endif
+        </ul>
+    </div>
+@endif
+{!! Form::open(['action' => 'AddController@store_announcement', 'files' => 'true', 'class' => 'form-horizontal']) !!}
 <h1>განცხადების დამატება</h1>
 
 <div class="form-group">

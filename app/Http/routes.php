@@ -21,5 +21,5 @@ Route::get('/add_municipality', 'AddController@add_municipality');
 Route::post('/add_region', 'AddController@store_region');
 Route::get('/add_region', 'AddController@add_region');
 Route::post('/add_announcement', 'AddController@store_announcement');
-Route::get('/add_announcement', 'AddController@add_announcement');
+Route::get('/add_announcement/', 'AddController@add_announcement');
 Route::get('/municipalities/{id}', 'GetController@get_municipalities_by_id');
