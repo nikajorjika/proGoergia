@@ -9,6 +9,7 @@ use App\Region;
 use App\Field;
 use App\Term;
 use App\Training;
+use App\SeekTraining;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -180,5 +181,79 @@ class AddController extends Controller
         $training->save();
 
         return 'Object saved';
+    }
+
+    public function add_seek_announcement()
+    {
+        $fields   = Field::lists('name', 'id');
+        $terms    = Term::lists('name', 'id');
+        $municipalities = Municipality::all();
+
+        $municipality_regions = array();
+        foreach ($municipalities as $m) {
+            $municipality_regions[] = array(
+                'municipality' => $m,
+                'region'       => $m->region,
+            );
+        }
+
+        $regions        = Region::lists('name', 'id');
+        $type           = array(
+            0 => 'ვატარებ',
+            1 => 'ვეძებ'
+        );
+
+        return view('add_forms.add_seek_announcement', [
+            'fields'               => $fields,
+            'terms'                => $terms,
+            'regions'              => $regions,
+            'municipality_regions' => $municipality_regions,
+            'type'                 => $type
+        ]);
+    }
+
+    public function store_seek_announcement(Request $request)
+    {
+        $rules = array(
+            'term'   => 'required',
+            'field'  => 'required',
+            'region' => 'required',
+        );
+
+        $messages = array(
+            'term.required'    => 'სწავლების ფორმა სავალდებულოა',
+            'field.required'   => 'სწავლების სფერო სავალდებულოა',
+            'region.required'  => 'ჩატარების ადგილი სავალდებულოა',
+        );
+
+
+        $input    = input::all();
+        $file     = Input::file('file');
+        if (isset($file) && !empty($file)) {
+            $extension = $file->getClientOriginalExtension();
+            if ($extension != 'pdf') {
+                //return redirect('add_announcement/' . true);
+            }
+        }
+
+        $this->validate($request, $rules, $messages);
+
+        if (isset($file) && !empty($file)) {
+            $file_name        = str_random(10) . '.' .$file->getClientOriginalExtension();
+            $destinationPath  = 'training_pdf';
+            $file->move($destinationPath, $file_name);
+            $input['file']    = $file_name;
+        }
+
+        $training             = SeekTraining::create($input);
+
+        foreach (input::get('term') as $term) {
+            $training->terms()->attach($term);
+        }
+        $training->fields()->attach(input::get('field'));
+        $training->municipalities()->attach(input::get('municipalities'));
+        $training->save();
+        return 'Object saved';
+
     }
 }
