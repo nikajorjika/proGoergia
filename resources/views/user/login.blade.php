@@ -13,13 +13,13 @@
     <div class="login-form">
         {!! Form::open(['url' => '/user/auth', 'class' => 'form-horizontal form-signin']) !!}
         <div class="form-group">
-            {!! Form::label('name', 'სახელი: ', ['class' => 'col-sm-3 control-label'])!!}
+            {!! Form::label('name', 'სახელი: ', ['class' => 'col-sm-3 control-label']) !!}
             <div class="col-sm-9">
                 {!! Form::text('name', null, ['class' => 'form-control']) !!}
             </div>
         </div>
         <div class="form-group">
-            {!! Form::label('password', 'პაროლი: ', ['class' => 'col-sm-3 control-label'])!!}
+            {!! Form::label('password', 'პაროლი: ', ['class' => 'col-sm-3 control-label']) !!}
             <div class="col-sm-9">
                 {!! Form::text('password', null, ['class' => 'form-control']) !!}
             </div>
@@ -29,7 +29,7 @@
                 &nbsp;
             </div>
             <div class="col-sm-6">
-                {!! Form::submit('დამატება', ['class' => 'btn btn-primary form-control'])!!}
+                {!! Form::submit('ავტორიზაცია', ['class' => 'btn btn-primary form-control']) !!}
             </div>
         </div>
         {!! Form::close() !!}
