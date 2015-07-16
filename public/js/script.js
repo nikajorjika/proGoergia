@@ -21,6 +21,37 @@ $(document).ready(function(){
 
     });
 
+    $('.region_search').change(function() {
+        var region       = $(this).val()
+            , municipality  = $('.municipality_search');
+
+        $.ajax({
+            method: "GET",
+            url: "/municipalities/"+region
+        }).done(function(data){
+            var checkbox = $('.municipalities-checkbox-place');
+            checkbox.html('');
+            checkbox.append('<div class="checkbox municipality_search">'+
+            '<label class="all_m">'+
+            '<input class="" name="municipalities[]" type="checkbox" value='+ 0 +'> ნებისმიერი'+
+            '</label>'+
+            '</div>');
+            $(data).each(function(){
+                var    id   =  $(this)[0].id
+                    ,  name =  $(this)[0].name;
+                checkbox.append('<div class="checkbox municipality_search">'+
+                                        '<label class="all_m">'+
+                                        '<input class="" name="municipalities[]" type="checkbox" value='+ id +'>'+name +
+                                        '</label>'+
+                                '</div>');
+            });
+        }).fail(function(){
+            var checkbox = $('.municipalities-checkbox-place');
+            checkbox.html('');
+        });
+    });
+
+
     $('#time').change(function() {
         var time       = $(this).val()
             , any_time = $('.any-period')
@@ -41,4 +72,5 @@ $(document).ready(function(){
             month.css('display', 'block');
         }
     });
+
 });

@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'SearchController@index');
+Route::Post('/', 'SearchController@get_announcements');
 Route::post('/add_field', 'AddController@store_field');
 Route::get('/add_field', 'AddController@add_field');
 Route::post('/add_term', 'AddController@store_term');
