@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('/user/login', 'UserController@login');
+Route::post('/user/auth', 'UserController@auth');
+
 Route::get('/', 'HomeController@index');
 Route::post('/add_field', 'AddController@store_field');
 Route::get('/add_field', 'AddController@add_field');

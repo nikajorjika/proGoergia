@@ -1,0 +1,19 @@
+.menu {
+    margin-top: 20px;
+}
+
+.menu li {
+    font-size: 20px;
+    padding-right: 50px;
+}
+
+.login-form {
+    margin: 0 auto;
+    padding: 0;
+}
+
+.form-signin {
+    max-width: 300px;
+    padding-top: 40px;
+    margin: 0 auto;
+}
