@@ -11,8 +11,15 @@
 |
 */
 
+<<<<<<< HEAD
 Route::get('/', 'SearchController@index');
 Route::Post('/', 'SearchController@get_announcements');
+=======
+Route::get('/user/login', 'UserController@login');
+Route::post('/user/auth', 'UserController@auth');
+
+Route::get('/', 'HomeController@index');
+>>>>>>> 425119c8235d32e7c15c48d9f9450def1d11bab7
 Route::post('/add_field', 'AddController@store_field');
 Route::get('/add_field', 'AddController@add_field');
 Route::post('/add_term', 'AddController@store_term');
