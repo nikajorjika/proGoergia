@@ -57,9 +57,39 @@ class SearchController extends Controller
         $field_search = input::get('field');
         $term_search = input::get('term');
         $region_search = input::get('region');
-        $municipalities_search[] = input::get('municipalities');
-        $month_search[] = input::get('month');
+        $municipalities_search = input::get('municipalities');
+        $month_search = input::get('month');
         $trainings = Training::all();
-        return $trainings;
+        $any_municipality = Region::find($region_search)->get_municipalities()->get();
+
+
+
+        if($municipalities_search[0] == '0' || empty($municipalities_search)){
+                foreach ($any_municipality as $instance) {
+                            $municipality_id[] = $instance->id;
+                        }
+        }else {
+            $municipality_id = $municipalities_search;
+        }
+        if($month_search[0] != '0' || !empty($month_search[0])){
+            $query_month =   'AND month_training.month_id in ('.implode(',', $month_search).')';
+        }else {
+            $query_month = '';
+        }
+
+        $select = DB::select('
+        SELECT *
+        FROM trainings
+        JOIN field_training ON trainings.id = field_training.training_id
+        JOIN term_training ON trainings.id = term_training.training_id
+        JOIN municipality_training ON trainings.id = municipality_training.training_id
+        JOIN month_training ON trainings.id = month_training.training_id
+        WHERE field_training.field_id = '.$field_search.'
+        AND term_training.term_id = '.$term_search.'
+        AND municipality_training.municipality_id in ('.implode(',',$municipality_id) .')
+        '.$query_month.'
+        ');
+
+        return $select;
     }
 }
