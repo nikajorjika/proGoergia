@@ -145,7 +145,8 @@ class AddController extends Controller
         if (isset($file) && !empty($file)) {
             $extension = $file->getClientOriginalExtension();
             if ($extension != 'pdf') {
-                //return redirect('add_announcement/' . true);
+                $rules['pdf']             = 'required';
+                $messages['pdf.required'] = 'დასაშვებია მხოლოდ pdf გაფართოების ფაილები';
             }
         }
 
