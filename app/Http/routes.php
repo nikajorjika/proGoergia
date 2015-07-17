@@ -16,6 +16,7 @@ Route::get('/', 'SearchController@index');
 Route::Post('/', 'SearchController@get_announcements');
 Route::get('/user/login', 'UserController@login');
 Route::post('/user/auth', 'UserController@auth');
+Route::get('/user/admin', 'UserController@admin');
 Route::post('/add_field', 'AddController@store_field');
 Route::get('/add_field', 'AddController@add_field');
 Route::post('/add_term', 'AddController@store_term');

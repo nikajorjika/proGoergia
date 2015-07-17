@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
@@ -22,6 +23,9 @@ class AddController extends Controller
 {
     public function add_field()
     {
+        if (!Auth::user())
+            return redirect('/');
+
         return view('add_forms.add_form',[
             'action' => 'AddController@store_field',
             'header' => 'სწავლების სფეროს დამატება'
@@ -30,6 +34,9 @@ class AddController extends Controller
 
     public function store_field()
     {
+        if (!Auth::user())
+            return redirect('/');
+
         Field::create(Input::all());
 
         return redirect('/add_field');
@@ -37,6 +44,9 @@ class AddController extends Controller
 
     public function add_term()
     {
+        if (!Auth::user())
+            return redirect('/');
+
         return view('add_forms.add_form', [
             'action' => 'AddController@store_term',
             'header' => 'სწავლების ფორმის დამატება'
@@ -44,6 +54,9 @@ class AddController extends Controller
     }
     public function store_term()
     {
+        if (!Auth::user())
+            return redirect('/');
+
         Term::create(Input::all());
 
         return redirect('/add_term');
@@ -51,6 +64,9 @@ class AddController extends Controller
 
     public function add_municipality()
     {
+        if (!Auth::user())
+            return redirect('/');
+
         $regions = Region::all()->lists('name', 'id');
 
         return view('add_forms.add_form',[
@@ -62,6 +78,9 @@ class AddController extends Controller
 
     public function store_municipality()
     {
+        if (!Auth::user())
+            return redirect('/');
+
         Municipality::create(Input::all());
 
         return redirect('/add_municipality');
@@ -69,6 +88,9 @@ class AddController extends Controller
 
     public function add_region()
     {
+        if (!Auth::user())
+            return redirect('/');
+
         return view('add_forms.add_form', [
             'action' => 'AddController@store_region',
             'header' => 'ჩატარების ადგილის დამატება (რეგიონული ცენტრი)'
@@ -77,6 +99,9 @@ class AddController extends Controller
 
     public function store_region()
     {
+        if (!Auth::user())
+            return redirect('/');
+
         Region::create(Input::all());
 
         return redirect('/add_region');
@@ -84,6 +109,9 @@ class AddController extends Controller
 
     public function add_announcement()
     {
+        if (!Auth::user() || Auth::user()->role != 1)
+            return redirect('/');
+
         $fields   = Field::lists('name', 'id');
         $terms    = Term::lists('name', 'id');
         $municipalities = Municipality::all();
@@ -118,6 +146,9 @@ class AddController extends Controller
 
     public function store_announcement(Request $request)
     {
+        if (!Auth::user() || Auth::user()->role != 1)
+            return redirect('/');
+
         $rules = array(
             'term'   => 'required',
             'field'  => 'required',
@@ -184,8 +215,11 @@ class AddController extends Controller
         return 'Object saved';
     }
 
-    public function add_seek_announcement(Request $request)
+    public function add_seek_announcement()
     {
+        if (!Auth::user() || Auth::user()->role != 2)
+            return redirect('/');
+
         $fields   = Field::lists('name', 'id');
         $terms    = Term::lists('name', 'id');
         $municipalities = Municipality::all();
@@ -215,6 +249,9 @@ class AddController extends Controller
 
     public function store_seek_announcement(Request $request)
     {
+        if (!Auth::user() || Auth::user()->role != 2)
+            return redirect('/');
+
         $rules = array(
             'term'   => 'required',
             'field'  => 'required',

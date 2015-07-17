@@ -46,4 +46,11 @@ class UserController extends Controller
 
         return redirect('/user/login');
     }
+
+    public function admin()
+    {
+        if (!Auth::user())
+            return redirect('/');
+        return view('user.admin');
+    }
 }

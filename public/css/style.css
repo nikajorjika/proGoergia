@@ -1,10 +1,19 @@
-.menu {
-    margin-top: 20px;
+.container {
+    width: 966px;
 }
 
-.menu li {
-    font-size: 20px;
+.menu {
+    margin: 15px 0;
+}
+
+.menu-line .menu li a {
+    font-size: 19px;
     padding-right: 50px;
+    color: #ffffff;
+}
+
+.menu-line .menu li a:hover {
+    text-decoration: none;
 }
 
 .login-form {
@@ -16,4 +25,9 @@
     max-width: 300px;
     padding-top: 40px;
     margin: 0 auto;
+}
+
+.menu-line {
+    background-color: #0A255F;
+    margin-bottom: 50px;
 }

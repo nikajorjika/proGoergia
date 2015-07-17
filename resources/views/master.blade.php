@@ -13,12 +13,16 @@
     {!! Html::script('js/script.js'); !!}
 </head>
 <body>
+    <div class="menu-line">
+        <div class="container">
+            <ul class="menu list-inline">
+                <li><a href="{{ url('/') }}">მთავარი</a></li>
+                <li><a href="{{ url('/user/admin') }}">ადმინი</a></li>
+                <li><a href="{{ url('/user/login') }}">ავტორიზაცია</a></li>
+            </ul>
+        </div>
+    </div>
     <div class="container">
-        <ul class="menu list-inline">
-            <li><a href="{{ url('/') }}">მთავარი</a></li>
-            <li><a href="{{ url('/') }}">ადმინი</a></li>
-            <li><a href="{{ url('/user/login') }}">ავტორიზაცია</a></li>
-        </ul>
         @yield('body')
     </div>
 </body>
