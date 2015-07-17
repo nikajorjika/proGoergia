@@ -184,7 +184,7 @@ class AddController extends Controller
         return 'Object saved';
     }
 
-    public function add_seek_announcement()
+    public function add_seek_announcement(Request $request)
     {
         $fields   = Field::lists('name', 'id');
         $terms    = Term::lists('name', 'id');
@@ -227,13 +227,13 @@ class AddController extends Controller
             'region.required'  => 'ჩატარების ადგილი სავალდებულოა',
         );
 
-
         $input    = input::all();
         $file     = Input::file('file');
         if (isset($file) && !empty($file)) {
             $extension = $file->getClientOriginalExtension();
             if ($extension != 'pdf') {
-                //return redirect('add_announcement/' . true);
+                $rules['pdf']             = 'required';
+                $messages['pdf.required'] = 'დასაშვებია მხოლოდ pdf გაფართოების ფაილები';
             }
         }
 
