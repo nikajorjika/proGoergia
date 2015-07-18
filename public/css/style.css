@@ -33,5 +33,9 @@
 }
 
 .field-statistic-header {
-    margin-bottom: 30px;
+    margin-bottom: 50px;
+}
+
+.statistic-regions {
+    margin-top: 30px;
 }

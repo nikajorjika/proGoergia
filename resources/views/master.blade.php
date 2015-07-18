@@ -10,6 +10,7 @@
     {!! Html::script('https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'); !!}
     {!! Html::script('js/bootstrap.js'); !!}
     {!! Html::script('js/bootstrap.min.js'); !!}
+    {!! Html::script('js/statistic.js'); !!}
     {!! Html::script('js/script.js'); !!}
 </head>
 <body>
