@@ -11,9 +11,11 @@
 |
 */
 
-
-Route::get('/', 'SearchController@index');
-Route::Post('/', 'SearchController@get_announcements');
+Route::get('/', 'HomeController@index');
+Route::get('/seek/announcements', 'SearchController@render_seek_form_data');
+Route::Post('/seek/announcements', 'SearchController@get_seek_announcements');
+Route::get('/announcements', 'SearchController@render_form_data');
+Route::Post('/announcements', 'SearchController@get_announcements');
 Route::get('/download/{file_name}', 'searchController@download');
 Route::get('/user/login', 'UserController@login');
 Route::post('/user/auth', 'UserController@auth');

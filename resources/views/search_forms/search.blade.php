@@ -17,7 +17,7 @@
             სწავლების სფერო:
         </div>
         <div class="col-sm-10">
-            {!! Form::select('field', with_empty($fields->toArray(),'ნებისმიერი'), null, ['class' => 'field form-control']) !!}
+            {!! Form::select('field', with_empty($fields->toArray(),'ნებისმიერი'), null, ['class' => 'field-field form-control']) !!}
         </div>
     </div>
     <div class="form-group">
@@ -25,7 +25,7 @@
             სწავლების ფორმა:
         </div>
         <div class="col-sm-10">
-            {!! Form::select('term', with_empty($terms->toArray(),'ნებისმიერი'), null, ['class' => 'field form-control']) !!}
+            {!! Form::select('term', with_empty($terms->toArray(),'ნებისმიერი'), null, ['class' => 'field-term form-control']) !!}
         </div>
     </div>
     <div class="form-group">
