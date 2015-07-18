@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Month;
@@ -69,7 +70,6 @@ class SearchController extends Controller
         $region_search         = input::get('region');
         $municipalities_search = input::get('municipalities');
         $month_search          = input::get('month');
-        $trainings             = Training::all();
 
 
         if($field_search == '0' || empty($field_search)){
@@ -109,7 +109,7 @@ class SearchController extends Controller
             $query_month = '';
         }
 
-        $select =DB::select(' SELECT *
+        $select =DB::select(' SELECT trainings.id
                                 FROM trainings
                                 JOIN field_training ON trainings.id = field_training.training_id
                                 JOIN term_training ON trainings.id = term_training.training_id
@@ -119,8 +119,23 @@ class SearchController extends Controller
                                 AND term_training.term_id in ( '.implode(',',$terms).')
                                 AND municipality_training.municipality_id in ('.implode(',',$municipality_id) .')
                                 '.$query_month.'
+                                group by trainings.id
                             ');
+        foreach($select as $instance){
+            $selected_ids[] = $instance->id;
+        }
+        $trainings_filtered = Training::all()->filter(function($training) use ($selected_ids){
+            return  in_array($training->id, $selected_ids);
+        });
+        return $trainings_filtered;
+    }
 
-        return $select;
+    public function download($file_name)
+    {
+        $file= public_path(). "/training_pdf/".$file_name.'.pdf';
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+        return response()->download($file, $file_name.'.pdf');
     }
 }

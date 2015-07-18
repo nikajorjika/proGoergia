@@ -91,13 +91,24 @@ $(document).ready(function(){
             url: "/",
             data: formArray
         }).done(function(data){
-            //var select = $('#municipalities-select');
-            //select.html('');
-            //$(data).each(function(){
-            //    var    id   =  $(this)[0].id
-            //        ,  name =  $(this)[0].name;
-            //    select.append('<option value='+id+'>'+name+'</option>');
-            //});
+            var div = $('#search-result');
+            div.html('');
+            $(data).each(function(){
+
+
+            var     id          =   this.id
+                ,   name        =   this.name
+                ,   description =   this.description
+                ,   file        =   this.file.slice(0, -4)
+                ,   link        =   this.link;
+            console.log(file);
+            div.append(' <div id = '+ id +'>' +
+                            '<h3>' + name + '</h3>' +
+                            '<div><a href="'+link+'">ვებ ბმული</a></div>' +
+                            '<div><a href="download/'+file+'">მიმაგრებული ფაილი</a></div>'+
+                            '<div>'+description+'</div>' +
+                        '</div><hr>');
+            });
         });
         event.preventDefault();
     });
