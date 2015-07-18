@@ -14,6 +14,7 @@
 
 Route::get('/', 'SearchController@index');
 Route::Post('/', 'SearchController@get_announcements');
+Route::get('/download/{file_name}', 'searchController@download');
 Route::get('/user/login', 'UserController@login');
 Route::post('/user/auth', 'UserController@auth');
 Route::get('/user/admin', 'UserController@admin');

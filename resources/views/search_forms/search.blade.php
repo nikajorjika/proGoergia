@@ -10,7 +10,7 @@
             </ul>
         </div>
     @endif
-    {!! Form::open(['action' => 'SearchController@get_announcements', 'files' => 'true', 'class' => 'form-horizontal']) !!}
+    {!! Form::open(['action' => 'SearchController@get_announcements', 'files' => 'true','id'=>'filter-form',  'class' => 'form-horizontal']) !!}
 
     <div class="form-group">
         <div class="col-sm-2 control-label">
@@ -68,8 +68,12 @@
     <div class="form-group">
         <div class="col-sm-10">&nbsp;</div>
         <div class="col-sm-2">
-            {!! Form::submit('ძებნა', ['class' => 'btn btn-primary form-control'])!!}
+            {!! Form::submit('ძებნა', ['id'=> 'filter-button','class' => 'btn btn-primary form-control'])!!}
         </div>
     </div>
     {!! Form::close() !!}
+
+    <div id = 'search-result'>
+
+    </div>
 @stop

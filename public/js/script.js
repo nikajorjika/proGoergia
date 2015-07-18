@@ -72,5 +72,44 @@ $(document).ready(function(){
             month.css('display', 'block');
         }
     });
+    $('#filter-form').on('submit',function(event){
+        var existsMonth = false;
+        var formArray = $(this).serializeArray();
+        for(var element in formArray){
+            console.log(formArray[element].name);
+            if(formArray[element].name == 'month[]' ){
+                existsMonth = true;
+            }
+        }
+        if(!existsMonth){
+            console.log($(this).serializeArray());
+            alert('გთხოვთ შეიყვანოთ პერიოდი');
+            event.preventDefault();
+        }
+        $.ajax({
+            method: "POST",
+            url: "/",
+            data: formArray
+        }).done(function(data){
+            var div = $('#search-result');
+            div.html('');
+            $(data).each(function(){
 
+
+            var     id          =   this.id
+                ,   name        =   this.name
+                ,   description =   this.description
+                ,   file        =   this.file.slice(0, -4)
+                ,   link        =   this.link;
+            console.log(file);
+            div.append(' <div id = '+ id +'>' +
+                            '<h3>' + name + '</h3>' +
+                            '<div><a href="'+link+'">ვებ ბმული</a></div>' +
+                            '<div><a href="download/'+file+'">მიმაგრებული ფაილი</a></div>'+
+                            '<div>'+description+'</div>' +
+                        '</div><hr>');
+            });
+        });
+        event.preventDefault();
+    });
 });
