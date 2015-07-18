@@ -27,6 +27,16 @@
     </div>
 
     <div class="statistic-municipalities">
+        <table class="table table-responsive">
+            <thead>
+            <tr>
+                <th>მუნიციპალიტეტი</th>
+                <th>მონაწილეთა რაოდენობა</th>
+            </tr>
+            </thead>
+            <tbody>
 
+            </tbody>
+        </table>
     </div>
 @stop

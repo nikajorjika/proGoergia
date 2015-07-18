@@ -36,6 +36,10 @@
     margin-bottom: 50px;
 }
 
-.statistic-regions {
-    margin-top: 30px;
+.statistic-regions, .statistic-municipalities {
+    margin-top: 50px;
+}
+
+.statistic-regions th, .statistic-municipalities th {
+    width: 50%;
 }

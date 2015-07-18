@@ -48,6 +48,20 @@ class StatisticController extends Controller
             }
         }
 
-        return json_encode(['regions' => $regions_array]);
+        $municipalities_array    = array();
+        $municipalities_id_array = array();
+        foreach ($training_array as $training) {
+            if (!in_array($training['municipalities'][0]['id'], $municipalities_id_array)) {
+                $municipalities_id_array[] = $training['municipalities'][0]['id'];
+                $municipalities_array[$training['municipalities'][0]['id']] = array(
+                    'name'     => $training['municipalities'][0]['name'],
+                    'quantity' => $training['quantity']
+                );
+            } else {
+                $municipalities_array[$training['municipalities'][0]['id']]['quantity'] += $training['quantity'];
+            }
+        }
+
+        return json_encode(['regions' => $regions_array, 'municipalities' => $municipalities_array]);
     }
 }
