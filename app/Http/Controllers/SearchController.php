@@ -60,11 +60,33 @@ class SearchController extends Controller
         $municipalities_search = input::get('municipalities');
         $month_search = input::get('month');
         $trainings = Training::all();
-        $any_municipality = Region::find($region_search)->get_municipalities()->get();
 
 
+        if($field_search == '0' || empty($field_search)){
+            $fields_all = Field::all(['id']);
+            foreach($fields_all as $field){
+                $fields[] = $field->id;
+            }
+        }else {
+            $fields[] = $field_search;
+        }
+
+        if($term_search == '0' || empty($term_search)){
+            $terms_all = Term::all(['id']);
+            foreach($terms_all as $term){
+                $terms[] = $term->id;
+            }
+        }else {
+            $terms[] = $term_search;
+        }
 
         if($municipalities_search[0] == '0' || empty($municipalities_search)){
+            if($region_search != '0' && !empty($region_search)){
+                $any_municipality = Region::find($region_search)->get_municipalities()->get();
+            }else{
+                $any_municipality = Municipality::all(['id']);
+            }
+
                 foreach ($any_municipality as $instance) {
                             $municipality_id[] = $instance->id;
                         }
@@ -77,18 +99,17 @@ class SearchController extends Controller
             $query_month = '';
         }
 
-        $select = DB::select('
-        SELECT *
-        FROM trainings
-        JOIN field_training ON trainings.id = field_training.training_id
-        JOIN term_training ON trainings.id = term_training.training_id
-        JOIN municipality_training ON trainings.id = municipality_training.training_id
-        JOIN month_training ON trainings.id = month_training.training_id
-        WHERE field_training.field_id = '.$field_search.'
-        AND term_training.term_id = '.$term_search.'
-        AND municipality_training.municipality_id in ('.implode(',',$municipality_id) .')
-        '.$query_month.'
-        ');
+        $select =DB::select(' SELECT *
+                                FROM trainings
+                                JOIN field_training ON trainings.id = field_training.training_id
+                                JOIN term_training ON trainings.id = term_training.training_id
+                                JOIN municipality_training ON trainings.id = municipality_training.training_id
+                                JOIN month_training ON trainings.id = month_training.training_id
+                                WHERE field_training.field_id in('.implode(',',$fields).')
+                                AND term_training.term_id in ( '.implode(',',$terms).')
+                                AND municipality_training.municipality_id in ('.implode(',',$municipality_id) .')
+                                '.$query_month.'
+                            ');
 
         return $select;
     }
