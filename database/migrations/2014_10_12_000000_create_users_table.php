@@ -617,6 +617,21 @@ class CreateUsersTable extends Migration
                 ),
             )
         );
+
+        DB::table('users')->insert(
+            array(
+                array(
+                    'name'     => 'admin1',
+                    'role'     => 1,
+                    'password' => bcrypt('bredpiti'),
+                ),
+                array(
+                    'name'     => 'admin2',
+                    'role'     => 2,
+                    'password' => bcrypt('dicaprio'),
+                )
+            )
+        );
     }
 
     /**

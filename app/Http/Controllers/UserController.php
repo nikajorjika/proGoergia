@@ -51,6 +51,7 @@ class UserController extends Controller
     {
         if (!Auth::user())
             return redirect('/');
+
         return view('user.admin');
     }
 }
