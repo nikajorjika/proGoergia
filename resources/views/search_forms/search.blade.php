@@ -71,7 +71,7 @@
     <div class="form-group">
         <div class="col-sm-10">&nbsp;</div>
         <div class="col-sm-2">
-            {!! Form::submit('ძებნა', ['class' => 'btn btn-primary form-control'])!!}
+            {!! Form::submit('ძებნა', ['id'=> 'filter-button','class' => 'btn btn-primary form-control'])!!}
         </div>
     </div>
     {!! Form::close() !!}
