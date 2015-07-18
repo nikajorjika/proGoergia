@@ -161,4 +161,87 @@ $(document).ready(function(){
         });
         event.preventDefault();
     });
+    $('#keyword-search-button-seek').on('click',function(event){
+        var search_value = $('#keyword-search').val();
+        $.ajax({
+            method: "get",
+            url: "/search/seek",
+            data: {
+                'search_text': search_value
+            }
+        }).done(function(data){
+            console.log('done');
+            var div = $('#search-result');
+            div.html('');
+            $(data).each(function(){
+
+
+                var     id          =   this.id
+                    ,   name        =   this.header
+                    ,   quantity    =   this.quantity
+                    ,   file        =   this.file.slice(0, -4)
+                    ,   link        =   this.link
+                    ,   field       =   this.field
+                    ,   contact     =   this.contact
+                    ,   municipality=   this.municipality;
+
+                div.append(' <div id = '+ id +'>' +
+                '<h3>დასახელება: ' + name + '</h3>' +
+                '<div>სწავლების სფერო: '+field+'</div>'+
+                '<div>მონაწილეთა რაოდენობა: '+quantity+'</div>'+
+                '<div>ჩატარების ადგილი: '+municipality+'</div>'+
+                '<div>საკონტაქტო ინფორმაცია: '+contact+'</div>'+
+                '<div><a href="'+link+'">ვებ ბმული</a></div>' +
+                '<div><a href="download/'+file+'">მიმაგრებული ფაილი</a></div>'+
+                '</div><hr>');
+            });
+        }).fail(function(){
+            var div = $('#search-result');
+            div.html('');
+            div.append('<div style="text-align: center">თქვენს მიერ მოთხოვნილი კურსი ვერ მოიძებნა მოიძებნა!</div> ');
+        });
+        event.preventDefault();
+    });
+    $('#keyword-search-button').on('click',function(event){
+        var search_value = $('#keyword-search').val();
+        $.ajax({
+            method: "get",
+            url: "/search/trainings",
+            data: {
+                'search_text': search_value
+            }
+        }).done(function(data){
+            var div = $('#search-result');
+            div.html('');
+            $(data).each(function(){
+
+
+                var     id          =   this.id
+                    ,   name        =   this.header
+                    ,   description =   this.description
+                    ,   file        =   this.file.slice(0, -4)
+                    ,   link        =   this.link
+                    ,   field       =   this.field
+                    ,   terms       =   this.terms
+                    ,   months      =   this.months
+                    ,   municipality=   this.municipality;
+
+                div.append(' <div id = '+ id +'>' +
+                '<h3>დასახელება: ' + name + '</h3>' +
+                '<div>სწავლების სფერო: '+field+'</div>'+
+                '<div>სწავლების ფორმა: '+terms+'</div>'+
+                '<div>ჩატარების ადგილი: '+municipality+'</div>'+
+                '<div>მოკლე აღწერა: '+description+'</div>' +
+                '<div>პერიოდი: '+months+'</div>'+
+                '<div><a href="'+link+'">ვებ ბმული</a></div>' +
+                '<div><a href="download/'+file+'">მიმაგრებული ფაილი</a></div>'+
+                '</div><hr>');
+            });
+        }).fail(function(){
+            var div = $('#search-result');
+            div.html('');
+            div.append('<div style="text-align: center">თქვენს მიერ მოთხოვნილი კურსი ვერ მოიძებნა მოიძებნა!</div> ');
+        });
+        event.preventDefault();
+    });
 });

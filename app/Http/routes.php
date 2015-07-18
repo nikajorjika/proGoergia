@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('/search/trainings', 'SearchController@keyword_search_trainings');
+Route::get('/search/seek', 'SearchController@keyword_search_seek');
 Route::get('/seek/announcements', 'SearchController@render_seek_form_data');
 Route::Post('/seek/announcements', 'SearchController@get_seek_announcements');
 Route::get('/announcements', 'SearchController@render_form_data');

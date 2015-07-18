@@ -19,6 +19,82 @@ use App\Http\Controllers\Controller;
 
 class SearchController extends Controller
 {
+    public function keyword_search_seek()
+    {
+
+        $select =DB::select('SELECT seek_trainings.id, field_seek_training.field_id, municipality_seek_training.municipality_id
+                                FROM seek_trainings
+                                JOIN field_seek_training ON seek_trainings.id = field_seek_training.seek_training_id
+                                JOIN municipality_seek_training ON seek_trainings.id = municipality_seek_training.seek_training_id
+                                where seek_trainings.name like "%'.input::get('search_text').'%" OR seek_trainings.description like "%'.input::get('search_text').'%"
+                                group by seek_trainings.id');
+        $seek_training_filtered_array = [];
+        foreach($select as $instance){
+            $seek_training_filtered    = new \stdClass();
+            $seek_training_instance    = SeekTraining::find($instance->id);
+            $seek_training_field       = Field::find($instance->field_id);
+            $seek_training_municipality= Municipality::find($instance->municipality_id);
+
+            $seek_training_filtered->header      = $seek_training_instance->name;
+            $seek_training_filtered->description = $seek_training_instance->description;
+            $seek_training_filtered->file        = $seek_training_instance->file;
+            $seek_training_filtered->link        = $seek_training_instance->link;
+            $seek_training_filtered->contact     = $seek_training_instance->contact;
+            $seek_training_filtered->quantity     = $seek_training_instance->quantity;
+            $seek_training_filtered->field       = $seek_training_field->name;
+            $seek_training_filtered->municipality= $seek_training_municipality->name;
+            $seek_training_filtered_array[] = $seek_training_filtered;
+            unset($seek_training_filtered);
+            unset($seek_training_months_array);
+            unset($seek_training_terms_array);
+        }
+        return $seek_training_filtered_array;
+    }
+
+    public function keyword_search_trainings()
+    {
+        $select =DB::select(' SELECT trainings.id, field_training.field_id, term_training.term_id, municipality_training.municipality_id, month_training.month_id
+                                FROM trainings
+                                JOIN field_training ON trainings.id = field_training.training_id
+                                JOIN term_training ON trainings.id = term_training.training_id
+                                JOIN municipality_training ON trainings.id = municipality_training.training_id
+                                JOIN month_training ON trainings.id = month_training.training_id
+                                where trainings.name like "%'.input::get('search_text').'%" or trainings.description like "%'.input::get('search_text').'%"
+                                group by trainings.id
+                            ');
+        foreach($select as $instance){
+            $training_filtered    = new \stdClass();
+            $training_instance    = Training::find($instance->id);
+            $training_field       = Field::find($instance->field_id);
+            $training_municipality= Municipality::find($instance->municipality_id);
+            $training_months      = DB::select('SELECT months.name FROM month_training JOIN months ON months.id = month_training.month_id WHERE training_id = '.$instance->id);
+            $training_terms       = DB::select('SELECT terms.name FROM term_training JOIN terms ON terms.id = term_training.term_id WHERE training_id = '.$instance->id);
+            foreach($training_months as $month){
+                $training_months_array[] = $month->name;
+            }
+            foreach($training_terms as $term){
+                $training_terms_array[] = $term->name;
+            }
+            $training_filtered->header      = $training_instance->name;
+            $training_filtered->description = $training_instance->description;
+            $training_filtered->file        = $training_instance->file;
+            $training_filtered->link        = $training_instance->link;
+            $training_filtered->field       = $training_field->name;
+            $training_filtered->months      = implode(',',$training_months_array);
+            $training_filtered->terms       = implode(',',$training_terms_array);
+            $training_filtered->municipality= $training_municipality->name;
+            $training_filtered_array[] = $training_filtered;
+            unset($training_filtered);
+            unset($training_months_array);
+            unset($training_terms_array);
+        }
+
+
+        return response(json_encode($training_filtered_array), 200)
+            ->header('Content-Type', 'application/json'); ;
+
+    }
+
     public function render_form_data()
     {
         $fields   = Field::lists('name', 'id');
@@ -150,7 +226,7 @@ class SearchController extends Controller
 
 
         return response(json_encode($training_filtered_array), 200)
-            ->header('Content-Type', 'application/json'); ;
+            ->header('Content-Type', 'application/json');
     }
 
     public function download($file_name)
