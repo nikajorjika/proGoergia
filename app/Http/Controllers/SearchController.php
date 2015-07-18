@@ -52,14 +52,24 @@ class SearchController extends Controller
         ]);
     }
 
-    public function get_announcements()
+    public function get_announcements(Request $request)
     {
-        $field_search = input::get('field');
-        $term_search = input::get('term');
-        $region_search = input::get('region');
+        $rules      = array(
+            'month' => 'required'
+        );
+
+        $messages            = array(
+            'month.required' => 'პერიოდი სავალდებულოა'
+        );
+
+        $this->validate($request, $rules, $messages);
+
+        $field_search          = input::get('field');
+        $term_search           = input::get('term');
+        $region_search         = input::get('region');
         $municipalities_search = input::get('municipalities');
-        $month_search = input::get('month');
-        $trainings = Training::all();
+        $month_search          = input::get('month');
+        $trainings             = Training::all();
 
 
         if($field_search == '0' || empty($field_search)){
