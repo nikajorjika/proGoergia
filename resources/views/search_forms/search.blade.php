@@ -7,9 +7,6 @@
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
-                @if (isset($pdf_error) && !empty($pdf_error))
-                    <li>{{ $pdf_error }}</li>
-                @endif
             </ul>
         </div>
     @endif
