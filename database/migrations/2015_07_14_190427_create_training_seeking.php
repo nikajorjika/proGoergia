@@ -31,7 +31,7 @@ class CreateTrainingSeeking extends Migration
         });
         Schema::create('municipality_seek_training', function (Blueprint $table) {
             $table->integer('seek_training_id')->unsigned()->index();
-            $table->foreign('seek_training_id')->references('id')->on('trainings')->onDelete('cascade');
+            $table->foreign('seek_training_id')->references('id')->on('seek_trainings')->onDelete('cascade');
             $table->integer('municipality_id')->unsigned()->index();
             $table->foreign('municipality_id')->references('id')->on('municipalities');
             $table->text('name');
@@ -39,7 +39,7 @@ class CreateTrainingSeeking extends Migration
         });
         Schema::create('seek_training_term', function (Blueprint $table) {
             $table->integer('seek_training_id')->unsigned()->index();
-            $table->foreign('seek_training_id')->references('id')->on('trainings')->onDelete('cascade');
+            $table->foreign('seek_training_id')->references('id')->on('seek_trainings')->onDelete('cascade');
             $table->integer('term_id')->unsigned()->index();
             $table->foreign('term_id')->references('id')->on('terms');
             $table->text('name');

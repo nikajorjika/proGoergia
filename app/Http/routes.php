@@ -30,3 +30,5 @@ Route::get('/add_announcement/', 'AddController@add_announcement');
 Route::post('/add_seek_announcement', 'AddController@store_seek_announcement');
 Route::get('/add_seek_announcement/', 'AddController@add_seek_announcement');
 Route::get('/municipalities/{id}', 'GetController@get_municipalities_by_id');
+Route::get('/statistic', 'StatisticController@index');
+
