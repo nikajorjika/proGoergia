@@ -72,7 +72,33 @@ $(document).ready(function(){
             month.css('display', 'block');
         }
     });
-    $('#filter-button').submit(function(){
-       
+    $('#filter-form').on('submit',function(event){
+        var existsMonth = false;
+        var formArray = $(this).serializeArray();
+        for(var element in formArray){
+            console.log(formArray[element].name);
+            if(formArray[element].name == 'month[]' ){
+                existsMonth = true;
+            }
+        }
+        if(!existsMonth){
+            console.log($(this).serializeArray());
+            alert('გთხოვთ შეიყვანოთ პერიოდი');
+            event.preventDefault();
+        }
+        $.ajax({
+            method: "POST",
+            url: "/",
+            data: formArray
+        }).done(function(data){
+            //var select = $('#municipalities-select');
+            //select.html('');
+            //$(data).each(function(){
+            //    var    id   =  $(this)[0].id
+            //        ,  name =  $(this)[0].name;
+            //    select.append('<option value='+id+'>'+name+'</option>');
+            //});
+        });
+        event.preventDefault();
     });
 });

@@ -10,7 +10,7 @@
             </ul>
         </div>
     @endif
-    {!! Form::open(['action' => 'SearchController@get_announcements', 'files' => 'true', 'class' => 'form-horizontal']) !!}
+    {!! Form::open(['action' => 'SearchController@get_announcements', 'files' => 'true','id'=>'filter-form',  'class' => 'form-horizontal']) !!}
 
     <div class="form-group">
         <div class="col-sm-2 control-label">
@@ -72,4 +72,8 @@
         </div>
     </div>
     {!! Form::close() !!}
+
+    <div id = 'search-result'>
+
+    </div>
 @stop
