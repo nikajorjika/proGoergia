@@ -96,11 +96,11 @@
     margin-top: 10px;
 }
 
-.site-map h4:first-child {
+.site-map .h:first-child {
     margin-top: 30px;
 }
 
-.site-map h4 {
+.site-map .h {
     margin-bottom: 20px;
 }
 
