@@ -14,7 +14,6 @@
     background-color: #298FD3;
 }
 
-
 .menu-line .menu a li {
     font-size: 17px;
     padding: 0 50px 0 50px;
@@ -106,4 +105,16 @@
 
 .site-map .last-p {
     margin-bottom: 50px;
+}
+
+.main-page-content {
+    margin-top: 50px;
+}
+
+.display-none {
+    display: none;
+}
+
+.display-block {
+    display: block;
 }

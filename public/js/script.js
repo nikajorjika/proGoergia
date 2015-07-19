@@ -5,6 +5,12 @@ $(document).ready(function(){
     $('#region').change(function() {
         var region   = $(this).val();
 
+        if (region) {
+            $('#municipalities').removeClass('display-none');
+        } else {
+            $('#municipalities').addClass('display-none');
+        }
+
         $.ajax({
                 method: "GET",
                 url: "/municipalities/"+region

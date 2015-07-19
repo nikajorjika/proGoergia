@@ -11,6 +11,12 @@
         </div>
     @endif
 
-    <a href="/announcements">მოძებნე ტრენინგს</a>
-    <a href="/seek/announcements">ჩაატარე ტრენინგი</a>
+    <div class="main-page-content">
+        <div class="col-sm-6 text-center">
+            <a href="/announcements">ტრენინგ-პროგრამები</a>
+        </div>
+        <div class="col-sm-6 text-center">
+            <a href="/seek/announcements">ტრენინგ-საჭიროებები</a>
+        </div>
+    </div>
 @stop
