@@ -38,8 +38,16 @@
             </ul>
         </div>
     </div>
-    <div class="container">
+    <div class="container body">
         @yield('body')
+    </div>
+    <div class="footer">
+        <div class="container">
+            <div class="footer-text">
+                სასწავლო ტრენინგ-პროგრამებისა და მუნიციპალიტეტების ტრენინგ-საჭიროებების რეესტრი
+                <div>Copyright © 2015</div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

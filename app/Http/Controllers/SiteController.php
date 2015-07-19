@@ -18,7 +18,7 @@ class SiteController extends Controller
     public function site_map()
     {
         return view('site.site_map')
-            ->with('site_active', 'active');
+            ->with('site_map_active', 'active');
     }
 
     public function contact()
