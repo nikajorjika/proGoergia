@@ -17,7 +17,7 @@
     <div class="site-header">
         <div class="container">
             <a href="{{ url('/') }}"><img src="/images/logo.png"></a>
-            <img src="/images/slogan_1.png">
+            <img src="/images/slogan_1.jpg">
         </div>
     </div>
     <div class="menu-line">

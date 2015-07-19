@@ -56,20 +56,99 @@
             პერიოდი:
         </div>
         <div class="col-sm-10">
-            <div class="month" style=""><div class="checkbox">
-                    <label>
-                        {!! Form::checkbox('month[]', '0', null, ['class' => '']) !!}
-                        ნებისმიერი
-                    </label>
-                </div>
-                @foreach($month as $key => $mon)
+            <div class="month" style="">
+                <div class="col-sm-3">
                     <div class="checkbox">
                         <label>
-                            {!! Form::checkbox('month[]', $key, null, ['class' => '']) !!}
-                            {{ $mon }}
+                            {!! Form::checkbox('month[]', '0', null, ['class' => '']) !!}
+                            ნებისმიერი
                         </label>
                     </div>
-                @endforeach
+                    <div class="checkbox">
+                        <label>
+                            {!! Form::checkbox('month[]', '1', null, ['class' => '']) !!}
+                            იანვარი
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            {!! Form::checkbox('month[]', '2', null, ['class' => '']) !!}
+                            თებერვალი
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            {!! Form::checkbox('month[]', '3', null, ['class' => '']) !!}
+                            მარტიი
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="checkbox">&nbsp;</div>
+                    <div class="checkbox">
+                        <label>
+                            {!! Form::checkbox('month[]', '4', null, ['class' => '']) !!}
+                            აპრილი
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            {!! Form::checkbox('month[]', '5', null, ['class' => '']) !!}
+                            მაისი
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            {!! Form::checkbox('month[]', '6', null, ['class' => '']) !!}
+                            ივნისი
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="checkbox">&nbsp;</div>
+                    <div class="checkbox">
+                        <label>
+                            {!! Form::checkbox('month[]', '7', null, ['class' => '']) !!}
+                            ივლისი
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            {!! Form::checkbox('month[]', '8', null, ['class' => '']) !!}
+                            აგვისტო
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            {!! Form::checkbox('month[]', '9', null, ['class' => '']) !!}
+                            სექტემბერი
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="checkbox">&nbsp;</div>
+                    <div class="checkbox">
+                        <label>
+                            {!! Form::checkbox('month[]', '10', null, ['class' => '']) !!}
+                            ოქტომბერი
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            {!! Form::checkbox('month[]', '11', null, ['class' => '']) !!}
+                            ნოემბერი
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            {!! Form::checkbox('month[]', '12', null, ['class' => '']) !!}
+                            დეკემბერი
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -82,7 +161,7 @@
     </div>
     {!! Form::close() !!}
 
-    <div id = 'search-result'>
+    <div id='search-result'>
 
     </div>
 @stop

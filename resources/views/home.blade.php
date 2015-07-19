@@ -12,11 +12,20 @@
     @endif
 
     <div class="main-page-content">
-        <div class="col-sm-6 text-center">
-            <a href="/announcements">ტრენინგ-პროგრამები</a>
+        <p class="text-center"><strong>მუნიციპალიტეტების საჯარო მოხელეთა კვალიფიკაციის ამაღლების პროგრამები</strong></p>
+        <p class="text-center">კავლიფიკაციის ამაღლების პროგრამის ძიება  შეგიძლიათ დაიწყოთ აქ</p>
+        <div class="text-center main-page-img">
+            <a href="/announcements">
+                <img src="/images/gray-programs.jpg">
+            </a>
         </div>
-        <div class="col-sm-6 text-center">
-            <a href="/seek/announcements">ტრენინგ-საჭიროებები</a>
+
+        <p class="text-center"><strong>მუნიციპალიტეტების მოხელეთა ტრენინგ-საჭიროებები</strong></p>
+        <p class="text-center">მუნიციპალიტეტების მოხელეთა ტრენინგ-საჭიროებების  ძიება  შეგიძლიათ დაიწყოთ აქ</p>
+        <div class="text-center main-page-img">
+            <a href="/seek/announcements">
+                <img src="/images/gray-needs.jpg">
+            </a>
         </div>
     </div>
 @stop

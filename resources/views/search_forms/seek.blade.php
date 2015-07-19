@@ -38,7 +38,7 @@
             form-control']) !!}
         </div>
     </div>
-    <div class="form-group" id="municipalities">
+    <div class="form-group display-none" id="municipalities">
         <div class="col-sm-2 control-label">
             მუნიციპალიტეტები:
         </div>

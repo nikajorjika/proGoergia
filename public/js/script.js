@@ -111,15 +111,15 @@ $(document).ready(function(){
                 ,   municipality=   this.municipality;
 
             div.append(' <div id = '+ id +'>' +
-                            '<h3>დასახელება: ' + name + '</h3>' +
-                            '<div>სწავლების სფერო: '+field+'</div>'+
-                            '<div>სწავლების ფორმა: '+terms+'</div>'+
-                            '<div>ჩატარების ადგილი: '+municipality+'</div>'+
-                            '<div>მოკლე აღწერა: '+description+'</div>' +
-                            '<div>პერიოდი: '+months+'</div>'+
-                            '<div><a href="'+link+'">ვებ ბმული</a></div>' +
-                            '<div><a href="download/'+file+'">მიმაგრებული ფაილი</a></div>'+
-                        '</div><hr>');
+                            '<h3>' + name + '</h3>' +
+                            '<div class="description">'+description+'</div>' +
+                            '<div class="row"><div class="col-sm-3"><strong>სწავლების სფერო: </strong></div><div class="col-sm-9">'+field+'</div></div>'+
+                            '<div class="row"><div class="col-sm-3"><strong>სწავლების ფორმა: </strong></div><div class="col-sm-9">'+terms+'</div></div>'+
+                            '<div class="row"><div class="col-sm-3"><strong>ჩატარების ადგილი: </strong></div><div class="col-sm-9">'+municipality+'</div></div>'+
+                            '<div class="row"><div class="col-sm-3"><strong>პერიოდი: </strong></div><div class="col-sm-9">'+months+'</div></div>'+
+                            '<div class="inline-block margin-right-10"><a href="'+link+'">ვებ ბმული</a></div>' +
+                            '<div class="inline-block"><a href="download/'+file+'">მიმაგრებული ფაილი</a></div>'+
+                        '</div><hr class="margin-bottom-40">');
             });
         }).fail(function(){
             var div = $('#search-result');
