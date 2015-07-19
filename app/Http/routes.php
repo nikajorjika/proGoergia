@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('/delete_seek/{id}', 'DeleteController@delete_seek');
+Route::get('/delete/{id}', 'DeleteController@delete_announcement');
 Route::get('/search/trainings', 'SearchController@keyword_search_trainings');
 Route::get('/search/seek', 'SearchController@keyword_search_seek');
 Route::get('/seek/announcements', 'SearchController@render_seek_form_data');
