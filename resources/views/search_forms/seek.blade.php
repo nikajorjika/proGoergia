@@ -10,13 +10,15 @@
             </ul>
         </div>
     @endif
-    <div class="col-lg-4" style="margin-left: 85%; margin-bottom: 2%; margin-top: 0;">
-        <div class="input-group">
-            <input type="text" id="keyword-search" search_type ='seek-trainings' class="form-control" placeholder="მოძებნეთ...">
+    <div class="container">
+        <div class="col-lg-4 float-right margin-bottom-20">
+            <div class="input-group">
+                <input type="text" id="keyword-search" search_type ='seek-trainings' class="form-control" placeholder="მოძებნეთ...">
 
             <span class="input-group-btn">
                     <button class="btn btn-default" id="keyword-search-button-seek" type="button">ძებნა!</button>
             </span>
+            </div>
         </div>
     </div>
 

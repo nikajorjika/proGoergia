@@ -14,7 +14,7 @@
     </div>
 @endif
 {!! Form::open(['action' => 'AddController@store_announcement', 'files' => 'true', 'class' => 'form-horizontal']) !!}
-<h1>განცხადების დამატება</h1>
+<h1>ტრენინგ-პროგრამის დამატება</h1>
 
 <div class="form-group">
     {!! Form::label('name', 'სათაური: ', ['class' => 'col-sm-2 control-label'])!!}
@@ -89,28 +89,12 @@
         @endforeach
     </div>
 </div>
-<div class="form-group">
-    {!! Form::label('time', 'ჩატარების დრო: ', ['class' => 'col-sm-2 control-label']) !!}
-    <div class="col-sm-10">
-        {!! Form::select('time', [1 => 'აირჩიეთ ჩატარების დრო', 2 => 'კვარტალი', 3 => 'თვე'], null, ['class' => 'time form-control']) !!}
-    </div>
-</div>
 <div class="form-group" id="municipalities">
     <div class="col-sm-2 control-label">
         პერიოდი:
     </div>
     <div class="col-sm-10">
-        <div class="quarter" style="display: none">
-            @foreach($quarter as $key => $qua)
-                <div class="checkbox">
-                    <label>
-                        {!! Form::checkbox('quarter[]', $key, null, ['class' => '']) !!}
-                        {{ $qua }}
-                    </label>
-                </div>
-            @endforeach
-        </div>
-        <div class="month" style="display: none">
+        <div class="month">
             @foreach($month as $key => $mon)
                 <div class="checkbox">
                     <label>

@@ -153,23 +153,15 @@ class AddController extends Controller
             'term'   => 'required',
             'field'  => 'required',
             'region' => 'required',
+            'month'  => 'required',
         );
 
         $messages = array(
             'term.required'    => 'სწავლების ფორმა სავალდებულოა',
             'field.required'   => 'სწავლების სფერო სავალდებულოა',
             'region.required'  => 'ჩატარების ადგილი სავალდებულოა',
+            'month.required'   => 'ჩატარების პერიოდი სავალდებულოა',
         );
-
-        if (input::get('time') == 2) {
-            $rules['quarter']             = 'required';
-            $messages['quarter.required'] = 'ჩატარების პერიოდი სავალდებულია';
-        }
-
-        if (input::get('time') == 3) {
-            $rules['month']             = 'required';
-            $messages['month.required'] = 'ჩატარების პერიოდი სავალდებულია';
-        }
 
         $input    = input::all();
         $file     = Input::file('file');
@@ -199,12 +191,6 @@ class AddController extends Controller
         $training->fields()->attach(input::get('field'));
         $training->municipalities()->attach(input::get('municipalities'));
 
-        if(!is_null(input::get('quarter'))) {
-            foreach (input::get('quarter') as $quarter) {
-                $training->quarters()->attach($quarter);
-            }
-        }
-
         if(!is_null(input::get('month'))){
             foreach (input::get('month') as $month) {
                 $training->months()->attach($month);
@@ -212,7 +198,7 @@ class AddController extends Controller
         }
         $training->save();
 
-        return 'Object saved';
+        return redirect('/');
     }
 
     public function add_seek_announcement()
@@ -291,7 +277,7 @@ class AddController extends Controller
         $training->fields()->attach(input::get('field'));
         $training->municipalities()->attach(input::get('municipalities'));
         $training->save();
-        return 'Object saved';
 
+        return redirect('/');
     }
 }
