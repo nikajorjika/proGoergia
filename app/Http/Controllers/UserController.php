@@ -36,15 +36,15 @@ class UserController extends Controller
                     ->first();
 
         if (empty($user)) {
-            return redirect('/user/login');
+            return redirect('/login');
         }
 
         if (!Hash::check('password', $user->password)) {
             Auth::loginUsingId($user->id);
-            return redirect('/');
+            return redirect('/admin');
         }
 
-        return redirect('/user/login');
+        return redirect('/login');
     }
 
     public function admin()

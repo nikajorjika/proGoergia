@@ -3,17 +3,30 @@
 }
 
 .menu {
-    margin: 15px 0;
+    margin-bottom: 0;
 }
 
-.menu-line .menu li a {
+.menu a {
+    padding: 15px 0;
+}
+
+.menu a:hover {
+    background-color: #298FD3;
+}
+
+
+.menu-line .menu a li {
     font-size: 19px;
-    padding-right: 50px;
+    padding: 0 50px 0 50px;
     color: #ffffff;
 }
 
-.menu-line .menu li a:hover {
+.menu-line .menu a:hover {
     text-decoration: none;
+}
+
+.menu-line a {
+    display: inline-block;
 }
 
 .login-form {
@@ -42,4 +55,17 @@
 
 .statistic-regions th, .statistic-municipalities th {
     width: 50%;
+}
+
+.site-header {
+    background-color: #18529C;
+    padding: 20px 0;
+}
+
+.site-header img:first-child {
+    padding-right: 20px;
+}
+
+.active {
+    background-color: #298FD3;
 }

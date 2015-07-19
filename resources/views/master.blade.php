@@ -14,12 +14,27 @@
     {!! Html::script('js/script.js'); !!}
 </head>
 <body>
+    <div class="site-header">
+        <div class="container">
+            <a href="{{ url('/') }}"><img src="/images/logo.png"></a>
+            <img src="/images/slogan_1.png">
+        </div>
+    </div>
     <div class="menu-line">
         <div class="container">
             <ul class="menu list-inline">
-                <li><a href="{{ url('/') }}">მთავარი</a></li>
-                <li><a href="{{ url('/user/admin') }}">ადმინი</a></li>
-                <li><a href="{{ url('/user/login') }}">ავტორიზაცია</a></li>
+                <a href="{{ url('/') }}" @if(isset($home_active)) class="active" @endif>
+                    <li>მთავარი</li>
+                </a>
+                <a href="{{ url('/site/about_project') }}" @if(isset($about_active)) class="active" @endif>
+                    <li>პროექტის შესახებ</li>
+                </a>
+                <a href="{{ url('/site/site_map') }}" @if(isset($site_map_active)) class="active" @endif>
+                    <li>გზამკვლევი</li>
+                </a>
+                <a href="{{ url('/site/contact') }}" @if(isset($contact_active)) class="active" @endif>
+                    <li>კონტაქტი</li>
+                </a>
             </ul>
         </div>
     </div>
