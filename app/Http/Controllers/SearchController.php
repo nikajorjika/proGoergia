@@ -16,6 +16,7 @@ use App\SeekTraining;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class SearchController extends Controller
 {
@@ -34,7 +35,7 @@ class SearchController extends Controller
             $seek_training_instance    = SeekTraining::find($instance->id);
             $seek_training_field       = Field::find($instance->field_id);
             $seek_training_municipality= Municipality::find($instance->municipality_id);
-
+            $seek_training_filtered->id          = $seek_training_instance->id;
             $seek_training_filtered->header      = $seek_training_instance->name;
             $seek_training_filtered->description = $seek_training_instance->description;
             $seek_training_filtered->file        = $seek_training_instance->file;
@@ -43,6 +44,7 @@ class SearchController extends Controller
             $seek_training_filtered->quantity     = $seek_training_instance->quantity;
             $seek_training_filtered->field       = $seek_training_field->name;
             $seek_training_filtered->municipality= $seek_training_municipality->name;
+            $seek_training_filtered->isAdmin     = Auth::check();
             $seek_training_filtered_array[] = $seek_training_filtered;
             unset($seek_training_filtered);
             unset($seek_training_months_array);
@@ -75,6 +77,7 @@ class SearchController extends Controller
             foreach($training_terms as $term){
                 $training_terms_array[] = $term->name;
             }
+            $training_filtered->id          = $training_instance->id;
             $training_filtered->header      = $training_instance->name;
             $training_filtered->description = $training_instance->description;
             $training_filtered->file        = $training_instance->file;
@@ -83,6 +86,7 @@ class SearchController extends Controller
             $training_filtered->months      = implode(',',$training_months_array);
             $training_filtered->terms       = implode(',',$training_terms_array);
             $training_filtered->municipality= $training_municipality->name;
+            $training_filtered->isAdmin     = Auth::check();
             $training_filtered_array[] = $training_filtered;
             unset($training_filtered);
             unset($training_months_array);
@@ -173,9 +177,9 @@ class SearchController extends Controller
                 $any_municipality = Municipality::all(['id']);
             }
 
-                foreach ($any_municipality as $instance) {
-                            $municipality_id[] = $instance->id;
-                        }
+            foreach ($any_municipality as $instance) {
+                $municipality_id[] = $instance->id;
+            }
         }else {
             $municipality_id = $municipalities_search;
         }
@@ -210,6 +214,7 @@ class SearchController extends Controller
             foreach($training_terms as $term){
                 $training_terms_array[] = $term->name;
             }
+            $training_filtered->id          = $training_instance->id;
             $training_filtered->header      = $training_instance->name;
             $training_filtered->description = $training_instance->description;
             $training_filtered->file        = $training_instance->file;
@@ -218,6 +223,7 @@ class SearchController extends Controller
             $training_filtered->months      = implode(',',$training_months_array);
             $training_filtered->terms       = implode(',',$training_terms_array);
             $training_filtered->municipality= $training_municipality->name;
+            $training_filtered->isAdmin     = Auth::check();
             $training_filtered_array[] = $training_filtered;
             unset($training_filtered);
             unset($training_months_array);
@@ -314,7 +320,7 @@ class SearchController extends Controller
             $seek_training_instance    = SeekTraining::find($instance->id);
             $seek_training_field       = Field::find($instance->field_id);
             $seek_training_municipality= Municipality::find($instance->municipality_id);
-
+            $seek_training_filtered->id          = $seek_training_instance->id;
             $seek_training_filtered->header      = $seek_training_instance->name;
             $seek_training_filtered->description = $seek_training_instance->description;
             $seek_training_filtered->file        = $seek_training_instance->file;
@@ -323,6 +329,7 @@ class SearchController extends Controller
             $seek_training_filtered->quantity     = $seek_training_instance->quantity;
             $seek_training_filtered->field       = $seek_training_field->name;
             $seek_training_filtered->municipality= $seek_training_municipality->name;
+            $seek_training_filtered->isAdmin     = Auth::check();
             $seek_training_filtered_array[] = $seek_training_filtered;
             unset($seek_training_filtered);
             unset($seek_training_months_array);
