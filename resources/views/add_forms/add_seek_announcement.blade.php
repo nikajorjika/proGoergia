@@ -14,7 +14,7 @@
 </div>
 @endif
 {!! Form::open(['action' => 'AddController@store_seek_announcement', 'files' => 'true', 'class' => 'form-horizontal']) !!}
-<h1>განცხადების დამატება</h1>
+<h1>ტრენინგ-საჭიროების დამატება</h1>
 
 <div class="form-group">
     {!! Form::label('name', 'სათაური: ', ['class' => 'col-sm-2 control-label'])!!}

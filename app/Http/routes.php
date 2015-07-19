@@ -20,7 +20,7 @@ Route::get('/seek/announcements', 'SearchController@render_seek_form_data');
 Route::Post('/seek/announcements', 'SearchController@get_seek_announcements');
 Route::get('/announcements', 'SearchController@render_form_data');
 Route::Post('/announcements', 'SearchController@get_announcements');
-Route::get('/download/{file_name}', 'searchController@download');
+Route::get('/download/{file_name}', 'SearchController@download');
 Route::get('/login', 'UserController@login');
 Route::post('/user/auth', 'UserController@auth');
 Route::get('/admin', 'UserController@admin');

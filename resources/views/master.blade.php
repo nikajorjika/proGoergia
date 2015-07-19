@@ -35,6 +35,11 @@
                 <a href="{{ url('/site/contact') }}" @if(isset($contact_active)) class="active" @endif>
                     <li>კონტაქტი</li>
                 </a>
+                @if(Auth::user())
+                    <a href="{{ url('/admin') }}" @if(isset($admin_active)) class="active" @endif>
+                        <li>ადმინი</li>
+                    </a>
+                @endif
             </ul>
         </div>
     </div>
