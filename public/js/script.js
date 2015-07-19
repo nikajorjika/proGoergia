@@ -120,7 +120,7 @@ $(document).ready(function(){
                 '<div class="row"><div class="col-sm-3"><strong>ჩატარების ადგილი: </strong></div><div class="col-sm-9">'+municipality+'</div></div>'+
                 '<div class="row"><div class="col-sm-3"><strong>პერიოდი: </strong></div><div class="col-sm-9">'+months+'</div></div>'+
                 '<div class="inline-block margin-right-10"><a href="'+link+'">ვებ ბმული</a></div>' +
-                '<div class="inline-block"><a href="download/'+file+'">მიმაგრებული ფაილი</a></div>' +
+                '<div class="inline-block"><a href="/download/'+file+'">მიმაგრებული ფაილი</a></div>' +
                 '</div><hr class="margin-bottom-40">');
             }else{
                 div.append(' <div id = '+ id +'>' +
@@ -131,7 +131,7 @@ $(document).ready(function(){
                 '<div class="row"><div class="col-sm-3"><strong>ჩატარების ადგილი: </strong></div><div class="col-sm-9">'+municipality+'</div></div>'+
                 '<div class="row"><div class="col-sm-3"><strong>პერიოდი: </strong></div><div class="col-sm-9">'+months+'</div></div>'+
                 '<div class="inline-block margin-right-10"><a href="'+link+'">ვებ ბმული</a></div>' +
-                '<div class="inline-block"><a href="download/'+file+'">მიმაგრებული ფაილი</a></div>' +
+                '<div class="inline-block"><a href="/download/'+file+'">მიმაგრებული ფაილი</a></div>' +
                 '</div><hr class="margin-bottom-40">');
             }
             });
@@ -174,7 +174,7 @@ $(document).ready(function(){
                     '<div class="row"><div class="col-sm-3"><strong>ჩატარების ადგილი: </strong></div><div class="col-sm-9">'+municipality+'</div></div>'+
                     '<div class="row"><div class="col-sm-3"><strong>საკონტაქტო ინფორმაცია: </strong></div><div class="col-sm-9">'+contact+'</div></div>'+
                     '<div class="inline-block margin-right-10"><a href="'+link+'">ვებ ბმული</a></div>' +
-                    '<div class="inline-block"><a href="download/'+file+'">მიმაგრებული ფაილი</a></div>' +
+                    '<div class="inline-block"><a href="/download/'+file+'">მიმაგრებული ფაილი</a></div>' +
                     '</div><hr class="margin-bottom-40">');
                 }else {
                     div.append(' <div id = ' + id + '>' +
@@ -185,7 +185,7 @@ $(document).ready(function(){
                     '<div class="row"><div class="col-sm-3"><strong>ჩატარების ადგილი: </strong></div><div class="col-sm-9">' + municipality + '</div></div>' +
                     '<div class="row"><div class="col-sm-3"><strong>საკონტაქტო ინფორმაცია: </strong></div><div class="col-sm-9">' + contact + '</div></div>' +
                     '<div class="inline-block margin-right-10"><a href="' + link + '">ვებ ბმული</a></div>' +
-                    '<div class="inline-block"><a href="download/' + file + '">მიმაგრებული ფაილი</a></div>' +
+                    '<div class="inline-block"><a href="/download/' + file + '">მიმაგრებული ფაილი</a></div>' +
                     '</div><hr class="margin-bottom-40">');
                 }
             });
@@ -229,7 +229,7 @@ $(document).ready(function(){
                     '<div class="row"><div class="col-sm-3"><strong>ჩატარების ადგილი: </strong></div><div class="col-sm-9">'+municipality+'</div></div>'+
                     '<div class="row"><div class="col-sm-3"><strong>საკონტაქტო ინფორმაცია: </strong></div><div class="col-sm-9">'+contact+'</div></div>'+
                     '<div class="inline-block margin-right-10"><a href="'+link+'">ვებ ბმული</a></div>' +
-                    '<div class="inline-block"><a href="download/'+file+'">მიმაგრებული ფაილი</a></div>' +
+                    '<div class="inline-block"><a href="/download/'+file+'">მიმაგრებული ფაილი</a></div>' +
                     '</div><hr class="margin-bottom-40">');
                 } else {
                     div.append(' <div id = '+ id +'>' +
@@ -240,7 +240,7 @@ $(document).ready(function(){
                     '<div class="row"><div class="col-sm-3"><strong>ჩატარების ადგილი: </strong></div><div class="col-sm-9">'+municipality+'</div></div>'+
                     '<div class="row"><div class="col-sm-3"><strong>საკონტაქტო ინფორმაცია: </strong></div><div class="col-sm-9">'+contact+'</div></div>'+
                     '<div class="inline-block margin-right-10"><a href="'+link+'">ვებ ბმული</a></div>' +
-                    '<div class="inline-block"><a href="download/'+file+'">მიმაგრებული ფაილი</a></div>' +
+                    '<div class="inline-block"><a href="/download/'+file+'">მიმაგრებული ფაილი</a></div>' +
                     '</div><hr class="margin-bottom-40">');
                 }
 
@@ -285,7 +285,7 @@ $(document).ready(function(){
                     '<div class="row"><div class="col-sm-3"><strong>ჩატარების ადგილი: </strong></div><div class="col-sm-9">'+municipality+'</div></div>'+
                     '<div class="row"><div class="col-sm-3"><strong>პერიოდი: </strong></div><div class="col-sm-9">'+months+'</div></div>'+
                     '<div class="inline-block margin-right-10"><a href="'+link+'">ვებ ბმული</a></div>' +
-                    '<div class="inline-block"><a href="download/'+file+'">მიმაგრებული ფაილი</a></div>' +
+                    '<div class="inline-block"><a href="/download/'+file+'">მიმაგრებული ფაილი</a></div>' +
                     '</div><hr class="margin-bottom-40">');
                 }else{
                     div.append(' <div id = '+ id +'>' +
@@ -296,7 +296,7 @@ $(document).ready(function(){
                     '<div class="row"><div class="col-sm-3"><strong>ჩატარების ადგილი: </strong></div><div class="col-sm-9">'+municipality+'</div></div>'+
                     '<div class="row"><div class="col-sm-3"><strong>პერიოდი: </strong></div><div class="col-sm-9">'+months+'</div></div>'+
                     '<div class="inline-block margin-right-10"><a href="'+link+'">ვებ ბმული</a></div>' +
-                    '<div class="inline-block"><a href="download/'+file+'">მიმაგრებული ფაილი</a></div>' +
+                    '<div class="inline-block"><a href="/download/'+file+'">მიმაგრებული ფაილი</a></div>' +
                     '</div><hr class="margin-bottom-40">');
                 }
             });
