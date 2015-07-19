@@ -118,13 +118,13 @@ $(document).ready(function(){
                             '<div class="row"><div class="col-sm-3"><strong>ჩატარების ადგილი: </strong></div><div class="col-sm-9">'+municipality+'</div></div>'+
                             '<div class="row"><div class="col-sm-3"><strong>პერიოდი: </strong></div><div class="col-sm-9">'+months+'</div></div>'+
                             '<div class="inline-block margin-right-10"><a href="'+link+'">ვებ ბმული</a></div>' +
-                            '<div class="inline-block"><a href="download/'+file+'">მიმაგრებული ფაილი</a></div>'+
+                            '<div class="inline-block"><a href="download/'+file+'">მიმაგრებული ფაილი</a></div>' +
                         '</div><hr class="margin-bottom-40">');
             });
         }).fail(function(){
             var div = $('#search-result');
             div.html('');
-            div.append('<div style="text-align: center">თქვენს მიერ მოთხოვნილი კურსი ვერ მოიძებნა მოიძებნა!</div> ');
+            div.append('<div style="text-align: center">თქვენს მიერ მოთხოვნილი კურსი ვერ მოიძებნა!</div> ');
         });
         event.preventDefault();
     });
@@ -143,6 +143,7 @@ $(document).ready(function(){
 
                 var     id          =   this.id
                     ,   name        =   this.header
+                    ,   description =   this.description
                     ,   quantity    =   this.quantity
                     ,   file        =   this.file.slice(0, -4)
                     ,   link        =   this.link
@@ -152,18 +153,19 @@ $(document).ready(function(){
 
                 div.append(' <div id = '+ id +'>' +
                 '<h3>დასახელება: ' + name + '</h3>' +
-                '<div>სწავლების სფერო: '+field+'</div>'+
-                '<div>მონაწილეთა რაოდენობა: '+quantity+'</div>'+
-                '<div>ჩატარების ადგილი: '+municipality+'</div>'+
-                '<div>საკონტაქტო ინფორმაცია: '+contact+'</div>'+
-                '<div><a href="'+link+'">ვებ ბმული</a></div>' +
-                '<div><a href="download/'+file+'">მიმაგრებული ფაილი</a></div>'+
-                '</div><hr>');
+                '<div class="description">'+description+'</div>' +
+                '<div class="row"><div class="col-sm-3"><strong>სწავლების სფერო: </strong></div><div class="col-sm-9">'+field+'</div></div>'+
+                '<div class="row"><div class="col-sm-3"><strong>მონაწილეთა რაოდენობა: </strong></div><div class="col-sm-9">'+quantity+'</div></div>'+
+                '<div class="row"><div class="col-sm-3"><strong>ჩატარების ადგილი: </strong></div><div class="col-sm-9">'+municipality+'</div></div>'+
+                '<div class="row"><div class="col-sm-3"><strong>საკონტაქტო ინფორმაცია: </strong></div><div class="col-sm-9">'+contact+'</div></div>'+
+                '<div class="inline-block margin-right-10"><a href="'+link+'">ვებ ბმული</a></div>' +
+                '<div class="inline-block"><a href="download/'+file+'">მიმაგრებული ფაილი</a></div>' +
+                '</div><hr class="margin-bottom-40">');
             });
         }).fail(function(){
             var div = $('#search-result');
             div.html('');
-            div.append('<div style="text-align: center">თქვენს მიერ მოთხოვნილი კურსი ვერ მოიძებნა მოიძებნა!</div> ');
+            div.append('<div style="text-align: center">თქვენს მიერ მოთხოვნილი კურსი ვერ მოიძებნა!</div> ');
         });
         event.preventDefault();
     });
