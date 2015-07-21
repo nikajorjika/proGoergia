@@ -9,6 +9,13 @@ $(document).ready(function(){
             }
         });
     }
+    var editEvent = function(){
+        $('.edit').click(function(e){
+            if(!confirm('დარწმუნებული ხართ თუ არა რომ გსურთ ჩანაწერის შესწორება ?')){
+                e.preventDefault();
+            }
+        });
+    }
     $('#region').change(function() {
         var region   = $(this).val();
 
@@ -119,9 +126,10 @@ $(document).ready(function(){
 
             if(this.isAdmin){
                 div.append(' <div id = '+ id +'>' +
-                '<h3>' + name + '</h3>' +
-                '<a class="delete" onClick ="confirm("Press a button!")"  href="/delete/'+id+'"><span>წაშალე ტრენინგი</span></a>'+
-                '<div class="description">'+description+'</div>' +
+                '<h3>' + name +
+                '<a class="delete" onClick ="confirm("Press a button!")"  href="/delete/'+id+'" style="padding-right: 15px; padding-left: 15px"><span  class="glyphicon glyphicon-trash"></span></a>'+
+                '<a class="edit" onClick ="confirmEdit("Press a button!")"  href="/announcement/edit/'+id+'"><span class="glyphicon glyphicon-pencil"></span></a>'+
+                '</h3><div class="description">'+description+'</div>' +
                 '<div class="row"><div class="col-sm-3"><strong>სწავლების სფერო: </strong></div><div class="col-sm-9">'+field+'</div></div>'+
                 '<div class="row"><div class="col-sm-3"><strong>სწავლების ფორმა: </strong></div><div class="col-sm-9">'+terms+'</div></div>'+
                 '<div class="row"><div class="col-sm-3"><strong>ჩატარების ადგილი: </strong></div><div class="col-sm-9">'+municipality+'</div></div>'+
@@ -142,7 +150,7 @@ $(document).ready(function(){
                 '</div><hr class="margin-bottom-40">');
             }
             });
-            deleteEvent();
+            deleteEvent(); editEvent();
         }).fail(function(){
             var div = $('#search-result');
             div.html('');
@@ -174,9 +182,10 @@ $(document).ready(function(){
                     ,   municipality=   this.municipality;
                 if(this.isAdmin){
                     div.append(' <div id = '+ id +'>' +
-                    '<h3>დასახელება: ' + name + '</h3>' +
-                    '<a class="delete"  href="/delete_seek/'+id+'">წაშალე ტრენინგი</a>'+
-                    '<div class="description">'+description+'</div>' +
+                    '<h3>' + name +
+                    '<a class="delete" onClick ="confirm("Press a button!")"  href="/delete/'+id+'" style="padding-right: 15px; padding-left: 15px"><span  class="glyphicon glyphicon-trash"></span></a>'+
+                    '<a class="edit" onClick ="confirmEdit("Press a button!")"  href="/announcement/edit/'+id+'"><span class="glyphicon glyphicon-pencil"></span></a>'+
+                    '</h3><div class="description">'+description+'</div>' +
                     '<div class="row"><div class="col-sm-3"><strong>სწავლების სფერო: </strong></div><div class="col-sm-9">'+field+'</div></div>'+
                     '<div class="row"><div class="col-sm-3"><strong>მონაწილეთა რაოდენობა: </strong></div><div class="col-sm-9">'+quantity+'</div></div>'+
                     '<div class="row"><div class="col-sm-3"><strong>ჩატარების ადგილი: </strong></div><div class="col-sm-9">'+municipality+'</div></div>'+
@@ -197,7 +206,7 @@ $(document).ready(function(){
                     '</div><hr class="margin-bottom-40">');
                 }
             });
-            deleteEvent();
+            deleteEvent(); editEvent();
         }).fail(function(){
             var div = $('#search-result');
             div.html('');
@@ -230,9 +239,10 @@ $(document).ready(function(){
                     ,   municipality=   this.municipality;
                 if(this.isAdmin){
                     div.append(' <div id = '+ id +'>' +
-                    '<h3>დასახელება: ' + name + '</h3>' +
-                    '<a class="delete" onClick ="confirm("Press a button!")"  href="/delete_seek/'+id+'"><span>წაშალე ტრენინგი</span></a>'+
-                    '<div class="description">'+description+'</div>' +
+                    '<h3>' + name +
+                    '<a class="delete" onClick ="confirm("Press a button!")"  href="/delete/'+id+'" style="padding-right: 15px; padding-left: 15px"><span  class="glyphicon glyphicon-trash"></span></a>'+
+                    '<a class="edit" onClick ="confirmEdit("Press a button!")"  href="/announcement/edit/'+id+'"><span class="glyphicon glyphicon-pencil"></span></a>'+
+                    '</h3><div class="description">'+description+'</div>' +
                     '<div class="row"><div class="col-sm-3"><strong>სწავლების სფერო: </strong></div><div class="col-sm-9">'+field+'</div></div>'+
                     '<div class="row"><div class="col-sm-3"><strong>მონაწილეთა რაოდენობა: </strong></div><div class="col-sm-9">'+quantity+'</div></div>'+
                     '<div class="row"><div class="col-sm-3"><strong>ჩატარების ადგილი: </strong></div><div class="col-sm-9">'+municipality+'</div></div>'+
@@ -254,7 +264,7 @@ $(document).ready(function(){
                 }
 
             });
-            deleteEvent();
+            deleteEvent(); editEvent();
         }).fail(function(){
             var div = $('#search-result');
             div.html('');
@@ -287,9 +297,10 @@ $(document).ready(function(){
                     ,   municipality=   this.municipality;
                 if(this.isAdmin){
                     div.append(' <div id = '+ id +'>' +
-                    '<h3>' + name + '</h3>' +
-                    '<a class="delete" onClick ="confirm("Press a button!")"  href="/delete/'+id+'"><span>წაშალე ტრენინგი</span></a>'+
-                    '<div class="description">'+description+'</div>' +
+                    '<h3>' + name +
+                    '<a class="delete" onClick ="confirm("Press a button!")"  href="/delete/'+id+'" style="padding-right: 15px; padding-left: 15px"><span  class="glyphicon glyphicon-trash"></span></a>'+
+                    '<a class="edit" onClick ="confirmEdit("Press a button!")"  href="/announcement/edit/'+id+'"><span class="glyphicon glyphicon-pencil"></span></a>'+
+                    '</h3><div class="description">'+description+'</div>' +
                     '<div class="row"><div class="col-sm-3"><strong>სწავლების სფერო: </strong></div><div class="col-sm-9">'+field+'</div></div>'+
                     '<div class="row"><div class="col-sm-3"><strong>სწავლების ფორმა: </strong></div><div class="col-sm-9">'+terms+'</div></div>'+
                     '<div class="row"><div class="col-sm-3"><strong>ჩატარების ადგილი: </strong></div><div class="col-sm-9">'+municipality+'</div></div>'+
@@ -310,7 +321,7 @@ $(document).ready(function(){
                     '</div><hr class="margin-bottom-40">');
                 }
             });
-            deleteEvent();
+            deleteEvent(); editEvent();
         }).fail(function(){
             var div = $('#search-result');
             div.html('');
