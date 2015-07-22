@@ -171,3 +171,7 @@
 .float-right {
     float: right;
 }
+
+.form-group label, .form-group .control-label {
+    font-weight: bold;
+}
