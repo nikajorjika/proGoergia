@@ -175,3 +175,11 @@
 .form-group label, .form-group .control-label {
     font-weight: bold;
 }
+
+form h1 {
+    margin-bottom: 30px;
+}
+
+.add-form-btn {
+    margin-top: 20px;
+}
