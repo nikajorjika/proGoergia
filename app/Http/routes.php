@@ -46,3 +46,8 @@ Route::get('/search_statistic/{id}', 'StatisticController@search_statistic');
 Route::get('/site/about_project', 'SiteController@about_project');
 Route::get('/site/site_map', 'SiteController@site_map');
 Route::get('/site/contact', 'SiteController@contact');
+
+Route::controllers([
+    'auth'     => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);

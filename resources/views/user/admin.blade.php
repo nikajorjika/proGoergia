@@ -10,5 +10,8 @@
         <li><a href="{{ url('/add_field') }}">სწავლების სფეროს დამატება</a></li>
         <li><a href="{{ url('/add_term') }}">სწავლების ფორმის დამატება</a></li>
         <li><a href="{{ url('/statistic') }}">სტატისტიკის ნახვა</a></li>
+        @if(Auth::user())
+            <li><a href="{{ url('/auth/logout') }}">გამოსვლა</a></li>
+        @endif
     </ul>
 @stop
