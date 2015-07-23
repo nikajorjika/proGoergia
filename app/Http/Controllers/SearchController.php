@@ -237,7 +237,7 @@ class SearchController extends Controller
 
     public function download($file_name)
     {
-        $file= public_path(). "/training_pdf/".$file_name.'.pdf';
+        $file= public_path()."/../training_pdf/".$file_name.'.pdf';
         $headers = array(
             'Content-Type: application/pdf',
         );
