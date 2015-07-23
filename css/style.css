@@ -70,11 +70,12 @@
 }
 
 .body {
-    min-height: 400px;
+    min-height: 600px;
 }
 
 .footer {
-    background-color: #f5f5f5;
+    color: white;
+    background-color: #144e98;
 }
 
 .footer-text {
@@ -169,4 +170,16 @@
 
 .float-right {
     float: right;
+}
+
+.form-group label, .form-group .control-label {
+    font-weight: bold;
+}
+
+form h1 {
+    margin-bottom: 30px;
+}
+
+.add-form-btn {
+    margin-top: 20px;
 }

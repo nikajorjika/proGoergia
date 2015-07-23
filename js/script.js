@@ -154,7 +154,7 @@ $(document).ready(function(){
         }).fail(function(){
             var div = $('#search-result');
             div.html('');
-            div.append('<div style="text-align: center">თქვენს მიერ მოთხოვნილი კურსი ვერ მოიძებნა!</div> ');
+            div.append('<div style="text-align: center; font-weight: bold;">თქვენ მიერ მითითებული პარამეტრებით არ იძებნება არცერთი პროგრამა!</div> ');
         });
         event.preventDefault();
     });
@@ -210,7 +210,7 @@ $(document).ready(function(){
         }).fail(function(){
             var div = $('#search-result');
             div.html('');
-            div.append('<div style="text-align: center">თქვენს მიერ მოთხოვნილი კურსი ვერ მოიძებნა!</div> ');
+            div.append('<div style="text-align: center; font-weight: bold;">თქვენ მიერ მითითებული პარამეტრებით არ იძებნება არცერთი პროგრამა!</div> ');
         });
         event.preventDefault();
     });
@@ -268,7 +268,7 @@ $(document).ready(function(){
         }).fail(function(){
             var div = $('#search-result');
             div.html('');
-            div.append('<div style="text-align: center">თქვენს მიერ მოთხოვნილი კურსი ვერ მოიძებნა მოიძებნა!</div> ');
+            div.append('<div style="text-align: center; font-weight: bold;">თქვენ მიერ მითითებული პარამეტრებით არ იძებნება არცერთი პროგრამა!</div> ');
         });
         event.preventDefault();
     });
@@ -325,7 +325,7 @@ $(document).ready(function(){
         }).fail(function(){
             var div = $('#search-result');
             div.html('');
-            div.append('<div style="text-align: center">თქვენს მიერ მოთხოვნილი კურსი ვერ მოიძებნა მოიძებნა!</div> ');
+            div.append('<div style="text-align: center; font-weight: bold;">თქვენ მიერ მითითებული პარამეტრებით არ იძებნება არცერთი პროგრამა!</div> ');
         });
         event.preventDefault();
     });
