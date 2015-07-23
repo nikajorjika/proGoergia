@@ -184,7 +184,7 @@ $(document).ready(function(){
                     div.append(' <div id = '+ id +'>' +
                     '<h3>' + name +
                     '<a class="delete" onClick ="confirm("Press a button!")"  href="/delete/'+id+'" style="padding-right: 15px; padding-left: 15px"><span  class="glyphicon glyphicon-trash"></span></a>'+
-                    '<a class="edit" onClick ="confirmEdit("Press a button!")"  href="/announcement/edit/'+id+'"><span class="glyphicon glyphicon-pencil"></span></a>'+
+                    '<a class="edit" onClick ="confirmEdit("Press a button!")"  href="/seek_announcement/edit/'+id+'"><span class="glyphicon glyphicon-pencil"></span></a>'+
                     '</h3><div class="description">'+description+'</div>' +
                     '<div class="row"><div class="col-sm-3"><strong>სწავლების სფერო: </strong></div><div class="col-sm-9">'+field+'</div></div>'+
                     '<div class="row"><div class="col-sm-3"><strong>მონაწილეთა რაოდენობა: </strong></div><div class="col-sm-9">'+quantity+'</div></div>'+
@@ -241,7 +241,7 @@ $(document).ready(function(){
                     div.append(' <div id = '+ id +'>' +
                     '<h3>' + name +
                     '<a class="delete" onClick ="confirm("Press a button!")"  href="/delete/'+id+'" style="padding-right: 15px; padding-left: 15px"><span  class="glyphicon glyphicon-trash"></span></a>'+
-                    '<a class="edit" onClick ="confirmEdit("Press a button!")"  href="/announcement/edit/'+id+'"><span class="glyphicon glyphicon-pencil"></span></a>'+
+                    '<a class="edit" onClick ="confirmEdit("Press a button!")"  href="/seek_announcement/edit/'+id+'"><span class="glyphicon glyphicon-pencil"></span></a>'+
                     '</h3><div class="description">'+description+'</div>' +
                     '<div class="row"><div class="col-sm-3"><strong>სწავლების სფერო: </strong></div><div class="col-sm-9">'+field+'</div></div>'+
                     '<div class="row"><div class="col-sm-3"><strong>მონაწილეთა რაოდენობა: </strong></div><div class="col-sm-9">'+quantity+'</div></div>'+

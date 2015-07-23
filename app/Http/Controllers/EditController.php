@@ -142,6 +142,9 @@ class EditController extends Controller
                                 where trainings.id = '.$id.'
                                 group by trainings.id
                             ');
+        print_r($select);
+
+        die();
         $select=$select[0];
         $training_filtered    = new \stdClass();
         $training_instance    = Training::find($select->id);
