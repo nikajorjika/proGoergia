@@ -16,8 +16,8 @@
 <body>
     <div class="site-header">
         <div class="container">
-            <a href="{{ url('/') }}"><img src="/images/logo.png"></a>
-            <img src="/images/slogan_1.jpg">
+            <a href="http://www.lsg.gov.ge"><img src="/images/logo.png"></a>
+            <a href="http://www.lsg.gov.ge"><img src="/images/slogan_1.jpg"></a>
         </div>
     </div>
     <div class="menu-line">

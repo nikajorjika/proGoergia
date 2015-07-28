@@ -12,6 +12,20 @@
         </div>
     </div>
 
+    <div class="statistic-country">
+        <table class="table table-responsive">
+            <thead>
+            <tr>
+                <th>ქვეყანა</th>
+                <th>მონაწილეთა რაოდენობა</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
     <div class="statistic-regions">
         <table class="table table-responsive">
             <thead>

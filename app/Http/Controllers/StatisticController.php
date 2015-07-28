@@ -34,9 +34,11 @@ class StatisticController extends Controller
             }
         }
 
+        $country_array    = array('quantity' => 0);
         $regions_array    = array();
         $regions_id_array = array();
         foreach ($training_array as $training) {
+            $country_array['quantity'] += $training['quantity'];
             if (!in_array($training['region'][0]['id'], $regions_id_array)) {
                 $regions_id_array[] = $training['region'][0]['id'];
                 $regions_array[$training['region'][0]['id']] = array(
@@ -62,6 +64,6 @@ class StatisticController extends Controller
             }
         }
 
-        return json_encode(['regions' => $regions_array, 'municipalities' => $municipalities_array]);
+        return json_encode(['regions' => $regions_array, 'municipalities' => $municipalities_array, 'country' => $country_array]);
     }
 }

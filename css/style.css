@@ -48,11 +48,11 @@
     margin-bottom: 50px;
 }
 
-.statistic-regions, .statistic-municipalities {
+.statistic-regions, .statistic-municipalities, .statistic-country {
     margin-top: 50px;
 }
 
-.statistic-regions th, .statistic-municipalities th {
+.statistic-regions th, .statistic-municipalities th, .statistic-country th {
     width: 50%;
 }
 

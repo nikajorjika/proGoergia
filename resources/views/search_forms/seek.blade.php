@@ -34,7 +34,7 @@
         </div>
     </div>
     <div class="form-group">
-        {!! Form::label('region', 'ჩატარების ადგილი: ', ['class' => 'col-sm-2 control-label']) !!}
+        {!! Form::label('region', 'დამკვეთი მუნიციპალიტეტი: ', ['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
             {!! Form::select('region', with_empty($regions->toArray(),'ნებისმიერი'), null, ['class' => 'region_search
             form-control']) !!}

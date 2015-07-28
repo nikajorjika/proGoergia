@@ -9,10 +9,19 @@ $(function () {
             }).done(function(data){
                 data = JSON.parse(data);
                 var regions_body          = $('.statistic-regions').find('table').find('tbody')
-                    , municipalities_body = $('.statistic-municipalities').find('table').find('tbody');
+                    , municipalities_body = $('.statistic-municipalities').find('table').find('tbody')
+                    , country_body        = $('.statistic-country').find('table').find('tbody');
 
+                country_body.html('');
                 regions_body.html('');
                 municipalities_body.html('');
+
+                country_body.append(
+                    '<tr>' +
+                    '<td>' + 'საქართველო'     + '</td>' +
+                    '<td>' + data.country.quantity + '</td>' +
+                    '</tr>'
+                );
 
                 $.each(data.regions, function(key, value) {
                     regions_body.append(
@@ -31,8 +40,6 @@ $(function () {
                         '</tr>'
                     );
                 });
-
-                console.log(data);
             });
         }
     });
