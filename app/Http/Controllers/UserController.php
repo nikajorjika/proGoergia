@@ -39,7 +39,7 @@ class UserController extends Controller
             return redirect('/login');
         }
 
-        if (!Hash::check('password', $user->password)) {
+        if (Hash::check(Input::get('password'), $user->password)) {
             Auth::loginUsingId($user->id);
             return redirect('/admin');
         }

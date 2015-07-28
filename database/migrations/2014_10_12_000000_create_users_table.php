@@ -623,12 +623,12 @@ class CreateUsersTable extends Migration
                 array(
                     'name'     => 'admin1',
                     'role'     => 1,
-                    'password' => bcrypt('bredpiti'),
+                    'password' => bcrypt('WGxDu88mLx23'),
                 ),
                 array(
                     'name'     => 'admin2',
                     'role'     => 2,
-                    'password' => bcrypt('dicaprio'),
+                    'password' => bcrypt('KDxeP11cVx47'),
                 )
             )
         );
