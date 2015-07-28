@@ -63,7 +63,7 @@
                 <div class="col-sm-3">
                     <div class="checkbox">
                         <label>
-                            {!! Form::checkbox('month[]', '0', null, ['class' => '']) !!}
+                            {!! Form::checkbox('month[]', '0', null, ['class' => 'all-period']) !!}
                             ნებისმიერი
                         </label>
                     </div>

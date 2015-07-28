@@ -8,16 +8,18 @@ $(document).ready(function(){
                 e.preventDefault();
             }
         });
-    }
+    };
+
     var editEvent = function(){
         $('.edit').click(function(e){
             if(!confirm('დარწმუნებული ხართ თუ არა რომ გსურთ ჩანაწერის შესწორება ?')){
                 e.preventDefault();
             }
         });
-    }
+    };
+
     $('#region').change(function() {
-        var region   = $(this).val();
+        var region = $(this).val();
 
         if (region) {
             $('#municipalities').removeClass('display-none');
@@ -32,27 +34,25 @@ $(document).ready(function(){
             var select = $('#municipalities-select');
             select.html('');
             $(data).each(function(){
-               var    id   =  $(this)[0].id
-                   ,  name =  $(this)[0].name;
+                var    id   =  $(this)[0].id
+                    ,  name =  $(this)[0].name;
                 select.append('<option value='+id+'>'+name+'</option>');
             });
         });
-
-
     });
 
     $('.region_search').change(function() {
-        var region       = $(this).val()
+        var region          = $(this).val()
             , municipality  = $('.municipality_search');
 
         $.ajax({
             method: "GET",
-            url: "/municipalities/"+region
+            url: "/municipalities/" + region
         }).done(function(data){
             var checkbox = $('.municipalities-checkbox-place');
             checkbox.html('');
             checkbox.append('<div class="checkbox municipality_search">'+
-            '<label class="all_m">'+
+            '<label class="all_m all_regions">'+
             '<input class="" name="municipalities[]" type="checkbox" value='+ 0 +'> ნებისმიერი'+
             '</label>'+
             '</div>');
@@ -64,6 +64,15 @@ $(document).ready(function(){
                                         '<input class="" name="municipalities[]" type="checkbox" value='+ id +'>'+name +
                                         '</label>'+
                                 '</div>');
+            });
+
+            $('.all_regions').find('input').change(function() {
+                var inputs    = $(this).parents('.municipalities-checkbox-place').find('input')
+                    , checked = $(this).prop('checked');
+
+                $(inputs).each(function(){
+                    $(this).prop('checked', checked);
+                });
             });
         }).fail(function(){
             var checkbox = $('.municipalities-checkbox-place');
@@ -330,5 +339,12 @@ $(document).ready(function(){
         event.preventDefault();
     });
 
-    
+    $('.all-period').change(function() {
+        var inputs    = $(this).parents('.month').find('input')
+            , checked = $(this).prop('checked');
+
+        $(inputs).each(function(){
+            $(this).prop('checked', checked);
+        });
+    });
 });
