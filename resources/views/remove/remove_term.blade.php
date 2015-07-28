@@ -12,6 +12,8 @@
     @endif
 
     @foreach($terms as $id => $name)
-        <p style="display: inline-block;">{{ $name }}</p> <a href="{{ url('/drop_term/' . $id) }}"><span class="glyphicon glyphicon-trash"></span></a>
+        <div>
+            <p style="display: inline-block;">{{ $name }}</p> <a href="{{ url('/drop_term/' . $id) }}"><span class="glyphicon glyphicon-trash"></span></a>
+        </div>
     @endforeach
 @stop
