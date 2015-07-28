@@ -280,4 +280,62 @@ class AddController extends Controller
 
         return redirect('/');
     }
+
+    public function remove_field()
+    {
+        if (!Auth::user()) {
+            return redirect('/');
+        }
+
+        $fields = Field::lists('name', 'id');
+
+        return view('remove.remove_field')
+            ->with('fields', $fields);
+    }
+
+    public function drop_field($id, Request $request)
+    {
+        if (!Auth::user()) {
+            return redirect('/');
+        }
+
+        try {
+            Field::where('id', '=', $id)->delete();
+        } catch (\exception $e) {
+            $rules    = ['delete' => 'required'];
+            $messages = ['delete.required' => 'წაშლა შეუძლებელია'];
+            $this->validate($request, $rules, $messages);
+        }
+
+        return redirect('/admin');
+    }
+
+    public function remove_term()
+    {
+        if (!Auth::user()) {
+            return redirect('/');
+        }
+
+        $terms = Term::lists('name', 'id');
+
+        return view('remove.remove_term')
+            ->with('terms', $terms);
+    }
+
+    public function drop_term($id, Request $request)
+    {
+        if (!Auth::user()) {
+            return redirect('/');
+        }
+
+        try {
+            Term::where('id', '=', $id)->delete();
+        } catch (\exception $e) {
+            $rules    = ['delete' => 'required'];
+            $messages = ['delete.required' => 'წაშლა შეუძლებელია'];
+            $this->validate($request, $rules, $messages);
+        }
+
+        return redirect('/admin');
+    }
 }
