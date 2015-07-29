@@ -21,7 +21,7 @@ Route::Post('/seek/announcements', 'SearchController@get_seek_announcements');
 Route::get('/announcements', 'SearchController@render_form_data');
 Route::Post('/announcements', 'SearchController@get_announcements');
 Route::get('/announcement/edit/{id}', 'EditController@edit_announcement');
-Route::post('/announcement/edit/', 'EditController@save_announcement');;
+Route::post('/announcement/edit/', 'EditController@save_announcement');
 Route::get('/seek_announcement/edit/{id}', 'EditController@edit_seek_announcement');
 Route::post('/seek_announcement/edit', 'EditController@save_seek_announcement');
 Route::get('/download/{file_name}', 'SearchController@download');

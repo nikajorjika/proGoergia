@@ -131,9 +131,9 @@ class EditController extends Controller
             1 => 'ვეძებ'
         );
 
-        $quarter  = Quarter::all()->lists('name','id');
-        $months    = Month::all()->lists('name','id');
-        $select =DB::select(' SELECT trainings.id, field_training.field_id, term_training.term_id, municipality_training.municipality_id, month_training.month_id
+        $quarter = Quarter::all()->lists('name','id');
+        $months  = Month::all()->lists('name','id');
+        $select  = DB::select(' SELECT trainings.id, field_training.field_id, term_training.term_id, municipality_training.municipality_id, month_training.month_id
                                 FROM trainings
                                 JOIN field_training ON trainings.id = field_training.training_id
                                 JOIN term_training ON trainings.id = term_training.training_id
@@ -141,10 +141,8 @@ class EditController extends Controller
                                 JOIN month_training ON trainings.id = month_training.training_id
                                 where trainings.id = '.$id.'
                                 group by trainings.id
-                            ');
-        print_r($select);
+                   ');
 
-        die();
         $select=$select[0];
         $training_filtered    = new \stdClass();
         $training_instance    = Training::find($select->id);
@@ -152,11 +150,14 @@ class EditController extends Controller
         $training_municipality= Municipality::find($select->municipality_id);
         $training_months      = DB::select('SELECT months.name FROM month_training JOIN months ON months.id = month_training.month_id WHERE training_id = '.$training_instance->id);
         $training_terms       = DB::select('SELECT terms.name FROM term_training JOIN terms ON terms.id = term_training.term_id WHERE training_id = '.$training_instance->id);
+
         foreach($training_months as $month){
             $training_months_array[] = $month->name;
         }
+
         foreach($training_terms as $term){
             $training_terms_array[] = $term->name;
+
         }
         $training_filtered->id                  = $training_instance->id;
         $training_filtered->header              = $training_instance->name;
@@ -172,19 +173,16 @@ class EditController extends Controller
         $training_filtered->region              = $training_municipality->region_id;
         $training_filtered->isAdmin             = Auth::check();
 
-
-//        print_r( $terms);
-//        die();
         return view('edit.edit_announcement', [
-        'fields'                => $fields,
-        'terms'                 => $terms,
-        'regions'               => $regions,
-        'municipalities'        => $municipalities,
-        'quarter'               => $quarter,
-        'month'                 => $months,
-        'type'                  => $type,
-        'training'              => $training_filtered
-    ]);
+            'fields'                => $fields,
+            'terms'                 => $terms,
+            'regions'               => $regions,
+            'municipalities'        => $municipalities,
+            'quarter'               => $quarter,
+            'month'                 => $months,
+            'type'                  => $type,
+            'training'              => $training_filtered
+        ]);
     }
 
     public function save_announcement(Request $request)
