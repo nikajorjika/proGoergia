@@ -17,7 +17,8 @@ class StatisticController extends Controller
         $fields   = Field::lists('name', 'id');
 
         return view('statistics.statistic')
-            ->with('fields', $fields);
+            ->with('fields', $fields)
+            ->with('statistic_active', 'active');
     }
 
     public function search_statistic($field_id)

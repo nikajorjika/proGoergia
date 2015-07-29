@@ -23,20 +23,23 @@
     <div class="menu-line">
         <div class="container">
             <ul class="menu list-inline">
-                <a href="{{ url('/') }}" @if(isset($home_active)) class="active" @endif>
+                <a href="{{ url('/') }}" class="col-sm-2" @if(isset($home_active)) style="background-color: #298FD3;" @endif>
                     <li>მთავარი</li>
                 </a>
-                <a href="{{ url('/site/about_project') }}" @if(isset($about_active)) class="active" @endif>
+                <a href="{{ url('/site/about_project') }}" class="col-sm-3" @if(isset($about_active)) style="background-color: #298FD3;" @endif>
                     <li>პროექტის შესახებ</li>
                 </a>
-                <a href="{{ url('/site/site_map') }}" @if(isset($site_map_active)) class="active" @endif>
+                <a href="{{ url('/site/site_map') }}" class="col-sm-2" @if(isset($site_map_active)) style="background-color: #298FD3;" @endif>
                     <li>გზამკვლევი</li>
                 </a>
-                <a href="{{ url('/site/contact') }}" @if(isset($contact_active)) class="active" @endif>
+                <a href="{{ url('/site/contact') }}" class="col-sm-2" @if(isset($contact_active)) style="background-color: #298FD3;" @endif>
                     <li>კონტაქტი</li>
                 </a>
+                <a href="{{ url('/statistic') }}" class="col-sm-2" @if(isset($statistic_active)) style="background-color: #298FD3;" @endif>
+                    <li>სტატისტიკა</li>
+                </a>
                 @if(Auth::user())
-                    <a href="{{ url('/admin') }}" @if(isset($admin_active)) class="active" @endif>
+                    <a href="{{ url('/admin') }}" class="col-sm-1" @if(isset($admin_active)) style="background-color: #298FD3;" @endif>
                         <li>ადმინი</li>
                     </a>
                 @endif

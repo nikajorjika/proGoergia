@@ -16,8 +16,8 @@
 
 .menu-line .menu a li {
     font-size: 17px;
-    padding: 0 40px 0 40px;
     color: #ffffff;
+    text-align: center;
 }
 
 .menu-line .menu a:hover {
