@@ -13,15 +13,15 @@ class DeleteController extends Controller
 {
     public function delete_seek($id)
     {
-        if(Auth::User()->role == 2){
+        if (Auth::User()->role == 2) {
             $training = SeekTraining::find($id);
-            if($training == null){
+            if ($training == null) {
                 return redirect('/');
-            }else{
+            } else {
                 $training->delete();
                 return redirect('/');
             }
-        }else{
+        } else {
             return redirect('/');
         }
     }
