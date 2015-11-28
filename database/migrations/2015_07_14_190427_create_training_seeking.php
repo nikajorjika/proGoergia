@@ -16,6 +16,7 @@ class CreateTrainingSeeking extends Migration
             $table->increments('id')->unsigned();
             $table->string('name');
             $table->string('description');
+			$table->string('per');
             $table->string('file');
             $table->string('link');
             $table->string('contact');

@@ -12,20 +12,20 @@
     @endif
 
     <div class="main-page-content">
-        <p class="text-center"><strong>მუნიციპალიტეტების საჯარო მოხელეთა კვალიფიკაციის ამაღლების პროგრამები</strong></p>
-        <p class="text-center">კავლიფიკაციის ამაღლების პროგრამის ძიება  შეგიძლიათ დაიწყოთ აქ</p>
+        <p class="text-center"><strong>ადგილობრივი თვითმმართველობის </strong><strong>მოხელეთა</strong><strong> უწყვეტი სწავლების სასწავლო </strong><strong>პროგრამები</strong></p>
+        <p class="text-center">უწყვეტი სწავლების სასწავლო  პროგრამის ძიება  შეგიძლიათ დაიწყოთ აქ</p>
         <div class="text-center main-page-img">
             <a href="/announcements">
                 <img src="/images/gray-programs.jpg">
             </a>
         </div>
 
-        <p class="text-center"><strong>მუნიციპალიტეტების მოხელეთა ტრენინგ-საჭიროებები</strong></p>
-        <p class="text-center">მუნიციპალიტეტების მოხელეთა ტრენინგ-საჭიროებების  ძიება  შეგიძლიათ დაიწყოთ აქ</p>
+        <p class="text-center"><strong>ადგილობრივი თვითმმართველობის მოხელეთა სწავლების საჭიროებები </strong></p>
+        <p class="text-center">ადგილობრივი თვითმმართველობის მოხელეთა სწავლების საჭიროებების  ძიება  შეგიძლიათ დაიწყოთ აქ</p>
         <div class="text-center main-page-img">
             <a href="/seek/announcements">
                 <img src="/images/gray-needs.jpg">
             </a>
         </div>
-    </div>
+</div>
 @stop

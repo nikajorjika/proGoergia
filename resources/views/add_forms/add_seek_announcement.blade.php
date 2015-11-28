@@ -14,16 +14,26 @@
 </div>
 @endif
 {!! Form::open(['action' => 'AddController@store_seek_announcement', 'files' => 'true', 'class' => 'form-horizontal']) !!}
-<h1>ტრენინგ-საჭიროების დამატება</h1>
+<h3><strong>ტრენინგ-საჭიროების დამატება</strong></h3>
+<p>&nbsp;</p>
 
 <div class="form-group">
-    {!! Form::label('name', 'სათაური: ', ['class' => 'col-sm-2 control-label'])!!}
+    <div class="col-sm-2 control-label">
+        სწავლების სფერო:
+    </div>
+    <div class="col-sm-10">
+        {!! Form::select('field', with_empty($fields->toArray(),'აირჩიეთ სფერო'), null, ['class' => 'field form-control']) !!}
+    </div>
+</div>
+
+<div class="form-group">
+    {!! Form::label('name', 'ტრენინგის დასახელება: ', ['class' => 'col-sm-2 control-label'])!!}
     <div class="col-sm-10">
         {!! Form::text('name', null, ['class' => 'form-control']) !!}
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('description', 'მოკლე აღწერა: ', ['class' => 'col-sm-2 control-label']) !!}
+    {!! Form::label('description', 'შესასწავლი საკითხები: ', ['class' => 'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
         {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
     </div>
@@ -34,20 +44,8 @@
         {!! Form::file('file', ['class' => 'form-control']) !!}
     </div>
 </div>
-<div class="form-group">
-    {!! Form::label('link', 'ვებ ბმული(Link): ', ['class' => 'col-sm-2 control-label'])!!}
-    <div class="col-sm-10">
-        {!! Form::text('link', null, ['class' => 'form-control']) !!}
-    </div>
-</div>
-<div class="form-group">
-    <div class="col-sm-2 control-label">
-        სწავლების სფერო:
-    </div>
-    <div class="col-sm-10">
-        {!! Form::select('field', with_empty($fields->toArray(),'აირჩიეთ სფერო'), null, ['class' => 'field form-control']) !!}
-    </div>
-</div>
+
+
 <div class="form-group">
     <div class="col-sm-2 control-label">
         სწავლების ფორმა:
@@ -66,14 +64,14 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('region', 'ჩატარების ადგილი: ', ['class' => 'col-sm-2 control-label']) !!}
+    {!! Form::label('region', 'რეგიონი: ', ['class' => 'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
         {!! Form::select('region', with_empty($regions->toArray(),'აირჩიეთ რეგიონი'), null, ['class' => 'region form-control']) !!}
     </div>
 </div>
 <div class="form-group display-none" id="municipalities">
     <div class="col-sm-2 control-label">
-        მუნიციპალიტეტები:
+        მუნიციპალიტეტი:
     </div>
     <div class="col-sm-10">
         <select name="municipalities" id="municipalities-select" class="municipalities form-control">
@@ -90,6 +88,30 @@
     </div>
 </div>
 
+
+
+<div class="form-group">
+    {!! Form::label('quantity', 'მოხელეთა რაოდენობა: ', ['class' => 'col-sm-2 control-label'])!!}
+    <div class="col-sm-10">
+        {!! Form::text('quantity', null, ['class' => 'form-control']) !!}
+    </div>
+</div>
+
+<div class="form-group">
+    {!! Form::label('link', 'ვებ ბმული(Link): ', ['class' => 'col-sm-2 control-label'])!!}
+    <div class="col-sm-10">
+        {!! Form::text('link', null, ['class' => 'form-control']) !!}
+    </div>
+</div>
+
+
+<div class="form-group">
+    {!! Form::label('per', 'პერიოდი: ', ['class' => 'col-sm-2 control-label']) !!}
+    <div class="col-sm-10">
+        {!! Form::text('per', null, ['class' => 'form-control']) !!}
+    </div>
+</div>
+
 <div class="form-group">
     {!! Form::label('contact', 'საკონტაქტო პირი: ', ['class' => 'col-sm-2 control-label'])!!}
     <div class="col-sm-10">
@@ -97,12 +119,6 @@
     </div>
 </div>
 
-<div class="form-group">
-    {!! Form::label('quantity', 'მონაწილეთა რაოდენობა: ', ['class' => 'col-sm-2 control-label'])!!}
-    <div class="col-sm-10">
-        {!! Form::text('quantity', null, ['class' => 'form-control']) !!}
-    </div>
-</div>
 <div class="form-group">
     <div class="col-sm-10">&nbsp;</div>
     <div class="col-sm-2">

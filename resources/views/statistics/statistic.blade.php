@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('body')
-    <h1 class="field-statistic-header">სწავლების სფეროს სტატისტიკის ნახვა</h1>
+    <h3 class="field-statistic-header"><strong>სწავლების სფეროს სტატისტიკის ნახვა</strong></h3>
 
     <div class="row">
         <div class="form-group">
@@ -17,7 +17,7 @@
             <thead>
             <tr>
                 <th>ქვეყანა</th>
-                <th>მონაწილეთა რაოდენობა</th>
+                <th>მოხელეთა რაოდენობა</th>
             </tr>
             </thead>
             <tbody>
@@ -31,7 +31,7 @@
             <thead>
                 <tr>
                     <th>რეგიონი</th>
-                    <th>მონაწილეთა რაოდენობა</th>
+                    <th>მოხელეთა რაოდენობა</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +45,7 @@
             <thead>
             <tr>
                 <th>მუნიციპალიტეტი</th>
-                <th>მონაწილეთა რაოდენობა</th>
+                <th>მოხელეთა რაოდენობა</th>
             </tr>
             </thead>
             <tbody>

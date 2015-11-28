@@ -26,7 +26,7 @@
                 <a href="{{ url('/') }}" class="col-sm-2" @if(isset($home_active)) style="background-color: #298FD3;" @endif>
                     <li>მთავარი</li>
                 </a>
-                <a href="{{ url('/site/about_project') }}" class="col-sm-3" @if(isset($about_active)) style="background-color: #298FD3;" @endif>
+                <a href="{{ url('/site/about_project') }}" class="col-sm-2" @if(isset($about_active)) style="background-color: #298FD3;" @endif>
                     <li>პროექტის შესახებ</li>
                 </a>
                 <a href="{{ url('/site/site_map') }}" class="col-sm-2" @if(isset($site_map_active)) style="background-color: #298FD3;" @endif>
@@ -52,8 +52,8 @@
     <div class="footer">
         <div class="container">
             <div class="footer-text">
-                სასწავლო ტრენინგ-პროგრამებისა და მუნიციპალიტეტების ტრენინგ-საჭიროებების რეესტრი
-                <div>Copyright © 2015</div>
+                სასწავლო პროგრამებისა და სწავლების საჭიროებების  რეესტრი
+                  <div>Copyright © 2015</div>
             </div>
         </div>
     </div>

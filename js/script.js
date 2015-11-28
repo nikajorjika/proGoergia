@@ -183,33 +183,41 @@ $(document).ready(function(){
                 var     id          =   this.id
                     ,   name        =   this.header
                     ,   description =   this.description
+		    ,   per         =   this.per
                     ,   quantity    =   this.quantity
                     ,   file        =   this.file.slice(0, -4)
                     ,   link        =   'http://' + this.link
                     ,   field       =   this.field
+                    ,   terms       =   this.terms
                     ,   contact     =   this.contact
                     ,   municipality=   this.municipality;
                 if(this.isAdmin){
                     div.append(' <div id = '+ id +'>' +
-                    '<h3>' + name +
-                    '<a class="delete" onClick ="confirm("Press a button!")"  href="/delete_seek/'+id+'" style="padding-right: 15px; padding-left: 15px"><span  class="glyphicon glyphicon-trash"></span></a>'+
+                    '<h4><strong>სწავლების სფერო:</strong> ' + field + 
+					'<a class="delete" onClick ="confirm("Press a button!")"  href="/delete_seek/'+id+'" style="padding-right: 15px; padding-left: 15px"><span  class="glyphicon glyphicon-trash"></span></a>'+
                     '<a class="edit" onClick ="confirmEdit("Press a button!")"  href="/seek_announcement/edit/'+id+'"><span class="glyphicon glyphicon-pencil"></span></a>'+
-                    '</h3><div class="description">'+description+'</div>' +
-                    '<div class="row"><div class="col-sm-3"><strong>სწავლების სფერო: </strong></div><div class="col-sm-9">'+field+'</div></div>'+
-                    '<div class="row"><div class="col-sm-3"><strong>მონაწილეთა რაოდენობა: </strong></div><div class="col-sm-9">'+quantity+'</div></div>'+
-                    '<div class="row"><div class="col-sm-3"><strong>ჩატარების ადგილი: </strong></div><div class="col-sm-9">'+municipality+'</div></div>'+
-                    '<div class="row"><div class="col-sm-3"><strong>საკონტაქტო ინფორმაცია: </strong></div><div class="col-sm-9">'+contact+'</div></div>'+
+                    '</h4>' +
+                    '<div class="row"><div class="col-sm-3"><strong>ტრენინგის დასახელება: </strong></div><div class="col-sm-9">'+name+'</div></div>'+
+		    '<div class="row"><div class="col-sm-3"><strong>შესასწავლი საკითხები:</strong></div><div class="col-sm-9">'+description+'</div></div>'+
+                    '<div class="row"><div class="col-sm-3"><strong>&#4321;&#4332;&#4304;&#4309;&#4314;&#4308;&#4305;&#4312;&#4321; &#4324;&#4317;&#4320;&#4315;&#4304;: </strong></div><div class="col-sm-9">'+terms+'</div></div>'+
+		    '<div class="row"><div class="col-sm-3"><strong>პერიოდი:</strong></div><div class="col-sm-9">'+per+'</div></div>'+
+                    '<div class="row"><div class="col-sm-3"><strong>მოხელეთა რაოდენობა: </strong></div><div class="col-sm-9">'+quantity+'</div></div>'+
+		    '<div class="row"><div class="col-sm-3"><strong>მუნიციპალიტეტი: </strong></div><div class="col-sm-9">'+municipality+'</div></div>'+
+                    '<div class="row"><div class="col-sm-3"><strong>საკონტაქტო პირი: </strong></div><div class="col-sm-9">'+contact+'</div></div>'+
                     '<div class="inline-block margin-right-10"><a href="'+link+'">ვებ ბმული</a></div>' +
                     '<div class="inline-block"><a href="/download/'+file+'">მიმაგრებული ფაილი</a></div>' +
                     '</div><hr class="margin-bottom-40">');
                 }else {
                     div.append(' <div id = ' + id + '>' +
-                    '<h3>დასახელება: ' + name + '</h3>' +
-                    '<div class="description">' + description + '</div>' +
-                    '<div class="row"><div class="col-sm-3"><strong>სწავლების სფერო: </strong></div><div class="col-sm-9">' + field + '</div></div>' +
-                    '<div class="row"><div class="col-sm-3"><strong>მონაწილეთა რაოდენობა: </strong></div><div class="col-sm-9">' + quantity + '</div></div>' +
-                    '<div class="row"><div class="col-sm-3"><strong>ჩატარების ადგილი: </strong></div><div class="col-sm-9">' + municipality + '</div></div>' +
-                    '<div class="row"><div class="col-sm-3"><strong>საკონტაქტო ინფორმაცია: </strong></div><div class="col-sm-9">' + contact + '</div></div>' +
+                    '<h4><strong>სწავლების სფერო:</strong> ' + field + '</h4>' +
+                   
+                    '<div class="row"><div class="col-sm-3"><strong>ტრენინგის დასახელება: </strong></div><div class="col-sm-9">' + name + '</div></div>' +
+		    '<div class="row"><div class="col-sm-3"><strong>შესასწავლი საკითხები:</strong></div><div class="col-sm-9">' + description + '</div></div>' +
+                    '<div class="row"><div class="col-sm-3"><strong>&#4321;&#4332;&#4304;&#4309;&#4314;&#4308;&#4305;&#4312;&#4321; &#4324;&#4317;&#4320;&#4315;&#4304;: </strong></div><div class="col-sm-9">'+terms+'</div></div>'+
+                    '<div class="row"><div class="col-sm-3"><strong>პერიოდი:</strong></div><div class="col-sm-9">'+per+'</div></div>'+
+		    '<div class="row"><div class="col-sm-3"><strong>მოხელეთა რაოდენობა: </strong></div><div class="col-sm-9">' + quantity + '</div></div>' +
+                    '<div class="row"><div class="col-sm-3"><strong>მუნიციპალიტეტი: </strong></div><div class="col-sm-9">' + municipality + '</div></div>' +
+                    '<div class="row"><div class="col-sm-3"><strong>საკონტაქტო პირი: </strong></div><div class="col-sm-9">' + contact + '</div></div>' +
                     '<div class="inline-block margin-right-10"><a href="' + link + '">ვებ ბმული</a></div>' +
                     '<div class="inline-block"><a href="/download/' + file + '">მიმაგრებული ფაილი</a></div>' +
                     '</div><hr class="margin-bottom-40">');
@@ -241,6 +249,7 @@ $(document).ready(function(){
                     ,   name        =   this.header
                     ,   quantity    =   this.quantity
                     ,   description =   this.description
+					,   per         =   this.per
                     ,   file        =   this.file.slice(0, -4)
                     ,   link        =   'http://' + this.link
                     ,   field       =   this.field
@@ -248,25 +257,29 @@ $(document).ready(function(){
                     ,   municipality=   this.municipality;
                 if(this.isAdmin){
                     div.append(' <div id = '+ id +'>' +
-                    '<h3>' + name +
-                    '<a class="delete" onClick ="confirm("Press a button!")"  href="/delete_seek/'+id+'" style="padding-right: 15px; padding-left: 15px"><span  class="glyphicon glyphicon-trash"></span></a>'+
+                    '<h4><strong>სწავლების სფერო:</strong> ' + field + 
+					'<a class="delete" onClick ="confirm("Press a button!")"  href="/delete_seek/'+id+'" style="padding-right: 15px; padding-left: 15px"><span  class="glyphicon glyphicon-trash"></span></a>'+
                     '<a class="edit" onClick ="confirmEdit("Press a button!")"  href="/seek_announcement/edit/'+id+'"><span class="glyphicon glyphicon-pencil"></span></a>'+
-                    '</h3><div class="description">'+description+'</div>' +
-                    '<div class="row"><div class="col-sm-3"><strong>სწავლების სფერო: </strong></div><div class="col-sm-9">'+field+'</div></div>'+
-                    '<div class="row"><div class="col-sm-3"><strong>მონაწილეთა რაოდენობა: </strong></div><div class="col-sm-9">'+quantity+'</div></div>'+
-                    '<div class="row"><div class="col-sm-3"><strong>ჩატარების ადგილი: </strong></div><div class="col-sm-9">'+municipality+'</div></div>'+
-                    '<div class="row"><div class="col-sm-3"><strong>საკონტაქტო ინფორმაცია: </strong></div><div class="col-sm-9">'+contact+'</div></div>'+
+                    '</h4>' +
+                    '<div class="row"><div class="col-sm-3"><strong>ტრენინგის დასახელება: </strong></div><div class="col-sm-9">'+name+'</div></div>'+
+					'<div class="row"><div class="col-sm-3"><strong>შესასწავლი საკითხები:</strong></div><div class="col-sm-9">'+description+'</div></div>'+
+                    '<div class="row"><div class="col-sm-3"><strong>პერიოდი:</strong></div><div class="col-sm-9">'+per+'</div></div>'+
+					'<div class="row"><div class="col-sm-3"><strong>მოხელეთა რაოდენობა: </strong></div><div class="col-sm-9">'+quantity+'</div></div>'+
+                    '<div class="row"><div class="col-sm-3"><strong>მუნიციპალიტეტი: </strong></div><div class="col-sm-9">'+municipality+'</div></div>'+
+                    '<div class="row"><div class="col-sm-3"><strong>საკონტაქტო პირი: </strong></div><div class="col-sm-9">'+contact+'</div></div>'+
                     '<div class="inline-block margin-right-10"><a href="'+link+'">ვებ ბმული</a></div>' +
                     '<div class="inline-block"><a href="/download/'+file+'">მიმაგრებული ფაილი</a></div>' +
                     '</div><hr class="margin-bottom-40">');
                 } else {
                     div.append(' <div id = '+ id +'>' +
-                    '<h3>დასახელება: ' + name + '</h3>' +
-                    '<div class="description">'+description+'</div>' +
-                    '<div class="row"><div class="col-sm-3"><strong>სწავლების სფერო: </strong></div><div class="col-sm-9">'+field+'</div></div>'+
-                    '<div class="row"><div class="col-sm-3"><strong>მონაწილეთა რაოდენობა: </strong></div><div class="col-sm-9">'+quantity+'</div></div>'+
-                    '<div class="row"><div class="col-sm-3"><strong>ჩატარების ადგილი: </strong></div><div class="col-sm-9">'+municipality+'</div></div>'+
-                    '<div class="row"><div class="col-sm-3"><strong>საკონტაქტო ინფორმაცია: </strong></div><div class="col-sm-9">'+contact+'</div></div>'+
+                    '<h4><strong>სწავლების სფერო:</strong> ' + field + '</h4>' +
+                  
+                    '<div class="row"><div class="col-sm-3"><strong>ტრენინგის დასახელება: </strong></div><div class="col-sm-9">'+name+'</div></div>'+
+					'<div class="row"><div class="col-sm-3"><strong>შესასწავლი საკითხები:</strong></div><div class="col-sm-9">'+description+'</div></div>'+
+                    '<div class="row"><div class="col-sm-3"><strong>პერიოდი:</strong></div><div class="col-sm-9">'+per+'</div></div>'+
+					'<div class="row"><div class="col-sm-3"><strong>მოხელეთა რაოდენობა: </strong></div><div class="col-sm-9">'+quantity+'</div></div>'+
+                    '<div class="row"><div class="col-sm-3"><strong>მუნიციპალიტეტი: </strong></div><div class="col-sm-9">'+municipality+'</div></div>'+
+                    '<div class="row"><div class="col-sm-3"><strong>საკონტაქტო პირი: </strong></div><div class="col-sm-9">'+contact+'</div></div>'+
                     '<div class="inline-block margin-right-10"><a href="'+link+'">ვებ ბმული</a></div>' +
                     '<div class="inline-block"><a href="/download/'+file+'">მიმაგრებული ფაილი</a></div>' +
                     '</div><hr class="margin-bottom-40">');

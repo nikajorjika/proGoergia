@@ -101,7 +101,7 @@ class SearchController extends Controller
 
     public function render_form_data()
     {
-        $fields   = Field::lists('name', 'id');
+        $fields   = Field::orderBy('name')->lists('name', 'id');
         $terms    = Term::lists('name', 'id');
         $municipalities = Municipality::all();
 
@@ -246,7 +246,7 @@ class SearchController extends Controller
 
     public function render_seek_form_data()
     {
-        $fields   = Field::lists('name', 'id');
+        $fields   = Field::orderBy('name')->lists('name', 'id');
         $terms    = Term::lists('name', 'id');
         $municipalities = Municipality::all();
 
@@ -320,17 +320,24 @@ class SearchController extends Controller
             $seek_training_instance    = SeekTraining::find($instance->id);
             $seek_training_field       = Field::find($instance->field_id);
             $seek_training_municipality= Municipality::find($instance->municipality_id);
+            $training_terms            = DB::select('SELECT terms.name FROM seek_training_term JOIN terms ON terms.id = seek_training_term.term_id WHERE seek_training_id = '.$instance->id);
+            $seek_training_terms_array = [];
+            foreach($training_terms as $term){
+                $seek_training_terms_array[] = $term->name;
+            }
             $seek_training_filtered->id          = $seek_training_instance->id;
             $seek_training_filtered->header      = $seek_training_instance->name;
             $seek_training_filtered->description = $seek_training_instance->description;
             $seek_training_filtered->file        = $seek_training_instance->file;
             $seek_training_filtered->link        = $seek_training_instance->link;
+            $seek_training_filtered->per         = $seek_training_instance->per;
+            $seek_training_filtered->terms       = implode(',',$seek_training_terms_array);
             $seek_training_filtered->contact     = $seek_training_instance->contact;
-            $seek_training_filtered->quantity     = $seek_training_instance->quantity;
+            $seek_training_filtered->quantity    = $seek_training_instance->quantity;
             $seek_training_filtered->field       = $seek_training_field->name;
             $seek_training_filtered->municipality= $seek_training_municipality->name;
             $seek_training_filtered->isAdmin     = Auth::check();
-            $seek_training_filtered_array[] = $seek_training_filtered;
+            $seek_training_filtered_array[]      = $seek_training_filtered;
             unset($seek_training_filtered);
             unset($seek_training_months_array);
             unset($seek_training_terms_array);

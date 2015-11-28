@@ -24,7 +24,7 @@ class EditController extends Controller
         if (!Auth::user() || Auth::user()->role != 2)
             return redirect('/');
 
-        $fields   = Field::lists('name', 'id');
+        $fields   = Field::orderBy('name')->lists('name', 'id');
         $terms    = Term::lists('name', 'id');
         $municipalities = Municipality::lists('name', 'id');
 
@@ -42,10 +42,17 @@ class EditController extends Controller
                                 JOIN municipality_seek_training ON seek_trainings.id = municipality_seek_training.seek_training_id
                                 where seek_trainings.id = '.$id.'
                                 group by seek_trainings.id');
-        $select = $select[0];
+
+        $select=$select[0];
         $seek_training_filtered_array = [];
-        $seek_training_filtered                         = new \stdClass();
-        $seek_training_instance                         = SeekTraining::find($select->id);
+        $seek_training_filtered       = new \stdClass();
+        $seek_training_instance       = SeekTraining::find($select->id);
+        $training_terms               = DB::select('SELECT terms.name FROM seek_training_term JOIN terms ON terms.id = seek_training_term.term_id WHERE seek_training_id = '.$seek_training_instance->id);
+
+        $training_terms_array = [];
+        foreach($training_terms as $term){
+            $training_terms_array[] = $term->name;
+        }
         $seek_training_field                            = Field::find($select->field_id);
         $seek_training_municipality                     = Municipality::find($select->municipality_id);
         $seek_training_filtered->id                     = $seek_training_instance->id;
@@ -53,10 +60,12 @@ class EditController extends Controller
         $seek_training_filtered->description            = $seek_training_instance->description;
         $seek_training_filtered->file                   = $seek_training_instance->file;
         $seek_training_filtered->link                   = $seek_training_instance->link;
+        $seek_training_filtered->per                    = $seek_training_instance->per;
         $seek_training_filtered->contact                = $seek_training_instance->contact;
         $seek_training_filtered->quantity               = $seek_training_instance->quantity;
         $seek_training_filtered->field['name']          = $seek_training_field->name;
         $seek_training_filtered->field['id']            = $seek_training_field->id;
+        $seek_training_filtered->terms                  = $training_terms_array;
         $seek_training_filtered->municipality['name']   = $seek_training_municipality->name;
         $seek_training_filtered->municipality['id']     = $seek_training_municipality->id;
         $seek_training_filtered->region                 = $seek_training_municipality->region_id;
@@ -81,6 +90,7 @@ class EditController extends Controller
             return redirect('/');
 
         $rules = array(
+            'term'   => 'required',
             'field'  => 'required',
             'region' => 'required',
         );
@@ -113,6 +123,10 @@ class EditController extends Controller
         $training_to_delete->delete();
 
         $training             = SeekTraining::create($input);
+
+        foreach (input::get('term') as $term) {
+            $training->terms()->attach($term);
+        }
         $training->fields()->attach(input::get('field'));
         $training->municipalities()->attach(input::get('municipalities'));
         $training->save();
@@ -122,7 +136,7 @@ class EditController extends Controller
 
     public function edit_announcement($id)
     {
-        $fields         = Field::lists('name', 'id');
+        $fields         = Field::orderBy('name')->lists('name', 'id');
         $terms          = Term::lists('name', 'id');
         $municipalities = Municipality::lists('name','id');
         $regions        = Region::lists('name', 'id');

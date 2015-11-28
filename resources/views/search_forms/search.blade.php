@@ -21,9 +21,9 @@
             </div>
         </div>
     </div>
-
-    {!! Form::open(['action' => 'SearchController@get_announcements', 'files' => 'true','id'=>'filter-form',  'class' => 'form-horizontal']) !!}
-
+    <p align="center"><strong>ადგილობრივი თვითმმართველობის</strong><strong> მოხელეთა </strong><strong>უწყვეტი სწავლების სასწავლო </strong><strong>პროგრამების რეესტრი</strong></p>
+    <br/>
+    <p> {!! Form::open(['action' => 'SearchController@get_announcements', 'files' => 'true','id'=>'filter-form',  'class' => 'form-horizontal']) !!} </p>
     <div class="form-group">
         <div class="col-sm-2 control-label">
             სწავლების სფერო:
@@ -41,7 +41,7 @@
         </div>
     </div>
     <div class="form-group">
-        {!! Form::label('region', 'ჩატარების ადგილი: ', ['class' => 'col-sm-2 control-label']) !!}
+        {!! Form::label('region', 'რეგიონი: ', ['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
             {!! Form::select('region', with_empty($regions->toArray(),'ნებისმიერი'), null, ['class' => 'region_search form-control']) !!}
         </div>

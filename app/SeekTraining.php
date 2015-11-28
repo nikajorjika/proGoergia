@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SeekTraining extends Model
 {
-    protected $fillable = ['name', 'description', 'file', 'link','quantity','contact'];
+    protected $fillable = ['name', 'description', 'file', 'link','quantity','contact', 'per'];
 
     public function terms()
     {

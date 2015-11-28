@@ -112,7 +112,7 @@ class AddController extends Controller
         if (!Auth::user() || Auth::user()->role != 1)
             return redirect('/');
 
-        $fields   = Field::lists('name', 'id');
+        $fields   = Field::orderBy('name')->lists('name', 'id');
         $terms    = Term::lists('name', 'id');
         $municipalities = Municipality::all();
 
@@ -206,7 +206,7 @@ class AddController extends Controller
         if (!Auth::user() || Auth::user()->role != 2)
             return redirect('/');
 
-        $fields   = Field::lists('name', 'id');
+        $fields   = Field::orderBy('name')->lists('name', 'id');
         $terms    = Term::lists('name', 'id');
         $municipalities = Municipality::all();
 

@@ -21,7 +21,8 @@
             </div>
         </div>
     </div>
-
+<p align="center"><strong>ადგილობრივი თვითმმართველობის მოხელეთა სწავლების საჭიროებათა რეესტრი</strong></p>
+<br/>
     {!! Form::open(['action' => 'SearchController@get_seek_announcements', 'files' => 'true','id'=>'filter-seek-form',  'class' => 'form-horizontal']) !!}
 
     <div class="form-group">
@@ -32,9 +33,9 @@
             {!! Form::select('field', with_empty($fields->toArray(),'ნებისმიერი'), null, ['class' => 'field-field
             form-control']) !!}
         </div>
-    </div>
+</div>
     <div class="form-group">
-        {!! Form::label('region', 'დამკვეთი მუნიციპალიტეტი: ', ['class' => 'col-sm-2 control-label']) !!}
+        {!! Form::label('region', 'რეგიონი: ', ['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
             {!! Form::select('region', with_empty($regions->toArray(),'ნებისმიერი'), null, ['class' => 'region_search
             form-control']) !!}

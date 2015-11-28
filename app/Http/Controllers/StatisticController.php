@@ -14,7 +14,7 @@ class StatisticController extends Controller
 {
     public function index()
     {
-        $fields   = Field::lists('name', 'id');
+        $fields   = Field::orderBy('name')->lists('name', 'id');
 
         return view('statistics.statistic')
             ->with('fields', $fields)
