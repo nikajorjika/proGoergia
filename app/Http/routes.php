@@ -57,6 +57,26 @@ Route::get('/site/about_project', 'SiteController@about_project');
 Route::get('/site/site_map', 'SiteController@site_map');
 Route::get('/site/contact', 'SiteController@contact');
 
+Route::get('user_register',  'UserController@getRegister');
+Route::post('user_register', 'UserController@postRegister');
+
+
+Route::get('user_auth',  'UserController@getAuth');
+Route::post('user_auth', 'UserController@postAuth');
+
+
+Route::get('user_area',      'UserController@getUserArea');
+
+Route::post('add_user_form',     'UserController@postAddUserForm');
+
+
+Route::get('user_area/edit/{id}', 'UserController@getUserFormEdit');
+Route::patch('user_area/edit/{id}', 'UserController@update');
+
+Route::get('user_area/delete/{id}', 'UserController@delete');
+
+Route::controller('admin', 'AdminController');
+
 Route::controllers([
     'auth'     => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',

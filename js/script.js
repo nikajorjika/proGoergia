@@ -360,4 +360,30 @@ $(document).ready(function(){
             $(this).prop('checked', checked);
         });
     });
+
+    $('input').floatlabel({labelEndTop:0});
+
+    $('.glyphicon-remove').click(function () {
+        if(!confirm("გსურთ განაცხადის წაშლა?")){
+            return false;
+        }
+    })
 });
+
+function showPassword() {
+
+    var key_attr = $('#zoro').find('#password').prop('type');
+
+    if(key_attr == 'password') {
+
+        $('.checkbox').addClass('show');
+        $('#zoro').find('#password').prop('type', 'text');
+
+    } else {
+
+        $('.checkbox').removeClass('show');
+        $('#zoro').find('#password').prop('type', 'password');
+
+    }
+
+}

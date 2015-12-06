@@ -11,4 +11,8 @@ class Field extends Model
     {
         return $this->belongsToMany('App\Training')->withTimestamps();
     }
+    public function declerations()
+    {
+        return $this->belongsToMany('App\Decleration')->withTimestamps();
+    }
 }
