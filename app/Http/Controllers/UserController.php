@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 use PhpParser\Builder\Declaration;
 
 class UserController extends Controller
@@ -215,8 +216,41 @@ class UserController extends Controller
 
         );
 
+
+        $annoucement     = Input::file('annoucement');
+        if (isset($annoucement) && !empty($annoucement)) {
+            $extension = $annoucement->getClientOriginalExtension();
+            if ($extension != 'pdf') {
+                $rules['pdf']             = 'required';
+                $messages['pdf.required'] = 'დასაშვებია მხოლოდ pdf გაფართოების ფაილები';
+            }
+        }
+        $extraction     = Input::file('extraction');
+        if (isset($extraction) && !empty($extraction)) {
+            $extension = $extraction->getClientOriginalExtension();
+            if ($extension != 'pdf') {
+                $rules['pdf']             = 'required';
+                $messages['pdf.required'] = 'დასაშვებია მხოლოდ pdf გაფართოების ფაილები';
+            }
+        }
+
         $this->validate($request, $rules, $messages);
-        Decleration::create($request->all());
+
+        $decleration = Decleration::create($request->all());
+
+
+        if (isset($annoucement) && !empty($annoucement)) {
+            $file_name        = 'gancxadeba.pdf';
+            $destinationPath  = public_path() . '/upload/' . $decleration->id;
+            $annoucement->move($destinationPath, $file_name);
+        }
+
+        if (isset($extraction) && !empty($extraction)) {
+            $file_name        = 'amonaceri.pdf';
+            $destinationPath  = public_path() . '/upload/' .$decleration->id;
+            $extraction->move($destinationPath, $file_name);
+        }
+
 
         return redirect('/user_area');
     }
@@ -246,4 +280,15 @@ class UserController extends Controller
 
         return redirect('/user_area');
     }
+    public function downloadannoucement()
+    {
+        $file    = public_path() . '/upload/gancxadeba.docx';
+        $headers = array (
+            'Content-Type: application/file',
+        );
+
+        return \Response::download($file,'gancxadeba.docx',$headers);
+    }
+
+
 }

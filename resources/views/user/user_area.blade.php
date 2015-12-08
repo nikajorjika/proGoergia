@@ -14,9 +14,12 @@
                                     aria-expanded="false" aria-controls="collapseExample">
         განცხადების დამატების ფორმა
     </a>
+
     <div class="collapse" id="collapseExample" style="width: 1000px; margin: 0 auto;">
         <div class="">
-            {!! Form::open(['url' => '/add_user_form', 'class' => 'form-horizontal']) !!}
+            <a href="{{ url('downloadannoucement') }}">განცხადების ჩამოტვირთვა</a>
+
+            {!! Form::open(['url' => '/add_user_form', 'class' => 'form-horizontal','files'=> 'true']) !!}
 
             @include('user.user_form',['submitButton' => 'რეგისტრაცია'])
 

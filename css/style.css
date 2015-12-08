@@ -292,3 +292,7 @@ label.label-floatlabel {
 .btn-custom:focus {
     color: #fff;
 }
+
+.adminareatable tr td:first-child {
+    width: 30%;;
+}

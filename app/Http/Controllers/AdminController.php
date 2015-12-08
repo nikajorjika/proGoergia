@@ -22,7 +22,7 @@ class AdminController extends Controller
     public function getViewmore($id)
     {
         $decleration = Decleration::findOrNew($id);
-/*        echo '<pre>'; print_r($decleration->toArray());exit;*/
+
         return view('admin.view_more',[
             'decleration' => $decleration,
         ]);

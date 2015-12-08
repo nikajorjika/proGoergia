@@ -368,6 +368,14 @@ $(document).ready(function(){
             return false;
         }
     })
+
+    $('.user-form').find('.panel-body').find('.field').change(function () {
+        if ($(this).val()) {
+            $(this).css({color: 'black'});
+        } else {
+            $(this).css({color: 'gray'});
+        }
+    });
 });
 
 function showPassword() {

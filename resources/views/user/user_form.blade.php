@@ -12,8 +12,26 @@
                         </div>
 
                         <div class="panel-body">
+
                             {!! Form::hidden('user_id',Auth::user()->id )!!}
+
                                 <div class="row">
+
+                                    <div class="form-group">
+                                        {!! Form::label('annoucement', 'ატვირთეთ განცხადება: ', ['class' => 'col-sm-2 control-label']) !!}
+                                        <div class="col-sm-10">
+                                            {!! Form::file('annoucement', ['class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        {!! Form::label('extraction', 'ატვირთეთ ამონაწერი: ', ['class' => 'col-sm-2 control-label']) !!}
+                                        <div class="col-sm-10">
+                                            {!! Form::file('extraction', ['class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+
+
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
                                             {!! Form::text('applicant', null, ['class' => 'form-control input-sm floatlabel','placeholder' => 'განმცხადებელი']) !!}
@@ -44,7 +62,7 @@
                                     {!! Form::text('contact_telephone', null, ['class' => 'form-control input-sm ','placeholder' => 'საკონტაქტო ტელეფონი']) !!}
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::select('field_id', with_empty($fields->toArray()), null, ['class' => 'field form-control','placeholder' => 'აირჩიეთ სფერო']) !!}
+                                    {!! Form::select('field_id', array_merge(['' => 'სწავლების სფერო'], $fields->toArray()), null, ['class' => 'field form-control input-sm','placeholder' => 'აირჩიეთ სფერო', 'style' => 'color: gray;']) !!}
                                 </div>
                                 <div class="form-group">
                                     {!! Form::textarea('comment', null, ['class' => 'form-control input-sm ','placeholder' => 'კომენტარი (შეავსეთ იმ შემთხვევაში, თუ სწავლების სფეროთა ჩამონათვალში ირჩევთ „სხვას“):']) !!}
