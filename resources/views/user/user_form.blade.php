@@ -16,21 +16,23 @@
                             {!! Form::hidden('user_id',Auth::user()->id )!!}
 
                                 <div class="row">
-
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         {!! Form::label('annoucement', 'ატვირთეთ განცხადება: ', ['class' => 'col-sm-2 control-label']) !!}
                                         <div class="col-sm-10">
                                             {!! Form::file('annoucement', ['class' => 'form-control']) !!}
                                         </div>
                                     </div>
+                                    </div>
 
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         {!! Form::label('extraction', 'ატვირთეთ ამონაწერი: ', ['class' => 'col-sm-2 control-label']) !!}
                                         <div class="col-sm-10">
                                             {!! Form::file('extraction', ['class' => 'form-control']) !!}
                                         </div>
                                     </div>
-
+                                    </div>
 
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
@@ -62,7 +64,7 @@
                                     {!! Form::text('contact_telephone', null, ['class' => 'form-control input-sm ','placeholder' => 'საკონტაქტო ტელეფონი']) !!}
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::select('field_id', array_merge(['' => 'სწავლების სფერო'], $fields->toArray()), null, ['class' => 'field form-control input-sm','placeholder' => 'აირჩიეთ სფერო', 'style' => 'color: gray;']) !!}
+                                    {!! Form::select('field_id', with_empty( $fields->toArray()), null, ['class' => 'field form-control input-sm','placeholder' => 'აირჩიეთ სფერო', 'style' => 'color: gray;']) !!}
                                 </div>
                                 <div class="form-group">
                                     {!! Form::textarea('comment', null, ['class' => 'form-control input-sm ','placeholder' => 'კომენტარი (შეავსეთ იმ შემთხვევაში, თუ სწავლების სფეროთა ჩამონათვალში ირჩევთ „სხვას“):']) !!}
@@ -110,6 +112,22 @@
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
+                                        {!! Form::label('documentation', 'პროგრამის შემუშავების ანგარიში და დამადასტურებელი დოკუმენტაცია -  დანართი №1: ', ['class' => 'col-sm-2 control-label']) !!}
+                                        <div class="col-sm-10">
+                                            {!! Form::file('documentation', ['class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        {!! Form::label('plan', ' სასწავლო გეგმა  - დანართი №2', ['class' => 'col-sm-2 control-label']) !!}
+                                        <div class="col-sm-10">
+                                            {!! Form::file('plan', ['class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
                                         {!! Form::textarea('edu_program_learn_methods', null, ['class' => 'form-control input-sm ','placeholder' => 'სასწავლო პროგრამის სწავლების მეთოდები და ორგანიზების ფორმა']) !!}
                                     </div>
 
@@ -126,7 +144,14 @@
                                     <div class="form-group">
                                         {!! Form::textarea('certificate_award_rules', null, ['class' => 'form-control input-sm ','placeholder' => 'სერტიფიკატის გაცემის წესი და პირობები']) !!}
                                     </div>
-
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        {!! Form::label('certificate', 'სერტიფიკატის ფორმის ნიმუში  დანართი №3 ', ['class' => 'col-sm-2 control-label']) !!}
+                                        <div class="col-sm-10">
+                                            {!! Form::file('certificate', ['class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -140,7 +165,14 @@
                                     <div class="form-group">
                                         {!! Form::textarea('edu_program_human_resource', null, ['class' => 'form-control input-sm ','placeholder' => 'სასწავლო პროგრამის ადამიანური რესურსი - მწვრთნელის/მწვრთნელების ჩამონათვალი ']) !!}
                                     </div>
-
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        {!! Form::label('trainers', 'მწვრთნელის/მწვრთნელების  კვალიფიკაციის დამადასტურებელი დოკუმენტები, დანართი №4', ['class' => 'col-sm-2 control-label']) !!}
+                                        <div class="col-sm-10">
+                                            {!! Form::file('trainers', ['class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -168,6 +200,22 @@
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
                                             {!! Form::textarea('edu_program_learn_materials',null, ['class' => 'form-control input-sm ','placeholder' => 'პროგრამის განხორციელებისთვის არსებული სასწავლო მასალის ჩამონათვალი  - გამოყენებული ლიტერატურის საძიებო ლინკები, საკითხავი მასალა, ჰენდაუტები  და ა.შ. ']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            {!! Form::label('materials', 'იმ საკითხავი მასალის ნიმუშები, რომლებიც არ არის საყოველთაოდ ხელმისაწვდომი,  დანართი №5', ['class' => 'col-sm-2 control-label']) !!}
+                                            <div class="col-sm-10">
+                                                {!! Form::file('materials', ['class' => 'form-control']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            {!! Form::label('bill', 'ატვირთეთ გადახდის ქვითარი', ['class' => 'col-sm-2 control-label']) !!}
+                                            <div class="col-sm-10">
+                                                {!! Form::file('bill', ['class' => 'form-control']) !!}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

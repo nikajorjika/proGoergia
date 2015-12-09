@@ -233,7 +233,54 @@ class UserController extends Controller
                 $messages['pdf.required'] = 'დასაშვებია მხოლოდ pdf გაფართოების ფაილები';
             }
         }
-
+        $documentation     = Input::file('documentation');
+        if (isset($documentation) && !empty($documentation)) {
+            $extension = $documentation->getClientOriginalExtension();
+            if ($extension != 'pdf') {
+                $rules['pdf']             = 'required';
+                $messages['pdf.required'] = 'დასაშვებია მხოლოდ pdf გაფართოების ფაილები';
+            }
+        }
+        $plan     = Input::file('plan');
+        if (isset($plan) && !empty($plan)) {
+            $extension = $plan->getClientOriginalExtension();
+            if ($extension != 'pdf') {
+                $rules['pdf']             = 'required';
+                $messages['pdf.required'] = 'დასაშვებია მხოლოდ pdf გაფართოების ფაილები';
+            }
+        }
+        $certificate     = Input::file('certificate');
+        if (isset($certificate) && !empty($certificate)) {
+            $extension = $certificate->getClientOriginalExtension();
+            if ($extension != 'pdf') {
+                $rules['pdf']             = 'required';
+                $messages['pdf.required'] = 'დასაშვებია მხოლოდ pdf გაფართოების ფაილები';
+            }
+        }
+        $trainers     = Input::file('trainers');
+        if (isset($trainers) && !empty($trainers)) {
+            $extension = $trainers->getClientOriginalExtension();
+            if ($extension != 'pdf') {
+                $rules['pdf']             = 'required';
+                $messages['pdf.required'] = 'დასაშვებია მხოლოდ pdf გაფართოების ფაილები';
+            }
+        }
+        $materials     = Input::file('materials');
+        if (isset($materials) && !empty($materials)) {
+            $extension = $materials->getClientOriginalExtension();
+            if ($extension != 'pdf') {
+                $rules['pdf']             = 'required';
+                $messages['pdf.required'] = 'დასაშვებია მხოლოდ pdf გაფართოების ფაილები';
+            }
+        }
+        $bill     = Input::file('bill');
+        if (isset($bill) && !empty($bill)) {
+            $extension = $bill->getClientOriginalExtension();
+            if ($extension != 'pdf') {
+                $rules['pdf']             = 'required';
+                $messages['pdf.required'] = 'დასაშვებია მხოლოდ pdf გაფართოების ფაილები';
+            }
+        }
         $this->validate($request, $rules, $messages);
 
         $decleration = Decleration::create($request->all());
@@ -250,8 +297,36 @@ class UserController extends Controller
             $destinationPath  = public_path() . '/upload/' .$decleration->id;
             $extraction->move($destinationPath, $file_name);
         }
-
-
+        if (isset($documentation) && !empty($documentation)) {
+            $file_name        = 'dokumentacia.pdf';
+            $destinationPath  = public_path() . '/upload/' .$decleration->id;
+            $documentation->move($destinationPath, $file_name);
+        }
+        if (isset($plan) && !empty($plan)) {
+            $file_name        = 'gegma.pdf';
+            $destinationPath  = public_path() . '/upload/' .$decleration->id;
+            $plan->move($destinationPath, $file_name);
+        }
+        if (isset($certificate) && !empty($certificate)) {
+            $file_name        = 'certificate.pdf';
+            $destinationPath  = public_path() . '/upload/' .$decleration->id;
+            $certificate->move($destinationPath, $file_name);
+        }
+        if (isset($trainers) && !empty($trainers)) {
+            $file_name        = 'trainers.pdf';
+            $destinationPath  = public_path() . '/upload/' .$decleration->id;
+            $trainers->move($destinationPath, $file_name);
+        }
+        if (isset($materials) && !empty($materials)) {
+            $file_name        = 'materials.pdf';
+            $destinationPath  = public_path() . '/upload/' .$decleration->id;
+            $materials->move($destinationPath, $file_name);
+        }
+        if (isset($bill) && !empty($bill)) {
+            $file_name        = 'qvitari.pdf';
+            $destinationPath  = public_path() . '/upload/' .$decleration->id;
+            $bill->move($destinationPath, $file_name);
+        }
         return redirect('/user_area');
     }
 
