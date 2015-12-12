@@ -176,8 +176,8 @@
                 {!! Form::label('learn_method', 'სასწავლო პროგრამის სწავლების მეთოდები და ორგანიზების ფორმა: ', ['class' => 'col-sm-2 control-label']) !!}
                 <div class="col-sm-10">
                 @foreach($learn_methods as $learn_method)
-                    {!! Form::label('learn_method',$learn_method->method) !!}
-                    {!! Form::checkbox('learn_method',$learn_method->id, false) !!}
+                    {!! Form::label('learn_method[]',$learn_method->method) !!}
+                    {!! Form::checkbox('learn_method[]',$learn_method->id, false) !!}
                 @endforeach
 
                 {!! Form::textarea('learn_methods_other', null, ['class' => 'form-control input-sm ','placeholder' => 'სხვა  ']) !!}
@@ -222,8 +222,8 @@
                 {!! Form::label('ratingsystem', 'სასწავლო პროგრამის შეფასების სისტემა: ', ['class' => 'col-sm-2 control-label']) !!}
                 <div class="col-sm-10">
                 @foreach($ratingsystems as $ratingsystem)
-                    {!! Form::label('ratingsystem',$ratingsystem->system) !!}
-                    {!! Form::radio('ratingsystem',$ratingsystem->id, false) !!}
+                    {!! Form::label('ratingsystem_id',$ratingsystem->system) !!}
+                    {!! Form::radio('ratingsystem_id',$ratingsystem->id, false) !!}
                 @endforeach
 
                 {!! Form::textarea('rating_system_other', null, ['class' => 'form-control input-sm ','placeholder' => 'სხვა']) !!}

@@ -195,15 +195,13 @@ class UserController extends Controller
             'edu_program_results'     => 'required',
             'ratingsystem_id'     => 'required',
             'program_short_desc'     => 'required',
-            'edu_program_participants_ratings'     => 'required',
-            'edu_program_rating_system'     => 'required',
             'edu_program_human_resource'     => 'required',
             'trainers_contracts'     => 'required',
             'edu_program_learn_env'     => 'required',
             'edu_program_learn_resources'     => 'required',
             'estimation' => 'required',
             'certificaterule' => 'required',
-            'learnmethod' => 'required',
+            'learn_method' => 'required',
             'learnmaterial' => 'required',
 
         );
@@ -227,7 +225,7 @@ class UserController extends Controller
             'free_hours.required' => '"დამოუკიდებელი საათი" ველი სავალდებულოა',
             'edu_program_results.required'     => '"პროგრამის სწავლის შედეგები (ცოდნა და უნარ-ჩვევები)" ველი სავალდებულოა ',
             'program_short_desc.required'     => '"პროგრამის მოკლე აღწერა  და მისი შემადგენელი ძირითადი თემების ჩამონათვალი" ველი სავალდებულოა ',
-            'learnmethod.required'     => '"სასწავლო პროგრამის სწავლების მეთოდები და ორგანიზების ფორმა" ველი სავალდებულოა ',
+            'learn_method.required'     => '"სასწავლო პროგრამის სწავლების მეთოდები და ორგანიზების ფორმა" ველი სავალდებულოა ',
             'estimation.required'     => '"სასწავლო პროგრამის მონაწილეთა შეფასების მეთოდის/მეთოდების მინიმალური და მაქსიმალური ქულის მითითებით" ველი სავალდებულოა ',
             'certificaterule.required'     => '"სერტიფიკატის გაცემის წესი და პირობები" ველი სავალდებულოა ',
             'ratingsystem_id.required'     => '"სასწავლო პროგრამის შეფასების სისტემა" ველი სავალდებულოა ',
@@ -415,10 +413,22 @@ class UserController extends Controller
     {
         $decleration = Decleration::findOrNew($id);
         $fields   = Field::orderBy('name')->lists('name', 'id');
+        $listener_numbers = Listenernumber::all();
+        $learn_methods = Learnmethod::all();
+        $estimations = Estimation::all();
+        $ratingsystems = Ratingsystem::all();
+        $certificaterules = Certificaterule::all();
+        $learnmaterials = Learnmaterial::all();
 
         return view('user.edit_user_form',[
             'decleration' => $decleration,
             'fields'       =>$fields,
+            'listener_numbers' => $listener_numbers,
+            'learn_methods' => $learn_methods,
+            'estimations'=> $estimations,
+            'ratingsystems' => $ratingsystems,
+            'certificaterules' => $certificaterules,
+            'learnmaterials'   => $learnmaterials,
         ]);
     }
     public function update(Request $request,$id)

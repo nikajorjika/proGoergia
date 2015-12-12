@@ -146,9 +146,9 @@ class CreateDeclarationTable extends Migration
 
         Schema::create('decleration_learnmethod', function (Blueprint $table) {
             $table->integer('decleration_id')->unsigned();
-            $table->foreign('decleration_id')->references('id')->on('declerations');
+            $table->foreign('decleration_id')->references('id')->on('declerations')->onDelete('cascade');
             $table->integer('learnmethod_id')->unsigned();
-            $table->foreign('learnmethod_id')->references('id')->on('learnmethods');
+            $table->foreign('learnmethod_id')->references('id')->on('learnmethods')->onDelete('cascade');
         });
 
         Schema::create('estimations', function (Blueprint $table) {
@@ -190,9 +190,9 @@ class CreateDeclarationTable extends Migration
 
         Schema::create('decleration_estimation', function (Blueprint $table) {
             $table->integer('decleration_id')->unsigned();
-            $table->foreign('decleration_id')->references('id')->on('declerations');
+            $table->foreign('decleration_id')->references('id')->on('declerations')->onDelete('cascade');
             $table->integer('estimation_id')->unsigned();
-            $table->foreign('estimation_id')->references('id')->on('estimations');
+            $table->foreign('estimation_id')->references('id')->on('estimations')->onDelete('cascade');
             $table->string('min');
             $table->string('max');
         });
@@ -213,11 +213,11 @@ class CreateDeclarationTable extends Migration
             )
         );
 
-        Schema::create('decleration_certificaterule', function (Blueprint $table) {
+        Schema::create('certificaterule_decleration', function (Blueprint $table) {
             $table->integer('decleration_id')->unsigned();
-            $table->foreign('decleration_id')->references('id')->on('declerations');
+            $table->foreign('decleration_id')->references('id')->on('declerations')->onDelete('cascade');
             $table->integer('certificaterule_id')->unsigned();
-            $table->foreign('certificaterule_id')->references('id')->on('certificaterules');
+            $table->foreign('certificaterule_id')->references('id')->on('certificaterules')->onDelete('cascade');
             $table->string('percentage');
         });
 
@@ -287,9 +287,9 @@ class CreateDeclarationTable extends Migration
 
         Schema::create('decleration_learnmaterial', function (Blueprint $table) {
             $table->integer('decleration_id')->unsigned();
-            $table->foreign('decleration_id')->references('id')->on('declerations');
+            $table->foreign('decleration_id')->references('id')->on('declerations')->onDelete('cascade');
             $table->integer('learnmaterial_id')->unsigned();
-            $table->foreign('learnmaterial_id')->references('id')->on('learnmaterials');
+            $table->foreign('learnmaterial_id')->references('id')->on('learnmaterials')->onDelete('cascade');
         });
 
 
