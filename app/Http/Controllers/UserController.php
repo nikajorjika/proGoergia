@@ -439,13 +439,13 @@ class UserController extends Controller
         return redirect('/user_area');
     }
 
-    public function delete($id)
+   /* public function delete($id)
     {
         $decleration = Decleration::findOrNew($id);
         $decleration->delete($id);
 
         return redirect('/user_area');
-    }
+    }*/
     public function downloadannoucement()
     {
         $file    = public_path() . '/upload/gancxadeba.docx';
