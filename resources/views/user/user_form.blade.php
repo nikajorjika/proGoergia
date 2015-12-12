@@ -87,8 +87,7 @@
                                     </div>
 
                                 </div>
-                            </div>
-
+                                </div>
                                 <div class="form-group">
                                     {!! Form::text('edu_program_goal_groups', null, ['class' => 'form-control input-sm ','placeholder' => 'სასწავლო პროგრამის მიზნობრივი ჯგუფი/ჯგუფები']) !!}
                                 </div>
@@ -99,7 +98,15 @@
                                     {!! Form::radio('listenernumber_id',$listener_number -> id, false) !!}
                                     @endforeach
                                 </div>
-
+                                <div class="form-group">
+                                    {!! Form::text('credit', null, ['class' => 'form-control input-sm ','placeholder' => 'კრედიტი']) !!}
+                                </div>
+                                <div class="form-group">
+                                    {!! Form::text('contact_hours', null, ['class' => 'form-control input-sm ','placeholder' => 'საკონტაქტო საათი']) !!}
+                                </div>
+                                <div class="form-group">
+                                    {!! Form::text('free_hours', null, ['class' => 'form-control input-sm ','placeholder' => 'დამოუკიდებელი საათი']) !!}
+                                </div>
                                 <div class="form-group">
                                     {!! Form::text('edu_program_results', null, ['class' => 'form-control input-sm ','placeholder' => 'პროგრამის სწავლის შედეგები (ცოდნა და უნარ-ჩვევები)']) !!}
                                 </div>
@@ -242,9 +249,18 @@
                                             {!! Form::textarea('learn_materials_other',null, ['class' => 'form-control input-sm ','placeholder' => 'Learn Materials სხვა ']) !!}
                                         </div>
                                     </div>
+
                                     <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="col-xs-6 col-sm-6 col-md-6">
+                                             <div class="form-group">
+                                                {!! Form::label('materials', 'იმ საკითხავი მასალის ნიმუშები, რომლებიც არ არის საყოველთაოდ ხელმისაწვდომი,  დანართი №5', ['class' => 'col-sm-2 control-label']) !!}
+                                                <div class="col-sm-10">
+                                                {!! Form::file('materials', ['class' => 'form-control']) !!}
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="form-group">
-                                            {!! Form::label('bill', 'ატვირთეთ გადახდის ქვითარი', ['class' => 'col-sm-2 control-label']) !!}
+                                                {!! Form::label('bill', 'ატვირთეთ გადახდის ქვითარი', ['class' => 'col-sm-2 control-label']) !!}
                                             <div class="col-sm-10">
                                                 {!! Form::file('bill', ['class' => 'form-control']) !!}
                                             </div>

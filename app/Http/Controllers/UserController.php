@@ -189,8 +189,11 @@ class UserController extends Controller
             'edu_program_prelet'     => 'required',
             'edu_program_goal_groups'     => 'required',
             'listenernumber_id'     => 'required',
-            'ratingsystem_id'     => 'required',
+            'credit'=> 'required',
+            'contact_hours'=> 'required',
+            'free_hours'=> 'required',
             'edu_program_results'     => 'required',
+            'ratingsystem_id'     => 'required',
             'program_short_desc'     => 'required',
             'edu_program_participants_ratings'     => 'required',
             'edu_program_rating_system'     => 'required',
@@ -219,10 +222,13 @@ class UserController extends Controller
             'edu_program_prelet.required'     => '"სასწავლო პროგრამაზე დაშვების წინაპირობა" ველი სავალდებულოა ',
             'edu_program_goal_groups.required'     => '"სასწავლო პროგრამის მიზნობრივი ჯგუფი/ჯგუფები" ველი სავალდებულოა ',
             'listenernumber_id.required'     => '"სასწავლო პროგრამის მსმენელთა მინიმალური და მაქსიმალური  რაოდენობა" ველი სავალდებულოა ',
+            'credit.required' => '"კრედიტი" ველი სავალდებულოა',
+            'contact_hours.required' => '"საკონტაქტო საათი" ველი სავალდებულოა',
+            'free_hours.required' => '"დამოუკიდებელი საათი" ველი სავალდებულოა',
             'edu_program_results.required'     => '"პროგრამის სწავლის შედეგები (ცოდნა და უნარ-ჩვევები)" ველი სავალდებულოა ',
             'program_short_desc.required'     => '"პროგრამის მოკლე აღწერა  და მისი შემადგენელი ძირითადი თემების ჩამონათვალი" ველი სავალდებულოა ',
             'learnmethod.required'     => '"სასწავლო პროგრამის სწავლების მეთოდები და ორგანიზების ფორმა" ველი სავალდებულოა ',
-            'edu_program_participants_ratings.required'     => '"სასწავლო პროგრამის მონაწილეთა შეფასების მეთოდის/მეთოდების მინიმალური და მაქსიმალური ქულის მითითებით" ველი სავალდებულოა ',
+            'estimation.required'     => '"სასწავლო პროგრამის მონაწილეთა შეფასების მეთოდის/მეთოდების მინიმალური და მაქსიმალური ქულის მითითებით" ველი სავალდებულოა ',
             'certificaterule.required'     => '"სერტიფიკატის გაცემის წესი და პირობები" ველი სავალდებულოა ',
             'ratingsystem_id.required'     => '"სასწავლო პროგრამის შეფასების სისტემა" ველი სავალდებულოა ',
             'edu_program_human_resource.required'     => '"სასწავლო პროგრამის ადამიანური რესურსი - მწვრთნელის/მწვრთნელების ჩამონათვალი" ველი სავალდებულოა',
@@ -242,6 +248,10 @@ class UserController extends Controller
                 $messages['pdf.required'] = 'დასაშვებია მხოლოდ pdf გაფართოების ფაილები';
             }
         }
+        else {
+            $rules['annoucement'] = 'required';
+            $messages ['annoucement.required'] = '"ატვირთეთ განცხადება"  სავალდებულოა';
+        }
         $extraction     = Input::file('extraction');
         if (isset($extraction) && !empty($extraction)) {
             $extension = $extraction->getClientOriginalExtension();
@@ -250,6 +260,11 @@ class UserController extends Controller
                 $messages['pdf.required'] = 'დასაშვებია მხოლოდ pdf გაფართოების ფაილები';
             }
         }
+        else {
+            $rules['extraction'] = 'required';
+            $messages ['extraction.required'] = '"ატვირთეთ ამონაწერი"  სავალდებულოა';
+        }
+
         $documentation     = Input::file('documentation');
         if (isset($documentation) && !empty($documentation)) {
             $extension = $documentation->getClientOriginalExtension();
@@ -258,6 +273,11 @@ class UserController extends Controller
                 $messages['pdf.required'] = 'დასაშვებია მხოლოდ pdf გაფართოების ფაილები';
             }
         }
+        else {
+            $rules['documentation'] = 'required';
+            $messages ['documentation.required'] = '"პროგრამის შემუშავების ანგარიში და დამადასტურებელი დოკუმენტაცია -  დანართი №1"  სავალდებულოა';
+        }
+
         $plan     = Input::file('plan');
         if (isset($plan) && !empty($plan)) {
             $extension = $plan->getClientOriginalExtension();
@@ -266,6 +286,11 @@ class UserController extends Controller
                 $messages['pdf.required'] = 'დასაშვებია მხოლოდ pdf გაფართოების ფაილები';
             }
         }
+        else {
+            $rules['plan'] = 'required';
+            $messages ['plan.required'] = '"სასწავლო გეგმა  - დანართი №2"  სავალდებულოა';
+        }
+
         $certificate     = Input::file('certificate');
         if (isset($certificate) && !empty($certificate)) {
             $extension = $certificate->getClientOriginalExtension();
@@ -274,6 +299,11 @@ class UserController extends Controller
                 $messages['pdf.required'] = 'დასაშვებია მხოლოდ pdf გაფართოების ფაილები';
             }
         }
+        else {
+            $rules['certificate'] = 'required';
+            $messages ['certificate.required'] = '"სერტიფიკატის ფორმის ნიმუში  დანართი №3"  სავალდებულოა';
+        }
+
         $trainers     = Input::file('trainers');
         if (isset($trainers) && !empty($trainers)) {
             $extension = $trainers->getClientOriginalExtension();
@@ -282,6 +312,11 @@ class UserController extends Controller
                 $messages['pdf.required'] = 'დასაშვებია მხოლოდ pdf გაფართოების ფაილები';
             }
         }
+        else {
+            $rules['trainers'] = 'required';
+            $messages ['trainers.required'] = '"მწვრთნელის/მწვრთნელების  კვალიფიკაციის დამადასტურებელი დოკუმენტები, დანართი №4"  სავალდებულოა';
+        }
+
         $materials     = Input::file('materials');
         if (isset($materials) && !empty($materials)) {
             $extension = $materials->getClientOriginalExtension();
@@ -290,6 +325,7 @@ class UserController extends Controller
                 $messages['pdf.required'] = 'დასაშვებია მხოლოდ pdf გაფართოების ფაილები';
             }
         }
+
         $bill     = Input::file('bill');
         if (isset($bill) && !empty($bill)) {
             $extension = $bill->getClientOriginalExtension();
@@ -297,6 +333,9 @@ class UserController extends Controller
                 $rules['pdf']             = 'required';
                 $messages['pdf.required'] = 'დასაშვებია მხოლოდ pdf გაფართოების ფაილები';
             }
+        } else {
+            $rules['bill'] = 'required';
+            $messages ['bill.required'] = '"ატვირთეთ გადახდის ქვითარი"  სავალდებულოა';
         }
         $this->validate($request, $rules, $messages);
         $decleration = Decleration::create($request->all());
