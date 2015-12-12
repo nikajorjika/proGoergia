@@ -78,6 +78,7 @@ Route::get('user_area/delete/{id}', 'UserController@delete');
 Route::controller('admin', 'AdminController');
 
 Route::get('downloadannoucement','UserController@downloadannoucement');
+Route::get('getannoucement/{id}/{name}','UserController@getannoucement');
 
 Route::controllers([
     'auth'     => 'Auth\AuthController',

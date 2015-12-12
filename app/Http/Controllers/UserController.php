@@ -479,6 +479,15 @@ class UserController extends Controller
 
         return \Response::download($file,'gancxadeba.docx',$headers);
     }
+    public function getannoucement($id,$name)
+    {
+        $file    = public_path() . '/upload/'.$id.'/'.$name.'.pdf';
+        $headers = array (
+            'Content-Type: application/file',
+        );
+
+        return \Response::download($file,$name.'.pdf',$headers);
+    }
 
 
 }

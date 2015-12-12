@@ -5,7 +5,13 @@
         <tbody>
             <tr>
                 <td>განცხადება</td>
-                <td></td>
+                <td><a href="{{ url('/getannoucement/'.$decleration->id.'/gancxadeba') }}"><span class="glyphicon glyphicon-download-alt" style="font-size: 30px"></span></a>
+                </td>
+            </tr>
+            <tr>
+                <td>ამონაწერი</td>
+                <td><a href="{{ url('/getannoucement/'.$decleration->id.'/amonaceri') }}"><span class="glyphicon glyphicon-download-alt" style="font-size: 30px"></span></a>
+                </td>
             </tr>
             <tr>
                 <td>განმცხადებელი</td>
@@ -89,6 +95,16 @@
                 <td>{{  $decleration -> program_short_desc}}</td>
             </tr>
             <tr>
+                <td>პროგრამის შემუშავების ანგარიში და დამადასტურებელი დოკუმენტაცია -  დანართი №1</td>
+                <td><a href="{{ url('/getannoucement/'.$decleration->id.'/dokumentacia') }}"><span class="glyphicon glyphicon-download-alt" style="font-size: 30px"></span></a>
+                </td>
+            </tr>
+            <tr>
+                <td>სასწავლო გეგმა  - დანართი №2</td>
+                <td><a href="{{ url('/getannoucement/'.$decleration->id.'/gegma') }}"><span class="glyphicon glyphicon-download-alt" style="font-size: 30px"></span></a>
+                </td>
+            </tr>
+            <tr>
                 <td>სასწავლო პროგრამის სწავლების მეთოდები და ორგანიზების ფორმა</td>
                 <td>@foreach($decleration->learnmethods as $method)
                         {{ $method-> method . ',' }}
@@ -120,6 +136,11 @@
                 </td>
             </tr>
             <tr>
+                <td>სერტიფიკატის ფორმის ნიმუში - დანართის №3</td>
+                <td><a href="{{ url('/getannoucement/'.$decleration->id.'/certificate') }}"><span class="glyphicon glyphicon-download-alt" style="font-size: 30px"></span></a>
+                </td>
+            </tr>
+            <tr>
                 <td>certificaterules სხვა</td>
                 <td>{{  $decleration -> certificate_rules_other}}</td>
             </tr>
@@ -134,6 +155,11 @@
             <tr>
                 <td>სასწავლო პროგრამის ადამიანური რესურსი</td>
                 <td>{{  $decleration -> edu_program_human_resource}}</td>
+            </tr>
+            <tr>
+                <td>მწვრთნელის/მწვრთნელების  კვალიფიკაციის დამადასტურებელი დოკუმენტები - დანართი №4</td>
+                <td><a href="{{ url('/getannoucement/'.$decleration->id.'/trainers') }}"><span class="glyphicon glyphicon-download-alt" style="font-size: 30px"></span></a>
+                </td>
             </tr>
             <tr>
                 <td>მწვრთნელებთან გაფორმებული ხელშეკრულებები</td>
@@ -156,6 +182,16 @@
             <tr>
                 <td>learnmaterials სხვა</td>
                 <td>{{  $decleration -> learn_materials_other}}</td>
+            </tr>
+            <tr>
+                <td>იმ საკითხავი მასალის ნიმუშები, რომლებიც არ არის საყოველთაოდ ხელმისაწვდომი -  დანართის №5</td>
+                <td><a href="{{ url('/getannoucement/'.$decleration->id.'/materials') }}"><span class="glyphicon glyphicon-download-alt" style="font-size: 30px"></span></a>
+                </td>
+            </tr>
+            <tr>
+                <td>ქვითარი</td>
+                <td><a href="{{ url('/getannoucement/'.$decleration->id.'/qvitari') }}"> <span class="glyphicon glyphicon-download-alt" style="font-size: 30px"></span></a>
+                </td>
             </tr>
         </tbody>
     </table>
