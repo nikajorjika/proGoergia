@@ -44,11 +44,11 @@ class Decleration extends Model
     }
     public function estimations()
     {
-        return $this->belongsToMany('App\Estimation');
+        return $this->belongsToMany('App\Estimation')->withPivot('min','max');
     }
     public function certificaterules()
     {
-        return $this->belongsToMany('App\Certificaterule');
+        return $this->belongsToMany('App\Certificaterule')->withPivot('percentage');
     }
     public function learnmaterials()
     {

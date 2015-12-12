@@ -4,6 +4,10 @@
     <table class="table table-responsive table-striped table-bordered adminareatable">
         <tbody>
             <tr>
+                <td>განცხადება</td>
+                <td></td>
+            </tr>
+            <tr>
                 <td>განმცხადებელი</td>
                 <td>{{  $decleration -> applicant}}</td>
             </tr>
@@ -56,13 +60,26 @@
                 <td>{{  $decleration -> edu_program_goal_groups}}</td>
             </tr>
             <tr>
-                <td>სასწავლო პროგრამის მინიმალური და მაქსიმალური რაოდენობა</td>
-                <td>{{  $decleration -> edu_program_listeners_number}}</td>
+                <td>სასწავლო პროგრამის მიზნობრივი ჯგუფი/ჯგუფები</td>
+                <td>{{  $decleration -> edu_program_goal_groups}}</td>
             </tr>
             <tr>
-                <td>სასწავლო პროგრამის მოცულობა</td>
-                <td>{{  $decleration -> edu_programm_cube}}</td>
+                <td>სასწავლო პროგრამის მინიმალური და მაქსიმალური რაოდენობა</td>
+                <td>{{  $decleration -> listenernumber -> number}}</td>
             </tr>
+            <tr>
+                <td>კრედიტი</td>
+                <td>{{  $decleration -> credit}}</td>
+            </tr>
+            <tr>
+                <td>საკონტაქტო საათი</td>
+                <td>{{  $decleration -> contact_hours}}</td>
+            </tr>
+            <tr>
+                <td>დამოუკიდებელი საათი</td>
+                <td>{{  $decleration -> free_hours}}</td>
+            </tr>
+
             <tr>
                 <td>პროგრამის სწავლის შედეგები</td>
                 <td>{{  $decleration -> edu_program_results}}</td>
@@ -73,26 +90,53 @@
             </tr>
             <tr>
                 <td>სასწავლო პროგრამის სწავლების მეთოდები და ორგანიზების ფორმა</td>
-                <td>{{  $decleration -> edu_program_learn_methods}}</td>
+                <td>@foreach($decleration->learnmethods as $method)
+                        {{ $method-> method . ',' }}
+                    @endforeach</td>
+            </tr>
+            <tr>
+                <td>learn_methods სხვა</td>
+                <td>{{  $decleration -> learn_methods_other}}</td>
             </tr>
             <tr>
                 <td>სასწავლო პროგრამის მონაწილეთა შეფასების მეთოდი/მეთოდები</td>
-                <td>{{  $decleration -> edu_program_participants_ratings}}</td>
+                <td>
+                    @foreach($decleration->estimations as $estimation)
+                        {{ $estimation-> name.' '.$estimation->pivot->min . ' ' .$estimation->pivot->max  }}
+                        <br>
+                    @endforeach
+                </td>
             </tr>
             <tr>
+                <td>estimations სხვა</td>
+                <td>{{  $decleration -> estimations_other}}</td>
+            </tr>
+            <tr>>
                 <td>სერთიფიკატის გაცემის წესი და პირობები</td>
-                <td>{{  $decleration -> certificate_award_rules}}</td>
+                <td>
+                    @foreach($decleration->certificaterules as $rule)
+                        {{ $rule-> name.' '.$rule->pivot->percentage.'%' . ',' }}
+                    @endforeach
+                </td>
+            </tr>
+            <tr>
+                <td>certificaterules სხვა</td>
+                <td>{{  $decleration -> certificate_rules_other}}</td>
             </tr>
             <tr>
                 <td>სასწავლო პროგრამის შეფასების სისტემა</td>
-                <td>{{  $decleration -> edu_program_rating_system}}</td>
+                <td>{{  $decleration -> ratingsystem ->system }}</td>
+            </tr>
+            <tr>
+                <td>ratingsystem სხვა</td>
+                <td>{{  $decleration -> rating_system_other}}</td>
             </tr>
             <tr>
                 <td>სასწავლო პროგრამის ადამიანური რესურსი</td>
                 <td>{{  $decleration -> edu_program_human_resource}}</td>
             </tr>
             <tr>
-                <td>მწვრთნელებთან გამოფრმებული ხელშეკრულებები</td>
+                <td>მწვრთნელებთან გაფორმებული ხელშეკრულებები</td>
                 <td>{{  $decleration -> trainers_contracts}}</td>
             </tr>
             <tr>
@@ -104,8 +148,14 @@
                 <td>{{  $decleration -> edu_program_learn_resources}}</td>
             </tr>
             <tr>
-                <td>პროგრამის განხორციელებისთვის არსებული სასწავლო მასალის ჩამონათვალი </td>
-                <td>{{  $decleration -> edu_program_learn_materials }}</td>
+                <td>სასწავლო პროგრამის სწავლების მეთოდები და ორგანიზების ფორმა</td>
+                <td>@foreach($decleration->learnmaterials as $material)
+                        {{ $material-> material . ',' }}
+                    @endforeach</td>
+            </tr>
+            <tr>
+                <td>learnmaterials სხვა</td>
+                <td>{{  $decleration -> learn_materials_other}}</td>
             </tr>
         </tbody>
     </table>
