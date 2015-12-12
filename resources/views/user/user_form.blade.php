@@ -95,13 +95,11 @@
                                 <div class="form-group">
                                     სასწავლო პროგრამის მსმენელთა მინიმალური და მაქსიმალური  რაოდენობა
                                 @foreach($listener_numbers as $listener_number)
-                                    {!! Form::label('listener_number',$listener_number->number) !!}
-                                    {!! Form::radio('listener_number',$listener_number -> id, false) !!}
+                                    {!! Form::label('listenernumber_id',$listener_number->number) !!}
+                                    {!! Form::radio('listenernumber_id',$listener_number -> id, false) !!}
                                     @endforeach
                                 </div>
-                                <div class="form-group">
-                                    {!! Form::text('edu_programm_cube', null, ['class' => 'form-control input-sm ','placeholder' => 'სასწავლო პროგრამის მოცულობა: (კრედიტების რაოდენობისა და შესაბამისი საკონტაქტო და დამოუკიდებელი საათების მითითებით)']) !!}
-                                </div>
+
                                 <div class="form-group">
                                     {!! Form::text('edu_program_results', null, ['class' => 'form-control input-sm ','placeholder' => 'პროგრამის სწავლის შედეგები (ცოდნა და უნარ-ჩვევები)']) !!}
                                 </div>
@@ -134,8 +132,8 @@
                                     <div class="form-group">
                                         სასწავლო პროგრამის სწავლების მეთოდები და ორგანიზების ფორმა
                                     @foreach($learn_methods as $learn_method)
-                                            {!! Form::label('learn_method',$learn_method->method) !!}
-                                            {!! Form::checkbox('learn_method',$learn_method -> id, false) !!}
+                                            {!! Form::label('learn_method[]',$learn_method->method) !!}
+                                            {!! Form::checkbox('learn_method[]',$learn_method -> id, false) !!}
                                     @endforeach
                                     </div>
                                 </div>
@@ -149,8 +147,8 @@
                                     <div class="form-group">
                                         სასწავლო პროგრამის მონაწილეთა შეფასების მეთოდის/მეთოდები (მონიშნეთ). მიუთითეთ შესაბამისი შეფასების მინიმალური და მაქსიმალური ქულა
                                         @foreach($estimations as $estimation)
-                                            {!! Form::label('estimation',$estimation->name) !!}
-                                            {!! Form::checkbox('estimation',$estimation -> id, false) !!}
+                                            {!! Form::label('estimation[]',$estimation->name) !!}
+                                            {!! Form::checkbox('estimation[]',$estimation -> id, false) !!}
                                             {!! Form::text('min_'.$estimation->id , null, ['class' => 'form-control']) !!}
                                             {!! Form::text('max_'.$estimation->id , null, ['class' => 'form-control']) !!}
                                         @endforeach
@@ -163,8 +161,8 @@
                                     <div class="form-group">
                                         სერტიფიკატის გაცემის წესი და პირობები
                                         @foreach($certificaterules as $certificaterule)
-                                            {!! Form::label('certificaterule',$certificaterule->name) !!}
-                                            {!! Form::checkbox('certificaterule',$certificaterule -> id, false) !!}
+                                            {!! Form::label('certificaterule[]',$certificaterule->name) !!}
+                                            {!! Form::checkbox('certificaterule[]',$certificaterule -> id, false) !!}
                                             {!! Form::text('percentage_'.$certificaterule->id , null, ['class' => 'form-control']) !!}
                                         @endforeach
                                     </div>
@@ -187,8 +185,8 @@
                                     <div class="form-group">
                                         სასწავლო პროგრამის შეფასების სისტემა
                                         @foreach($ratingsystems as $ratingsystem)
-                                            {!! Form::label('ratingsystem',$ratingsystem->system) !!}
-                                            {!! Form::radio('ratingsystem',$ratingsystem -> id, false) !!}
+                                            {!! Form::label('ratingsystem_id',$ratingsystem->system) !!}
+                                            {!! Form::radio('ratingsystem_id',$ratingsystem -> id, false) !!}
                                         @endforeach
                                     </div>
                                     <div class="form-group">
@@ -236,8 +234,8 @@
                                         <div class="form-group">
                                             პროგრამის განხორციელებისთვის არსებული სასწავლო მასალის ჩამონათვალი  - გამოყენებული ლიტერატურის საძიებო ლინკები, საკითხავი მასალა, ჰენდაუტები  და ა.შ.
                                             @foreach($learnmaterials as $learnmaterial)
-                                                {!! Form::label('learnmaterial',$learnmaterial->material) !!}
-                                                {!! Form::checkbox('learnmaterial',$learnmaterial -> id, false) !!}
+                                                {!! Form::label('learnmaterial[]',$learnmaterial->material) !!}
+                                                {!! Form::checkbox('learnmaterial[]',$learnmaterial -> id, false) !!}
                                             @endforeach
                                         </div>
                                         <div class="form-group">

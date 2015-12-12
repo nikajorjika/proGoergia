@@ -15,8 +15,8 @@ class Decleration extends Model
         ,'contact_telephone','comment','field_id','edu_program_name','edu_program_goal','edu_program_prelet',
         'edu_program_goal_groups','edu_program_listeners_number','edu_programm_cube','edu_program_results',
         'program_short_desc','edu_program_learn_methods','edu_program_participants_ratings','certificate_award_rules',
-        'edu_program_rating_system','edu_program_human_resource','trainers_contracts','edu_program_learn_env',
-        'edu_program_learn_resources','edu_program_learn_materials', 'user_id'];
+        'edu_program_rating_system','edu_program_human_resource','trainers_contracts','edu_program_learn_env','listenernumber_id',
+        'edu_program_learn_resources','edu_program_learn_materials','ratingsystem_id', 'user_id'];
 
     public $timestamps = false;
 
@@ -40,18 +40,18 @@ class Decleration extends Model
     }
     public function learnmethods()
     {
-        return $this->hasMany('App\Learnmethod');
+        return $this->belongsToMany('App\Learnmethod');
     }
     public function estimations()
     {
-        return $this->hasMany('App\Estimation');
+        return $this->belongsToMany('App\Estimation');
     }
     public function certificaterules()
     {
-        return $this->hasMany('App\Certificaterule');
+        return $this->belongsToMany('App\Certificaterule');
     }
     public function learnmaterials()
     {
-        return $this->hasMany('App\Learnmaterial');
+        return $this->belongsToMany('App\Learnmaterial');
     }
 }

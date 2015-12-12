@@ -188,19 +188,20 @@ class UserController extends Controller
             'edu_program_goal'     => 'required',
             'edu_program_prelet'     => 'required',
             'edu_program_goal_groups'     => 'required',
-            'edu_program_listeners_number'     => 'required',
-            'edu_programm_cube'     => 'required',
+            'listenernumber_id'     => 'required',
+            'ratingsystem_id'     => 'required',
             'edu_program_results'     => 'required',
             'program_short_desc'     => 'required',
-            'edu_program_learn_methods'     => 'required',
             'edu_program_participants_ratings'     => 'required',
-            'certificate_award_rules'     => 'required',
             'edu_program_rating_system'     => 'required',
             'edu_program_human_resource'     => 'required',
             'trainers_contracts'     => 'required',
             'edu_program_learn_env'     => 'required',
             'edu_program_learn_resources'     => 'required',
-            'edu_program_learn_materials'     => 'required',
+            'estimation' => 'required',
+            'certificaterule' => 'required',
+            'learnmethod' => 'required',
+            'learnmaterial' => 'required',
 
         );
 
@@ -217,19 +218,18 @@ class UserController extends Controller
             'edu_program_goal.required'     => '"სასწავლო პროგრამის მიზანი" ველი სავალდებულოა ',
             'edu_program_prelet.required'     => '"სასწავლო პროგრამაზე დაშვების წინაპირობა" ველი სავალდებულოა ',
             'edu_program_goal_groups.required'     => '"სასწავლო პროგრამის მიზნობრივი ჯგუფი/ჯგუფები" ველი სავალდებულოა ',
-            'edu_program_listeners_number.required'     => '"სასწავლო პროგრამის მსმენელთა მინიმალური და მაქსიმალური  რაოდენობა" ველი სავალდებულოა ',
-            'edu_programm_cube.required'     => '"სასწავლო პროგრამის მოცულობა" ველი სავალდებულოა ',
+            'listenernumber_id.required'     => '"სასწავლო პროგრამის მსმენელთა მინიმალური და მაქსიმალური  რაოდენობა" ველი სავალდებულოა ',
             'edu_program_results.required'     => '"პროგრამის სწავლის შედეგები (ცოდნა და უნარ-ჩვევები)" ველი სავალდებულოა ',
             'program_short_desc.required'     => '"პროგრამის მოკლე აღწერა  და მისი შემადგენელი ძირითადი თემების ჩამონათვალი" ველი სავალდებულოა ',
-            'edu_program_learn_methods.required'     => '"სასწავლო პროგრამის სწავლების მეთოდები და ორგანიზების ფორმა" ველი სავალდებულოა ',
+            'learnmethod.required'     => '"სასწავლო პროგრამის სწავლების მეთოდები და ორგანიზების ფორმა" ველი სავალდებულოა ',
             'edu_program_participants_ratings.required'     => '"სასწავლო პროგრამის მონაწილეთა შეფასების მეთოდის/მეთოდების მინიმალური და მაქსიმალური ქულის მითითებით" ველი სავალდებულოა ',
-            'certificate_award_rules.required'     => '"სერტიფიკატის გაცემის წესი და პირობები" ველი სავალდებულოა ',
-            'edu_program_rating_system.required'     => '"სასწავლო პროგრამის შეფასების სისტემა" ველი სავალდებულოა ',
+            'certificaterule.required'     => '"სერტიფიკატის გაცემის წესი და პირობები" ველი სავალდებულოა ',
+            'ratingsystem_id.required'     => '"სასწავლო პროგრამის შეფასების სისტემა" ველი სავალდებულოა ',
             'edu_program_human_resource.required'     => '"სასწავლო პროგრამის ადამიანური რესურსი - მწვრთნელის/მწვრთნელების ჩამონათვალი" ველი სავალდებულოა',
             'trainers_contracts.required'     => '"მწვრთნელებთან გაფორმებული ხელშეკრულებები" ველი სავალდებულოა',
             'edu_program_learn_env.required'     => '"პროგრამის განხორციელებისთვის აუცილებელი სასწავლო  გარემო" ველი სავალდებულოა',
             'edu_program_learn_resources.required'     => '"პროგრამის განხორციელებისთვის აუცილებელი სასწავლო რესურსის ჩამონათვალი" ველი სავალდებულოა',
-            'edu_program_learn_materials.required'     => '"პროგრამის განხორციელებისთვის არსებული სასწავლო მასალის ჩამონათვალი" ველი სავალდებულოა',
+            'learnmaterial.required'     => '"პროგრამის განხორციელებისთვის არსებული სასწავლო მასალის ჩამონათვალი" ველი სავალდებულოა',
 
         );
 
@@ -299,51 +299,76 @@ class UserController extends Controller
             }
         }
         $this->validate($request, $rules, $messages);
-
         $decleration = Decleration::create($request->all());
 
 
-        if (isset($annoucement) && !empty($annoucement)) {
-            $file_name        = 'gancxadeba.pdf';
-            $destinationPath  = public_path() . '/upload/' . $decleration->id;
-            $annoucement->move($destinationPath, $file_name);
+        foreach (Input::get('learnmaterial') as $learnmaterial_id)
+        {
+
+            $learnmaterial = Learnmaterial::find($learnmaterial_id);
+            $learnmaterial->declerations()->attach($decleration->id);
         }
 
-        if (isset($extraction) && !empty($extraction)) {
-            $file_name        = 'amonaceri.pdf';
-            $destinationPath  = public_path() . '/upload/' .$decleration->id;
-            $extraction->move($destinationPath, $file_name);
+        foreach (Input::get('learn_method') as $learnmethod_id)
+        {
+
+            $learnmethod = Learnmethod::find($learnmethod_id);
+            $learnmethod->declerations()->attach($decleration->id);
         }
-        if (isset($documentation) && !empty($documentation)) {
-            $file_name        = 'dokumentacia.pdf';
-            $destinationPath  = public_path() . '/upload/' .$decleration->id;
-            $documentation->move($destinationPath, $file_name);
+        foreach (Input::get('estimation') as $estimation_id)
+        {
+
+            $estimation = Estimation::find($estimation_id);
+            $estimation->declerations()->attach($decleration->id, ['min' => Input::get('min_' . $estimation_id), 'max'=>Input::get('max_' . $estimation_id)]);
         }
-        if (isset($plan) && !empty($plan)) {
-            $file_name        = 'gegma.pdf';
-            $destinationPath  = public_path() . '/upload/' .$decleration->id;
-            $plan->move($destinationPath, $file_name);
+        foreach (Input::get('certificaterule') as $certificaterule_id)
+        {
+
+            $certificaterule = Certificaterule::find($certificaterule_id);
+            $certificaterule->declerations()->attach($decleration->id, ['percentage' => Input::get('percentage_' . $estimation_id)]);
         }
-        if (isset($certificate) && !empty($certificate)) {
-            $file_name        = 'certificate.pdf';
-            $destinationPath  = public_path() . '/upload/' .$decleration->id;
-            $certificate->move($destinationPath, $file_name);
-        }
-        if (isset($trainers) && !empty($trainers)) {
-            $file_name        = 'trainers.pdf';
-            $destinationPath  = public_path() . '/upload/' .$decleration->id;
-            $trainers->move($destinationPath, $file_name);
-        }
-        if (isset($materials) && !empty($materials)) {
-            $file_name        = 'materials.pdf';
-            $destinationPath  = public_path() . '/upload/' .$decleration->id;
-            $materials->move($destinationPath, $file_name);
-        }
-        if (isset($bill) && !empty($bill)) {
-            $file_name        = 'qvitari.pdf';
-            $destinationPath  = public_path() . '/upload/' .$decleration->id;
-            $bill->move($destinationPath, $file_name);
-        }
+
+                if (isset($annoucement) && !empty($annoucement)) {
+                    $file_name        = 'gancxadeba.pdf';
+                    $destinationPath  = public_path() . '/upload/' . $decleration->id;
+                    $annoucement->move($destinationPath, $file_name);
+                }
+
+                if (isset($extraction) && !empty($extraction)) {
+                    $file_name        = 'amonaceri.pdf';
+                    $destinationPath  = public_path() . '/upload/' .$decleration->id;
+                    $extraction->move($destinationPath, $file_name);
+                }
+                if (isset($documentation) && !empty($documentation)) {
+                    $file_name        = 'dokumentacia.pdf';
+                    $destinationPath  = public_path() . '/upload/' .$decleration->id;
+                    $documentation->move($destinationPath, $file_name);
+                }
+                if (isset($plan) && !empty($plan)) {
+                    $file_name        = 'gegma.pdf';
+                    $destinationPath  = public_path() . '/upload/' .$decleration->id;
+                    $plan->move($destinationPath, $file_name);
+                }
+                if (isset($certificate) && !empty($certificate)) {
+                    $file_name        = 'certificate.pdf';
+                    $destinationPath  = public_path() . '/upload/' .$decleration->id;
+                    $certificate->move($destinationPath, $file_name);
+                }
+                if (isset($trainers) && !empty($trainers)) {
+                    $file_name        = 'trainers.pdf';
+                    $destinationPath  = public_path() . '/upload/' .$decleration->id;
+                    $trainers->move($destinationPath, $file_name);
+                }
+                if (isset($materials) && !empty($materials)) {
+                    $file_name        = 'materials.pdf';
+                    $destinationPath  = public_path() . '/upload/' .$decleration->id;
+                    $materials->move($destinationPath, $file_name);
+                }
+                if (isset($bill) && !empty($bill)) {
+                    $file_name        = 'qvitari.pdf';
+                    $destinationPath  = public_path() . '/upload/' .$decleration->id;
+                    $bill->move($destinationPath, $file_name);
+                }
         return redirect('/user_area');
     }
 

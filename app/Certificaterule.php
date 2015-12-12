@@ -10,6 +10,6 @@ class Certificaterule extends Model
 
     public function declerations()
     {
-        return $this->hasMany('App\Decleration');
+        return $this->belongsToMany('App\Decleration');
     }
 }

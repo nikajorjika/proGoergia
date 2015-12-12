@@ -188,7 +188,7 @@ class CreateDeclarationTable extends Migration
             )
         );
 
-        Schema::create('declereration_estimation', function (Blueprint $table) {
+        Schema::create('decleration_estimation', function (Blueprint $table) {
             $table->integer('decleration_id')->unsigned();
             $table->foreign('decleration_id')->references('id')->on('declerations');
             $table->integer('estimation_id')->unsigned();
@@ -213,7 +213,7 @@ class CreateDeclarationTable extends Migration
             )
         );
 
-        Schema::create('declereration_certificaterule', function (Blueprint $table) {
+        Schema::create('decleration_certificaterule', function (Blueprint $table) {
             $table->integer('decleration_id')->unsigned();
             $table->foreign('decleration_id')->references('id')->on('declerations');
             $table->integer('certificaterule_id')->unsigned();
