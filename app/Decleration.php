@@ -16,7 +16,7 @@ class Decleration extends Model
         'edu_program_goal_groups','edu_program_listeners_number','edu_programm_cube','edu_program_results',
         'program_short_desc','edu_program_learn_methods','edu_program_participants_ratings','certificate_award_rules',
         'edu_program_rating_system','edu_program_human_resource','trainers_contracts','edu_program_learn_env','listenernumber_id',
-        'edu_program_learn_resources','edu_program_learn_materials','ratingsystem_id', 'user_id'];
+        'edu_program_learn_resources','edu_program_learn_materials','ratingsystem_id','credit', 'contact_hours', 'free_hours', 'user_id'];
 
     public $timestamps = false;
 

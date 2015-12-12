@@ -341,28 +341,24 @@ class UserController extends Controller
 
         foreach (Input::get('learnmaterial') as $learnmaterial_id)
         {
-
-            $learnmaterial = Learnmaterial::find($learnmaterial_id);
-            $learnmaterial->declerations()->attach($decleration->id);
+            $decleration->learnmaterials()->attach($learnmaterial_id);
         }
 
         foreach (Input::get('learn_method') as $learnmethod_id)
         {
 
-            $learnmethod = Learnmethod::find($learnmethod_id);
-            $learnmethod->declerations()->attach($decleration->id);
+            $decleration->learnmethods()->attach($learnmethod_id);
+
         }
         foreach (Input::get('estimation') as $estimation_id)
         {
 
-            $estimation = Estimation::find($estimation_id);
-            $estimation->declerations()->attach($decleration->id, ['min' => Input::get('min_' . $estimation_id), 'max'=>Input::get('max_' . $estimation_id)]);
+            $decleration->estimations()->attach($estimation_id, ['min' => Input::get('min_' . $estimation_id), 'max'=>Input::get('max_' . $estimation_id)]);
         }
         foreach (Input::get('certificaterule') as $certificaterule_id)
         {
 
-            $certificaterule = Certificaterule::find($certificaterule_id);
-            $certificaterule->declerations()->attach($decleration->id, ['percentage' => Input::get('percentage_' . $estimation_id)]);
+            $decleration->certificaterules()->attach($certificaterule_id, ['percentage' => Input::get('percentage_' . $certificaterule_id)]);
         }
 
                 if (isset($annoucement) && !empty($annoucement)) {
@@ -433,8 +429,36 @@ class UserController extends Controller
     }
     public function update(Request $request,$id)
     {
+
         $decleration = Decleration::findOrNew($id);
         $decleration->update($request->all());
+
+        $decleration->learnmaterials()->detach();
+        foreach (Input::get('learnmaterial') as $learnmaterial_id)
+        {
+            $decleration->learnmaterials()->attach($learnmaterial_id);
+        }
+        $decleration->learnmethods()->detach();
+        foreach (Input::get('learn_method') as $learnmethod_id)
+        {
+
+            $decleration->learnmethods()->attach($learnmethod_id);
+
+        }
+        $decleration->estimations()->detach();
+
+        foreach (Input::get('estimation') as $estimation_id)
+        {
+
+            $decleration->estimations()->attach($estimation_id, ['min' => Input::get('min_' . $estimation_id), 'max'=>Input::get('max_' . $estimation_id)]);
+        }
+        $decleration->certificaterules()->detach();
+
+        foreach (Input::get('certificaterule') as $certificaterule_id)
+        {
+
+            $decleration->certificaterules()->attach($certificaterule_id, ['percentage' => Input::get('percentage_' . $certificaterule_id)]);
+        }
 
         return redirect('/user_area');
     }
