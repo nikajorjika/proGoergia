@@ -296,3 +296,13 @@ label.label-floatlabel {
 .adminareatable tr td:first-child {
     width: 30%;;
 }
+
+.text-align-left label {
+    text-align: left !important;
+}
+
+.form-group-style {
+    border-bottom: 1px solid gray;
+    background-color: lightgray;
+    padding: 10px 0 20px;
+}
