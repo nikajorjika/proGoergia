@@ -11,10 +11,17 @@
         </div>
     @endif
 
-            {!! Form::model( $decleration,['method' => 'PATCH', 'action'=> ['UserController@update', $decleration->id]]) !!}
+    {!! Form::model($decleration, ['method' => 'PATCH', 'action'=> ['UserController@update', $decleration->id], 'class' => 'form-horizontal']) !!}
 
-            @include('user.user_form', ['submitButton' => 'რედაქტირება'])
+    @include('user.user_form',
+        [
+            'submitButton'         => 'რედაქტირება',
+            'dec_learnmethods'     => $dec_learnmethods,
+            'dec_estimations'      => $dec_estimations,
+            'dec_certificaterules' => $dec_certificaterules,
+            'dec_materials'        => $dec_materials,
+        ])
 
-            {!! Form::close() !!}
+    {!! Form::close() !!}
 
 @stop
