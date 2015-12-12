@@ -28,4 +28,30 @@ class Decleration extends Model
     {
         return $this->belongsTo('App\Field');
     }
+
+    public function listenernumber()
+    {
+        return $this->belongsTo('App\Listenernumber');
+    }
+
+    public function ratingsystem()
+    {
+        return $this->belongsTo('App\Ratingsystem');
+    }
+    public function learnmethods()
+    {
+        return $this->hasMany('App\Learnmethod');
+    }
+    public function estimations()
+    {
+        return $this->hasMany('App\Estimation');
+    }
+    public function certificaterules()
+    {
+        return $this->hasMany('App\Certificaterule');
+    }
+    public function learnmaterials()
+    {
+        return $this->hasMany('App\Learnmaterial');
+    }
 }

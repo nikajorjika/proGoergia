@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Certificaterule;
 use App\Decleration;
+use App\Estimation;
 use App\Field;
+use App\Learnmaterial;
+use App\Learnmethod;
+use App\Listenernumber;
+use App\Ratingsystem;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -143,10 +149,21 @@ class UserController extends Controller
         $declerations = Auth::user()->declerations;
 
         $fields   = Field::orderBy('name')->lists('name', 'id');
-
+        $listener_numbers = Listenernumber::all();
+        $learn_methods = Learnmethod::all();
+        $estimations = Estimation::all();
+        $ratingsystems = Ratingsystem::all();
+        $certificaterules = Certificaterule::all();
+        $learnmaterials = Learnmaterial::all();
         return view('user.user_area',[
             'fields' => $fields,
             'declerations' => $declerations,
+            'listener_numbers' => $listener_numbers,
+            'learn_methods' => $learn_methods,
+            'estimations'=> $estimations,
+            'ratingsystems' => $ratingsystems,
+            'certificaterules' => $certificaterules,
+            'learnmaterials'   => $learnmaterials,
         ]);
 
     }

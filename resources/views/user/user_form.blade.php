@@ -93,7 +93,11 @@
                                     {!! Form::text('edu_program_goal_groups', null, ['class' => 'form-control input-sm ','placeholder' => 'სასწავლო პროგრამის მიზნობრივი ჯგუფი/ჯგუფები']) !!}
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text('edu_program_listeners_number', null, ['class' => 'form-control input-sm ','placeholder' => 'სასწავლო პროგრამის მსმენელთა მინიმალური და მაქსიმალური  რაოდენობა']) !!}
+                                    სასწავლო პროგრამის მსმენელთა მინიმალური და მაქსიმალური  რაოდენობა
+                                @foreach($listener_numbers as $listener_number)
+                                    {!! Form::label('listener_number',$listener_number->number) !!}
+                                    {!! Form::radio('listener_number',$listener_number -> id, false) !!}
+                                    @endforeach
                                 </div>
                                 <div class="form-group">
                                     {!! Form::text('edu_programm_cube', null, ['class' => 'form-control input-sm ','placeholder' => 'სასწავლო პროგრამის მოცულობა: (კრედიტების რაოდენობისა და შესაბამისი საკონტაქტო და დამოუკიდებელი საათების მითითებით)']) !!}
@@ -128,21 +132,36 @@
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        {!! Form::textarea('edu_program_learn_methods', null, ['class' => 'form-control input-sm ','placeholder' => 'სასწავლო პროგრამის სწავლების მეთოდები და ორგანიზების ფორმა']) !!}
+                                        სასწავლო პროგრამის სწავლების მეთოდები და ორგანიზების ფორმა
+                                    @foreach($learn_methods as $learn_method)
+                                            {!! Form::label('learn_method',$learn_method->method) !!}
+                                            {!! Form::checkbox('learn_method',$learn_method -> id, false) !!}
+                                    @endforeach
                                     </div>
-
                                 </div>
+
                             </div>
 
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        {!! Form::textarea('edu_program_participants_ratings', null, ['class' => 'form-control input-sm ','placeholder' => 'სასწავლო პროგრამის მონაწილეთა შეფასების მეთოდის/მეთოდების (მაგ.: ტესტირება, პრეზენტაცია, წერითი ნამუშევარი, შემთხვევის ანალიზი და ა.შ.)  მინიმალური და მაქსიმალური ქულის მითითებით']) !!}
+                                        სასწავლო პროგრამის მონაწილეთა შეფასების მეთოდის/მეთოდები (მონიშნეთ). მიუთითეთ შესაბამისი შეფასების მინიმალური და მაქსიმალური ქულა
+                                        @foreach($estimations as $estimation)
+                                            {!! Form::label('estimation',$estimation->name) !!}
+                                            {!! Form::checkbox('estimation',$estimation -> id, false) !!}
+                                            {!! Form::text('min_'.$estimation->id , null, ['class' => 'form-control']) !!}
+                                            {!! Form::text('max_'.$estimation->id , null, ['class' => 'form-control']) !!}
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        {!! Form::textarea('certificate_award_rules', null, ['class' => 'form-control input-sm ','placeholder' => 'სერტიფიკატის გაცემის წესი და პირობები']) !!}
+                                        სერტიფიკატის გაცემის წესი და პირობები
+                                        @foreach($certificaterules as $certificaterule)
+                                            {!! Form::label('certificaterule',$certificaterule->name) !!}
+                                            {!! Form::checkbox('certificaterule',$certificaterule -> id, false) !!}
+                                            {!! Form::text('percentage_'.$certificaterule->id , null, ['class' => 'form-control']) !!}
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
@@ -158,7 +177,11 @@
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        {!! Form::textarea('edu_program_rating_system', null, ['class' => 'form-control input-sm ','placeholder' => 'სასწავლო პროგრამის შეფასების სისტემა']) !!}
+                                        სასწავლო პროგრამის შეფასების სისტემა
+                                        @foreach($ratingsystems as $ratingsystem)
+                                            {!! Form::label('ratingsystem',$ratingsystem->system) !!}
+                                            {!! Form::radio('ratingsystem',$ratingsystem -> id, false) !!}
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
@@ -204,10 +227,11 @@
                                     </div>
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            {!! Form::label('materials', 'იმ საკითხავი მასალის ნიმუშები, რომლებიც არ არის საყოველთაოდ ხელმისაწვდომი,  დანართი №5', ['class' => 'col-sm-2 control-label']) !!}
-                                            <div class="col-sm-10">
-                                                {!! Form::file('materials', ['class' => 'form-control']) !!}
-                                            </div>
+                                            პროგრამის განხორციელებისთვის არსებული სასწავლო მასალის ჩამონათვალი  - გამოყენებული ლიტერატურის საძიებო ლინკები, საკითხავი მასალა, ჰენდაუტები  და ა.შ.
+                                            @foreach($learnmaterials as $learnmaterial)
+                                                {!! Form::label('learnmaterial',$learnmaterial->material) !!}
+                                                {!! Form::checkbox('learnmaterial',$learnmaterial -> id, false) !!}
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-sm-6 col-md-6">
