@@ -42,9 +42,8 @@ class Decleration extends Model
     {
         return $this->belongsToMany('App\Learnmethod');
     }
-    public function estimations()
-    {
-        return $this->belongsToMany('App\Estimation')->withPivot('min', 'max');
+    public function est
+        return $this->belongsToMany('App\Estimation')->withPivot('min','max');
     }
     public function certificaterules()
     {
