@@ -361,7 +361,7 @@ $(document).ready(function(){
         });
     });
 
-    $('input').floatlabel({labelEndTop:0});
+    $('.registration-form').find('input').floatlabel({labelEndTop:0});
 
     $('.glyphicon-remove').click(function () {
         if(!confirm("გსურთ განაცხადის წაშლა?")){

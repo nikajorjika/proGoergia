@@ -44,7 +44,7 @@ class Decleration extends Model
     }
     public function estimations()
     {
-        return $this->belongsToMany('App\Estimation')->withPivot('min','max');
+        return $this->belongsToMany('App\Estimation')->withPivot('min', 'max');
     }
     public function certificaterules()
     {

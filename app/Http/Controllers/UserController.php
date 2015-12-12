@@ -416,15 +416,43 @@ class UserController extends Controller
         $certificaterules = Certificaterule::all();
         $learnmaterials = Learnmaterial::all();
 
-        return view('user.edit_user_form',[
-            'decleration' => $decleration,
-            'fields'       =>$fields,
-            'listener_numbers' => $listener_numbers,
-            'learn_methods' => $learn_methods,
-            'estimations'=> $estimations,
-            'ratingsystems' => $ratingsystems,
-            'certificaterules' => $certificaterules,
-            'learnmaterials'   => $learnmaterials,
+        $dec_learnmethods = [];
+        foreach ($decleration -> learnmethods as $method)
+        {
+            $dec_learnmethods[] = $method -> id;
+        }
+
+        $dec_estimations = [];
+        foreach ($decleration -> estimations as $estimation)
+        {
+            $dec_estimations[$estimation -> id] = ['min' => $estimation -> pivot -> min, 'max' => $estimation -> pivot -> max];
+        }
+
+        $dec_certificaterules = [];
+        foreach ($decleration -> certificaterules as $certificaterule)
+        {
+            $dec_certificaterules[$certificaterule -> id] = $certificaterule -> pivot -> percentage;
+        }
+
+        $dec_materials = [];
+        foreach ($decleration -> learnmaterials as $material)
+        {
+            $dec_materials[] = $material -> id;
+        }
+
+        return view('user.edit_user_form', [
+            'decleration'          => $decleration,
+            'fields'               => $fields,
+            'listener_numbers'     => $listener_numbers,
+            'learn_methods'        => $learn_methods,
+            'dec_learnmethods'     => $dec_learnmethods,
+            'estimations'          => $estimations,
+            'dec_estimations'      => $dec_estimations,
+            'ratingsystems'        => $ratingsystems,
+            'certificaterules'     => $certificaterules,
+            'dec_certificaterules' => $dec_certificaterules,
+            'learnmaterials'       => $learnmaterials,
+            'dec_materials'        => $dec_materials,
         ]);
     }
     public function update(Request $request,$id)

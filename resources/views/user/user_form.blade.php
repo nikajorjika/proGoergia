@@ -175,9 +175,11 @@
             <div class="form-group form-group-style">
                 {!! Form::label('learn_method', 'სასწავლო პროგრამის სწავლების მეთოდები და ორგანიზების ფორმა: ', ['class' => 'col-sm-12 control-label']) !!}
                 <div class="col-sm-12">
+                <?php $checked = false; ?>
                 @foreach($learn_methods as $learn_method)
+                    <?php $checked = isset($dec_learnmethods) && in_array($learn_method->id, $dec_learnmethods) ? true : false ?>
                     {!! Form::label('learn_method[]',$learn_method->method) !!}
-                    {!! Form::checkbox('learn_method[]',$learn_method->id, false) !!}
+                    {!! Form::checkbox('learn_method[]',$learn_method->id, $checked) !!}
                 @endforeach
 
                 {!! Form::textarea('learn_methods_other', null, ['class' => 'form-control input-sm ','placeholder' => 'სხვა  ']) !!}
@@ -187,11 +189,15 @@
             <div class="form-group form-group-style">
                 {!! Form::label('estimation[]', 'სასწავლო პროგრამის მონაწილეთა შეფასების მეთოდის/მეთოდები (მონიშნეთ). მიუთითეთ შესაბამისი შეფასების მინიმალური და მაქსიმალური ქულა: ', ['class' => 'col-sm-12 control-label']) !!}
                 <div class="col-sm-12">
+                <?php $checked = false; $min = null; $max = null; ?>
                 @foreach($estimations as $estimation)
+                    <?php $checked = isset($dec_estimations) && array_key_exists($estimation -> id, $dec_estimations) ? true : false ?>
+                    <?php $min     = isset($dec_estimations) && array_key_exists($estimation -> id, $dec_estimations) ? $dec_estimations[$estimation -> id]['min'] : null ?>
+                    <?php $max     = isset($dec_estimations) && array_key_exists($estimation -> id, $dec_estimations) ? $dec_estimations[$estimation -> id]['max'] : null ?>
                     {!! Form::label('estimation[]',$estimation->name) !!}
-                    {!! Form::checkbox('estimation[]',$estimation->id, false) !!}
-                    {!! Form::text('min_'.$estimation->id , null, ['class' => 'form-control']) !!}
-                    {!! Form::text('max_'.$estimation->id , null, ['class' => 'form-control']) !!}
+                    {!! Form::checkbox('estimation[]',$estimation->id, $checked) !!}
+                    {!! Form::text('min_'.$estimation->id, $min, ['class' => 'form-control']) !!}
+                    {!! Form::text('max_'.$estimation->id, $max, ['class' => 'form-control']) !!}
                 @endforeach
 
                 {!! Form::textarea('estimations_other', null, ['class' => 'form-control input-sm ','placeholder' => 'სხვა  ']) !!}
@@ -201,10 +207,13 @@
             <div class="form-group form-group-style">
                 {!! Form::label('estimation[]', 'სერტიფიკატის გაცემის წესი და პირობები: ', ['class' => 'col-sm-12 control-label']) !!}
                 <div class="col-sm-12">
+                <?php $checked = false; $percentage = null; ?>
                 @foreach($certificaterules as $certificaterule)
+                    <?php $checked    = isset($dec_certificaterules) && array_key_exists($certificaterule -> id, $dec_certificaterules) ? true : false ?>
+                    <?php $percentage = isset($dec_certificaterules) && array_key_exists($certificaterule -> id, $dec_certificaterules) ? $dec_certificaterules[$certificaterule -> id] : false ?>
                     {!! Form::label('certificaterule[]',$certificaterule->name) !!}
-                    {!! Form::checkbox('certificaterule[]',$certificaterule -> id, false) !!}
-                    {!! Form::text('percentage_'.$certificaterule->id , null, ['class' => 'form-control']) !!}
+                    {!! Form::checkbox('certificaterule[]',$certificaterule -> id, $checked) !!}
+                    {!! Form::text('percentage_'.$certificaterule->id , $percentage, ['class' => 'form-control']) !!}
                 @endforeach
 
                 {!! Form::textarea('certificate_rules_other', null, ['class' => 'form-control input-sm ','placeholder' => 'სხვა']) !!}
@@ -268,9 +277,11 @@
             <div class="form-group form-group-style">
                 {!! Form::label('learnmaterial[]', 'პროგრამის განხორციელებისთვის არსებული სასწავლო მასალის ჩამონათვალი  - გამოყენებული ლიტერატურის საძიებო ლინკები, საკითხავი მასალა, ჰენდაუტები  და ა.შ.: ', ['class' => 'col-sm-12 control-label']) !!}
                 <div class="col-sm-12">
+                <?php $checked = false; ?>
                 @foreach($learnmaterials as $learnmaterial)
+                    <?php $checked = isset($dec_materials) && in_array($learnmaterial -> id, $dec_materials) ? true : false; ?>
                     {!! Form::label('learnmaterial[]',$learnmaterial->material) !!}
-                    {!! Form::checkbox('learnmaterial[]',$learnmaterial -> id, false) !!}
+                    {!! Form::checkbox('learnmaterial[]',$learnmaterial->id, $checked) !!}
                 @endforeach
 
                 {!! Form::textarea('learn_materials_other',null, ['class' => 'form-control input-sm ','placeholder' => 'Learn Materials სხვა ']) !!}
