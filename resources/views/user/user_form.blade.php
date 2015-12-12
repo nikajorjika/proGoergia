@@ -139,7 +139,9 @@
                                     @endforeach
                                     </div>
                                 </div>
-
+                                <div class="form-group">
+                                    {!! Form::textarea('learn_methods_other', null, ['class' => 'form-control input-sm ','placeholder' => 'LearnMethods სხვა  ']) !!}
+                                </div>
                             </div>
 
                             <div class="row">
@@ -153,6 +155,9 @@
                                             {!! Form::text('max_'.$estimation->id , null, ['class' => 'form-control']) !!}
                                         @endforeach
                                     </div>
+                                    <div class="form-group">
+                                        {!! Form::textarea('estimations_other', null, ['class' => 'form-control input-sm ','placeholder' => 'Estimations სხვა  ']) !!}
+                                    </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
@@ -162,6 +167,9 @@
                                             {!! Form::checkbox('certificaterule',$certificaterule -> id, false) !!}
                                             {!! Form::text('percentage_'.$certificaterule->id , null, ['class' => 'form-control']) !!}
                                         @endforeach
+                                    </div>
+                                    <div class="form-group">
+                                        {!! Form::textarea('certificate_rules_other', null, ['class' => 'form-control input-sm ','placeholder' => 'Certificate Rules სხვა  ']) !!}
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
@@ -182,6 +190,9 @@
                                             {!! Form::label('ratingsystem',$ratingsystem->system) !!}
                                             {!! Form::radio('ratingsystem',$ratingsystem -> id, false) !!}
                                         @endforeach
+                                    </div>
+                                    <div class="form-group">
+                                        {!! Form::textarea('rating_system_other', null, ['class' => 'form-control input-sm ','placeholder' => 'Rating System სხვა  ']) !!}
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
@@ -220,11 +231,7 @@
                                             {!! Form::textarea('edu_program_learn_resources', null,['class' => 'form-control input-sm ','placeholder' => 'პროგრამის განხორციელებისთვის აუცილებელი სასწავლო რესურსის ჩამონათვალი']) !!}
                                         </div>
                                     </div>
-                                    <div class="col-xs-6 col-sm-6 col-md-6">
-                                        <div class="form-group">
-                                            {!! Form::textarea('edu_program_learn_materials',null, ['class' => 'form-control input-sm ','placeholder' => 'პროგრამის განხორციელებისთვის არსებული სასწავლო მასალის ჩამონათვალი  - გამოყენებული ლიტერატურის საძიებო ლინკები, საკითხავი მასალა, ჰენდაუტები  და ა.შ. ']) !!}
-                                        </div>
-                                    </div>
+
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
                                             პროგრამის განხორციელებისთვის არსებული სასწავლო მასალის ჩამონათვალი  - გამოყენებული ლიტერატურის საძიებო ლინკები, საკითხავი მასალა, ჰენდაუტები  და ა.შ.
@@ -232,6 +239,9 @@
                                                 {!! Form::label('learnmaterial',$learnmaterial->material) !!}
                                                 {!! Form::checkbox('learnmaterial',$learnmaterial -> id, false) !!}
                                             @endforeach
+                                        </div>
+                                        <div class="form-group">
+                                            {!! Form::textarea('learn_materials_other',null, ['class' => 'form-control input-sm ','placeholder' => 'Learn Materials სხვა ']) !!}
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-sm-6 col-md-6">
