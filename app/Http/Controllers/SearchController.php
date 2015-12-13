@@ -44,7 +44,7 @@ class SearchController extends Controller
             $seek_training_filtered->quantity     = $seek_training_instance->quantity;
             $seek_training_filtered->field       = $seek_training_field->name;
             $seek_training_filtered->municipality= $seek_training_municipality->name;
-            $seek_training_filtered->isAdmin     = Auth::check();
+            $seek_training_filtered->isAdmin     = !(!Auth::user() || Auth::user() -> role == 100);
             $seek_training_filtered_array[] = $seek_training_filtered;
             unset($seek_training_filtered);
             unset($seek_training_months_array);
@@ -86,7 +86,7 @@ class SearchController extends Controller
             $training_filtered->months      = implode(',',$training_months_array);
             $training_filtered->terms       = implode(',',$training_terms_array);
             $training_filtered->municipality= $training_municipality->name;
-            $training_filtered->isAdmin     = Auth::check();
+            $training_filtered->isAdmin     = !(!Auth::user() || Auth::user() -> role == 100);
             $training_filtered_array[] = $training_filtered;
             unset($training_filtered);
             unset($training_months_array);
@@ -223,7 +223,7 @@ class SearchController extends Controller
             $training_filtered->months      = implode(',',$training_months_array);
             $training_filtered->terms       = implode(',',$training_terms_array);
             $training_filtered->municipality= $training_municipality->name;
-            $training_filtered->isAdmin     = Auth::check();
+            $training_filtered->isAdmin     = !(!Auth::user() || Auth::user() -> role == 100);
             $training_filtered_array[] = $training_filtered;
             unset($training_filtered);
             unset($training_months_array);
@@ -336,7 +336,7 @@ class SearchController extends Controller
             $seek_training_filtered->quantity    = $seek_training_instance->quantity;
             $seek_training_filtered->field       = $seek_training_field->name;
             $seek_training_filtered->municipality= $seek_training_municipality->name;
-            $seek_training_filtered->isAdmin     = Auth::check();
+            $seek_training_filtered->isAdmin     = !(!Auth::user() || Auth::user() -> role == 100);
             $seek_training_filtered_array[]      = $seek_training_filtered;
             unset($seek_training_filtered);
             unset($seek_training_months_array);

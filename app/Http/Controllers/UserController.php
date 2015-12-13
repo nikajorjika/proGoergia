@@ -51,6 +51,9 @@ class UserController extends Controller
 
         if (Hash::check(Input::get('password'), $user->password)) {
             Auth::loginUsingId($user->id);
+            if ($user -> role == 3) {
+                return redirect('/admin/adminarea');
+            }
             return redirect('/admin');
         }
 
@@ -59,8 +62,10 @@ class UserController extends Controller
 
     public function admin()
     {
-        if (!Auth::user())
-            return redirect('/');
+        if (!Auth::user() || Auth::user() -> role == 100)
+        {
+            Redirect::to('/')->send();
+        }
 
         return view('user.admin')
             ->with('admin_active', 'active');
@@ -107,7 +112,7 @@ class UserController extends Controller
 
         Auth::login($user);
 
-        return 'იუზერი წარმატებით დაემატა';
+        return redirect('/user_area');
     }
     public function getAuth()
     {
@@ -145,6 +150,8 @@ class UserController extends Controller
 
     public function getUserArea()
     {
+        if (!Auth::user())
+            return redirect('/');
 
         $declerations = Auth::user()->declerations;
 
@@ -174,6 +181,8 @@ class UserController extends Controller
      */
     public function postAddUserForm(Request $request)
     {
+        if (!Auth::user())
+            return redirect('/');
 
         $rules = array(
             'applicant'     => 'required',
@@ -407,6 +416,9 @@ class UserController extends Controller
 
     public function getUserFormEdit($id)
     {
+        if (!Auth::user())
+            return redirect('/');
+
         $decleration = Decleration::findOrNew($id);
         $fields   = Field::orderBy('name')->lists('name', 'id');
         $listener_numbers = Listenernumber::all();
@@ -459,6 +471,8 @@ class UserController extends Controller
     }
     public function update(Request $request,$id)
     {
+        if (!Auth::user())
+            return redirect('/');
 
         $decleration = Decleration::findOrNew($id);
         $decleration->update($request->all());
@@ -544,13 +558,23 @@ class UserController extends Controller
 
     public function delete($id)
     {
+        if (!Auth::user())
+            return redirect('/');
+
         $decleration = Decleration::findOrNew($id);
+
+        if ($decleration -> user_id != Auth::user() -> id)
+            return redirect('/');
+
         $decleration->delete($id);
 
         return redirect('/user_area');
     }
     public function downloadannoucement()
     {
+        if (!Auth::user())
+            return redirect('/');
+
         $file    = public_path() . '/upload/gancxadeba.docx';
         $headers = array (
             'Content-Type: application/file',
@@ -558,8 +582,11 @@ class UserController extends Controller
 
         return \Response::download($file,'gancxadeba.docx',$headers);
     }
-    public function getannoucement($id,$name)
+    public function getannoucement($id, $name)
     {
+        if (!Auth::user())
+            return redirect('/');
+
         $file    = public_path() . '/upload/'.$id.'/'.$name.'.pdf';
         $headers = array (
             'Content-Type: application/file',

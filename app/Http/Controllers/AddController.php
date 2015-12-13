@@ -18,14 +18,20 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
 
 class AddController extends Controller
 {
+    public function __construct()
+    {
+        if (!Auth::user() || Auth::user() -> role == 100)
+        {
+            Redirect::to('/')->send();
+        }
+    }
+
     public function add_field()
     {
-        if (!Auth::user())
-            return redirect('/');
-
         return view('add_forms.add_form',[
             'action' => 'AddController@store_field',
             'header' => 'სწავლების სფეროს დამატება'

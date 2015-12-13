@@ -16,9 +16,18 @@ use App\Training;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 
 class EditController extends Controller
 {
+    public function __construct()
+    {
+        if (!Auth::user() || Auth::user() -> role == 100)
+        {
+            Redirect::to('/')->send();
+        }
+    }
+    
     public function edit_seek_announcement($id)
     {
         if (!Auth::user() || Auth::user()->role != 2)

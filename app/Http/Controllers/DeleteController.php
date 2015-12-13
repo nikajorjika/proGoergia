@@ -8,9 +8,18 @@ use App\SeekTraining;
 use App\Training;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 
 class DeleteController extends Controller
 {
+    public function __construct()
+    {
+        if (!Auth::user() || Auth::user() -> role == 100)
+        {
+            Redirect::to('/')->send();
+        }
+    }
+    
     public function delete_seek($id)
     {
         if (Auth::User()->role == 2) {

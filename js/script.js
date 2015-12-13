@@ -183,7 +183,7 @@ $(document).ready(function(){
                 var     id          =   this.id
                     ,   name        =   this.header
                     ,   description =   this.description
-		    ,   per         =   this.per
+                    ,   per         =   this.per
                     ,   quantity    =   this.quantity
                     ,   file        =   this.file.slice(0, -4)
                     ,   link        =   'http://' + this.link

@@ -18,10 +18,10 @@
     {!! Form::open(['url' => '/user_auth', 'class' => 'form-horizontal']) !!}
     <section id="login">
     <div class="container" id="zoro">
+        <h4 style="text-align: center; color: darkblue; margin: 0 0 50px;">თუ უკვე დარეგისტრირებული ხართ ელექტრონულ ბაზაში, გაიარეთ ავტორიზაცია</h4>
         <div class="row">
             <div class="col-xs-12">
                 <div class="form-wrap">
-                    <h1>ავტორიზაცია</h1>
                     <div class="form-group">
          {!! Form::text('personal_id', null, ['class' => 'form-control','placeholder' => 'შეიყვანეთ პირადი ნომერი']) !!}
                         </div>
@@ -39,8 +39,11 @@
             </div>
         </div>
     </div>
-</section>
+    </section>
     {!! Form::close() !!}
+
+<h4 style="text-align: center; color: darkblue; margin: 0 0 20px;">თუ ჯერ არ ხართ დარეგისტრირებული ელექტრონულ ბაზაშია გაიარეთ</h4>
+<h4 style="text-align: center; margin: 10px 0 20px;"><a href="{{ url('/user_register') }}" style="font-weight: bold; color: darkblue !important;">ელექტრონული რეგისტრაცია</a></h4>
 
 <div class="modal fade forget-modal"  tabindex="-1" role="dialog" aria-labelledby="myForgetModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">

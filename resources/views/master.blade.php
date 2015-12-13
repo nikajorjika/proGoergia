@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    {!! Html::style('css/bootstrap.css') !!}
     {!! Html::style('css/bootstrap.min.css') !!}
-    {!! Html::style('css/bootstrap-theme.css') !!}
     {!! Html::style('css/bootstrap-theme.min.css') !!}
     {!! Html::style('css/style.css') !!}
 
     {!! Html::script('https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js') !!}
-    {!! Html::script('js/bootstrap.js') !!}
     {!! Html::script('js/bootstrap.min.js') !!}
     {!! Html::script('http://www.clubdesign.at/floatlabels.js') !!}
     {!! Html::script('js/statistic.js') !!}
@@ -40,8 +37,18 @@
                     <li>სტატისტიკა</li>
                 </a>
                 @if(Auth::user())
+                    @if(Auth::user() -> role != 100)
                     <a href="{{ url('/admin') }}" class="col-sm-1" @if(isset($admin_active)) style="background-color: #298FD3;" @endif>
                         <li>ადმინი</li>
+                    </a>
+                    @else
+                    <a href="{{ url('/user_area') }}" class="col-sm-1" @if(isset($admin_active)) style="background-color: #298FD3;" @endif>
+                        <li>პროფილი</li>
+                    </a>
+                    @endif
+                @else
+                    <a href="{{ url('/user_auth') }}" class="col-sm-1" @if(isset($admin_active)) style="background-color: #298FD3;" @endif>
+                        <li>ავტორიზაცია</li>
                     </a>
                 @endif
             </ul>

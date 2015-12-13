@@ -9,12 +9,18 @@ use \Illuminate\Support\Facades\Redirect;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
 
     public function getAdminarea()
     {
+        if (!Auth::user() || Auth::user() -> role == 100)
+        {
+            Redirect::to('/')->send();
+        }
+
         $declerations = Decleration::all();
 
         return view('admin.admin_area',[
@@ -24,6 +30,11 @@ class AdminController extends Controller
 
     public function getViewmore($id)
     {
+        if (!Auth::user() || Auth::user() -> role == 100)
+        {
+            Redirect::to('/')->send();
+        }
+
         $decleration = Decleration::findOrNew($id);
         $editables   = $decleration -> editables -> lists('field_name') -> toArray();
 
@@ -35,6 +46,11 @@ class AdminController extends Controller
 
     public function getEditable($decleration_id, $field_name)
     {
+        if (!Auth::user() || Auth::user() -> role == 100)
+        {
+            Redirect::to('/')->send();
+        }
+
         $editable = Editable::checkIfEditable($decleration_id, $field_name);
 
         if ($editable)
