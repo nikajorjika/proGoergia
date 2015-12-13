@@ -48,6 +48,7 @@
 <div class="modal fade forget-modal"  tabindex="-1" role="dialog" aria-labelledby="myForgetModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
+        {!! Form::open(['url' => 'reset_password']) !!}
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">x</span>
@@ -61,8 +62,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">გაუქმება</button>
-                <button type="button" class="btn btn-custom">მოთხოვნის გაგზავნა</button>
+                <button type="submit" class="btn btn-custom">მოთხოვნის გაგზავნა</button>
             </div>
+        {!! Form::close() !!}
         </div>
     </div>
 </div>

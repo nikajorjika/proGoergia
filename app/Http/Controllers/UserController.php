@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Mail;
 use App\Certificaterule;
 use App\Decleration;
 use App\Estimation;
@@ -146,6 +147,31 @@ class UserController extends Controller
         }
         
         return redirect('/user_auth');
+    }
+
+    public function reset_password(Request $request)
+    {
+        $this->validate($request, ['email' => 'required'], ['email.required' => 'იმეილი სავალდებულოა', 'email.email' => 'არასწორი იმეილი']);
+        
+        $email = Input::get('email');
+        $user  = User::where('email', $email)
+                     ->first();
+
+        $password = str_random(8);
+
+        $user->update(['password' => $password]);
+
+        $payload = [
+            'user_name' => $user -> first_name . ' ' . $user -> last_name,
+            'password'  => $password
+        ];
+
+        Mail::send('email.reset_password', $payload, function ($m) use ($email) {
+            $m->from('lsg.gov.ge@gmail.com', 'Edu lsg gov');
+            $m->to($email)->subject('Password reset');
+        });
+
+        return Redirect::Back();
     }
 
     public function getUserArea()

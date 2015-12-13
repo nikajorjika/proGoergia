@@ -28,6 +28,7 @@ Route::get('/download/{file_name}', 'SearchController@download');
 Route::get('/login', 'UserController@login');
 Route::post('/user/auth', 'UserController@auth');
 Route::get('/admin', 'UserController@admin');
+Route::post('/reset_password', 'UserController@reset_password');
 
 Route::post('/add_field', 'AddController@store_field');
 Route::get('/add_field', 'AddController@add_field');
