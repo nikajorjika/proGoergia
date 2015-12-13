@@ -21,6 +21,7 @@
             'dec_certificaterules' => $dec_certificaterules,
             'dec_materials'        => $dec_materials,
             'editables'            => $editables,
+            'type'                 => 'edit',
         ])
 
     {!! Form::close() !!}

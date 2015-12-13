@@ -320,3 +320,8 @@ label.label-floatlabel {
     margin-bottom: 20px;
     text-align: center;
 }
+
+#add-container .editable, #add-container .not-editable {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
