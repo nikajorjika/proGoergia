@@ -26,6 +26,10 @@
                 <div class="col-md-12 user-info">
                     <span class="glyphicon glyphicon-phone"></span> {{ Auth::user() -> telephone }}
                 </div>
+                <div class="col-md-12 user-info">
+                    <span class="glyphicon glyphicon-off" style="color: red;"></span>
+                    <a href="{{ url('/auth/logout') }}"> გამოსვლა </a>
+                </div>
             </div>
         </div>
     </div>
