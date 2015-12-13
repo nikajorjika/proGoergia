@@ -4,8 +4,8 @@
 	<title></title>
 </head>
 <body>
-	Hello {{ $user_name }},
+	მოგესალმებით {{ $user_name }},
 
-	Your new password is {{ $password }}
+	თქვენი ახალი პაროლი არის: {{ $password }}
 </body>
 </html>

@@ -67,7 +67,6 @@
             <th>სწავლების სფერო</th>
             <th>სწავლების დასახელება </th>
             <th>რედაქტირება</th>
-            <th>განაცხადის წაშლა</th>
         </tr>
         </thead>
         <tbody>
@@ -78,7 +77,9 @@
                 <td>{{ str_limit($decleration->field->name,50) }}</td>
                 <td>{{ str_limit($decleration -> edu_program_name,50) }}</td>
                 <td style="text-align: center"><a href="{{ url('/user_area/edit/' . $decleration->id) }}"><span class="glyphicon glyphicon-edit" style="font-size: 20px"></span></a></td>
+{{--
                 <td style="text-align: center"><a href="{{ url('/user_area/delete/' .$decleration->id) }}"><span class="glyphicon glyphicon-remove" style="color: red; font-size: 20px"></span></a></td>
+--}}
             </tr>
         @endforeach
 

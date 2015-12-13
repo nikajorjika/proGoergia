@@ -35,6 +35,8 @@ class CreateDeclarationTable extends Migration
             $table->string('contact_telephone');
             $table->integer('field_id')->unsigned();
             $table->foreign('field_id')->references('id')->on('fields');
+            $table->integer('term_id')->unsigned();
+            $table->foreign('term_id')->references('id')->on('terms');
             $table->text('comment');
             $table->string('edu_program_name');
             $table->text('edu_program_goal');

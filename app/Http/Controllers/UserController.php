@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Term;
 use Mail;
 use App\Certificaterule;
 use App\Decleration;
@@ -181,7 +182,8 @@ class UserController extends Controller
 
         $declerations = Auth::user()->declerations;
 
-        $fields   = Field::orderBy('name')->lists('name', 'id');
+        $fields   =  Field::orderBy('name')->lists('name', 'id');
+        $terms    =  Term::orderBy('name')->lists('name', 'id');
         $listener_numbers = Listenernumber::all();
         $learn_methods = Learnmethod::all();
         $estimations = Estimation::all();
@@ -190,6 +192,7 @@ class UserController extends Controller
         $learnmaterials = Learnmaterial::all();
         return view('user.user_area',[
             'fields' => $fields,
+            'terms'  => $terms,
             'declerations' => $declerations,
             'listener_numbers' => $listener_numbers,
             'learn_methods' => $learn_methods,
@@ -219,6 +222,7 @@ class UserController extends Controller
             'email'     => 'required',
             'contact_telephone'     => 'required',
             'field_id'     => 'required',
+            'term_id'      => 'required',
             'edu_program_name'     => 'required',
             'edu_program_goal'     => 'required',
             'edu_program_prelet'     => 'required',
@@ -238,6 +242,7 @@ class UserController extends Controller
             'certificaterule' => 'required',
             'learn_method' => 'required',
             'learnmaterial' => 'required',
+            'prevent' => 'required',
 
         );
 
@@ -250,6 +255,7 @@ class UserController extends Controller
             'email.required'     => '"ელექტრონული ფოსტა" ველი სავალდებულოა ',
             'contact_telephone.required'     => '"საკონტაქტო ტელეფონი" ველი სავალდებულოა ',
             'field_id.required'     => '"სწავლების სფერო" ველი სავალდებულოა ',
+            'term_id.required'     => '"სწავლების ფორმა" ველი სავალდებულოა ',
             'edu_program_name.required'     => '"სასწავლო პროგრამის დასახელება" ველი სავალდებულოა ',
             'edu_program_goal.required'     => '"სასწავლო პროგრამის მიზანი" ველი სავალდებულოა ',
             'edu_program_prelet.required'     => '"სასწავლო პროგრამაზე დაშვების წინაპირობა" ველი სავალდებულოა ',
@@ -269,7 +275,7 @@ class UserController extends Controller
             'edu_program_learn_env.required'     => '"პროგრამის განხორციელებისთვის აუცილებელი სასწავლო  გარემო" ველი სავალდებულოა',
             'edu_program_learn_resources.required'     => '"პროგრამის განხორციელებისთვის აუცილებელი სასწავლო რესურსის ჩამონათვალი" ველი სავალდებულოა',
             'learnmaterial.required'     => '"პროგრამის განხორციელებისთვის არსებული სასწავლო მასალის ჩამონათვალი" ველი სავალდებულოა',
-
+            'prevent.required' => '" პასუხს ვაგებს მიწოდებული ინფორმაციის სისწორეზე" ველის მონიშვნა აუცილებელია',
         );
 
 
@@ -447,6 +453,7 @@ class UserController extends Controller
 
         $decleration = Decleration::findOrNew($id);
         $fields   = Field::orderBy('name')->lists('name', 'id');
+        $terms   = Term::orderBy('name')->lists('name', 'id');
         $listener_numbers = Listenernumber::all();
         $learn_methods = Learnmethod::all();
         $estimations = Estimation::all();
@@ -482,6 +489,7 @@ class UserController extends Controller
         return view('user.edit_user_form', [
             'decleration'          => $decleration,
             'fields'               => $fields,
+            'terms'                => $terms,
             'listener_numbers'     => $listener_numbers,
             'learn_methods'        => $learn_methods,
             'dec_learnmethods'     => $dec_learnmethods,
