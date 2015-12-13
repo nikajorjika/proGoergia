@@ -462,7 +462,6 @@ class UserController extends Controller
 
         $decleration = Decleration::findOrNew($id);
         $decleration->update($request->all());
-
         $decleration->learnmaterials()->detach();
         foreach (Input::get('learnmaterial') as $learnmaterial_id)
         {
@@ -488,6 +487,56 @@ class UserController extends Controller
         {
 
             $decleration->certificaterules()->attach($certificaterule_id, ['percentage' => Input::get('percentage_' . $certificaterule_id)]);
+        }
+
+
+        $annoucement     = Input::file('annoucement');
+        if (isset($annoucement) && !empty($annoucement)) {
+            $file_name        = 'gancxadeba.pdf';
+            $destinationPath  = public_path() . '/upload/' . $decleration->id;
+            $annoucement->move($destinationPath, $file_name);
+        }
+        $extraction     = Input::file('extraction');
+        if (isset($extraction) && !empty($extraction)) {
+            $file_name        = 'amonaceri.pdf';
+            $destinationPath  = public_path() . '/upload/' .$decleration->id;
+            $extraction->move($destinationPath, $file_name);
+        }
+        $documentation     = Input::file('documentation');
+        if (isset($documentation) && !empty($documentation)) {
+            $file_name        = 'dokumentacia.pdf';
+            $destinationPath  = public_path() . '/upload/' .$decleration->id;
+            $documentation->move($destinationPath, $file_name);
+        }
+        $plan     = Input::file('plan');
+        if (isset($plan) && !empty($plan)) {
+            $file_name        = 'gegma.pdf';
+            $destinationPath  = public_path() . '/upload/' .$decleration->id;
+            $plan->move($destinationPath, $file_name);
+        }
+        $certificate     = Input::file('certificate');
+        if (isset($certificate) && !empty($certificate)) {
+            $file_name        = 'certificate.pdf';
+            $destinationPath  = public_path() . '/upload/' .$decleration->id;
+            $certificate->move($destinationPath, $file_name);
+        }
+        $trainers     = Input::file('trainers');
+        if (isset($trainers) && !empty($trainers)) {
+            $file_name        = 'trainers.pdf';
+            $destinationPath  = public_path() . '/upload/' .$decleration->id;
+            $trainers->move($destinationPath, $file_name);
+        }
+        $materials     = Input::file('materials');
+        if (isset($materials) && !empty($materials)) {
+            $file_name        = 'materials.pdf';
+            $destinationPath  = public_path() . '/upload/' .$decleration->id;
+            $materials->move($destinationPath, $file_name);
+        }
+        $bill     = Input::file('bill');
+        if (isset($bill) && !empty($bill)) {
+            $file_name        = 'qvitari.pdf';
+            $destinationPath  = public_path() . '/upload/' .$decleration->id;
+            $bill->move($destinationPath, $file_name);
         }
 
         return redirect('/user_area');

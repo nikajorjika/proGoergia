@@ -11,7 +11,7 @@
         </div>
     @endif
 
-    {!! Form::model($decleration, ['method' => 'PATCH', 'action'=> ['UserController@update', $decleration->id], 'class' => 'form-horizontal']) !!}
+    {!! Form::model($decleration, ['method' => 'PATCH', 'action'=> ['UserController@update', $decleration->id], 'class' => 'form-horizontal','files'=> 'true']) !!}
 
     @include('user.user_form',
         [
