@@ -11,7 +11,25 @@
         </div>
     @endif
 
-    <!-- <img src="http://findicons.com/files/icons/1620/crystal_project/128/personal.png" class="img-polaroid"/> -->
+    <div class="col-md-8">
+        <div class="user-profile">
+            <div class="col-md-3">
+                <img src="http://findicons.com/files/icons/1620/crystal_project/128/personal.png"/>
+            </div>
+            <div class="col-md-9">
+                <div class="col-md-12 user-info">
+                    <span class="glyphicon glyphicon-user"></span> {{ Auth::user() -> first_name . ' ' . Auth::user() -> last_name }}
+                </div>
+                <div class="col-md-12 user-info">
+                    <span class="glyphicon glyphicon-envelope"></span> {{ Auth::user() -> email }}
+                </div>
+                <div class="col-md-12 user-info">
+                    <span class="glyphicon glyphicon-phone"></span> {{ Auth::user() -> telephone }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
 
     <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample"
                                     aria-expanded="false" aria-controls="collapseExample">
