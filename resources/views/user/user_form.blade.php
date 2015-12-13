@@ -134,8 +134,9 @@
                 {!! Form::label('listenernumber_id', 'სასწავლო პროგრამის მსმენელთა მინიმალური და მაქსიმალური რაოდენობა: ', ['class' => 'col-sm-12 control-label']) !!}
                 <div class="col-sm-12">
                 @foreach($listener_numbers as $listener_number)
-                    {!! Form::label('listenernumber_id',$listener_number->number) !!}
                     {!! Form::radio('listenernumber_id',$listener_number->id, false, [($type == 'add' || $editable) ? null : 'disabled']) !!}
+                    {!! Form::label('listenernumber_id',$listener_number->number) !!}
+                    <div class="clearfix"></div>
                 @endforeach
                 </div>
             </div>
@@ -202,8 +203,9 @@
                 <?php $checked = false; ?>
                 @foreach($learn_methods as $learn_method)
                     <?php $checked = isset($dec_learnmethods) && in_array($learn_method->id, $dec_learnmethods) ? true : false ?>
-                    {!! Form::label('learn_method[]',$learn_method->method) !!}
                     {!! Form::checkbox('learn_method[]',$learn_method->id, $checked, [($type == 'add' || $editable) ? null : 'disabled']) !!}
+                    {!! Form::label(null,$learn_method->method) !!}
+                    <div class="clearfix"></div>
                 @endforeach
 
                 {!! Form::textarea('learn_methods_other', null, ['class' => 'form-control input-sm ','placeholder' => 'სხვა', ($type == 'add' || $editable) ? null : 'disabled']) !!}
@@ -212,17 +214,22 @@
 
             <?php $editable = in_array('estimations', $editables) ? true : false; ?>
             <div class="form-group form-group-style {{ $editable ? 'editable' : 'not-editable' }}">
-                {!! Form::label('estimation[]', 'სასწავლო პროგრამის მონაწილეთა შეფასების მეთოდის/მეთოდები (მონიშნეთ). მიუთითეთ შესაბამისი შეფასების მინიმალური და მაქსიმალური ქულა: ', ['class' => 'col-sm-12 control-label']) !!}
+                {!! Form::label(null, 'სასწავლო პროგრამის მონაწილეთა შეფასების მეთოდის/მეთოდები (მონიშნეთ). მიუთითეთ შესაბამისი შეფასების მინიმალური და მაქსიმალური ქულა: ', ['class' => 'col-sm-12 control-label']) !!}
                 <div class="col-sm-12">
                 <?php $checked = false; $min = null; $max = null; ?>
                 @foreach($estimations as $estimation)
                     <?php $checked = isset($dec_estimations) && array_key_exists($estimation -> id, $dec_estimations) ? true : false ?>
                     <?php $min     = isset($dec_estimations) && array_key_exists($estimation -> id, $dec_estimations) ? $dec_estimations[$estimation -> id]['min'] : null ?>
                     <?php $max     = isset($dec_estimations) && array_key_exists($estimation -> id, $dec_estimations) ? $dec_estimations[$estimation -> id]['max'] : null ?>
-                    {!! Form::label('estimation[]',$estimation->name) !!}
-                    {!! Form::checkbox('estimation[]',$estimation->id, $checked, [($type == 'add' || $editable) ? null : 'disabled']) !!}
-                    {!! Form::text('min_'.$estimation->id, $min, ['class' => 'form-control', ($type == 'add' || $editable) ? null : 'disabled']) !!}
-                    {!! Form::text('max_'.$estimation->id, $max, ['class' => 'form-control', ($type == 'add' || $editable) ? null : 'disabled']) !!}
+                    <div class="col-md-3">
+                        {!! Form::checkbox('estimation[]',$estimation->id, $checked, [($type == 'add' || $editable) ? null : 'disabled']) !!}
+                        {!! Form::label(null, $estimation->name) !!}
+                    </div>
+                    <div class="col-md-3">
+                        {!! Form::text('min_'.$estimation->id, $min, ['class' => 'form-control', 'style' => 'margin-bottom: 5px', 'placeholder' => 'მინიმუმი', ($type == 'add' || $editable) ? null : 'disabled']) !!}
+                        {!! Form::text('max_'.$estimation->id, $max, ['class' => 'form-control', 'style' => 'margin-bottom: 15px', 'placeholder' => 'მაქსიმუმი', ($type == 'add' || $editable) ? null : 'disabled']) !!}
+                    </div>
+                    <div class="clearfix"></div>
                 @endforeach
 
                 {!! Form::textarea('estimations_other', null, ['class' => 'form-control input-sm ','placeholder' => 'სხვა', ($type == 'add' || $editable) ? null : 'disabled']) !!}
@@ -237,12 +244,19 @@
                 @foreach($certificaterules as $certificaterule)
                     <?php $checked    = isset($dec_certificaterules) && array_key_exists($certificaterule -> id, $dec_certificaterules) ? true : false ?>
                     <?php $percentage = isset($dec_certificaterules) && array_key_exists($certificaterule -> id, $dec_certificaterules) ? $dec_certificaterules[$certificaterule -> id] : false ?>
-                    {!! Form::label('certificaterule[]',$certificaterule->name) !!}
-                    {!! Form::checkbox('certificaterule[]',$certificaterule -> id, $checked, [($type == 'add' || $editable) ? null : 'disabled']) !!}
-                    {!! Form::text('percentage_'.$certificaterule->id , $percentage, ['class' => 'form-control', ($type == 'add' || $editable) ? null : 'disabled']) !!}
+                    <div class="col-md-5">
+                        {!! Form::checkbox('certificaterule[]',$certificaterule -> id, $checked, [($type == 'add' || $editable) ? null : 'disabled']) !!}
+                        {!! Form::label('certificaterule[]',$certificaterule->name) !!}
+                    </div>
+                    <div class="col-md-4">
+                        {!! Form::text('percentage_'.$certificaterule->id , $percentage, ['class' => 'form-control', 'style' => 'margin-bottom: 15px', ($type == 'add' || $editable) ? null : 'disabled']) !!}
+                    </div>
+                    <div class="clearfix"></div>
                 @endforeach
 
-                {!! Form::textarea('certificate_rules_other', null, ['class' => 'form-control input-sm ', ($type == 'add' || $editable) ? null : 'disabled', 'placeholder' => 'სხვა']) !!}
+                    <div class="col-md-offset-5 col-md-4">
+                        {!! Form::textarea('certificate_rules_other', null, ['class' => 'form-control input-sm ', ($type == 'add' || $editable) ? null : 'disabled', 'placeholder' => 'სხვა']) !!}
+                    </div>
                 </div>
             </div>
 
@@ -259,8 +273,9 @@
                 {!! Form::label('ratingsystem', 'სასწავლო პროგრამის შეფასების სისტემა: ', ['class' => 'col-sm-12 control-label']) !!}
                 <div class="col-sm-12">
                 @foreach($ratingsystems as $ratingsystem)
-                    {!! Form::label('ratingsystem_id',$ratingsystem->system) !!}
                     {!! Form::radio('ratingsystem_id',$ratingsystem->id, false, [($type == 'add' || $editable) ? null : 'disabled']) !!}
+                    {!! Form::label('ratingsystem_id',$ratingsystem->system) !!}
+                    <div class="clearfix"></div>
                 @endforeach
 
                 {!! Form::textarea('rating_system_other', null, ['class' => 'form-control input-sm', ($type == 'add' || $editable) ? null : 'disabled', 'placeholder' => 'სხვა']) !!}
@@ -309,13 +324,14 @@
 
             <?php $editable = in_array('learnmaterials', $editables) ? true : false; ?>
             <div class="form-group form-group-style {{ $editable ? 'editable' : 'not-editable' }}">
-                {!! Form::label('learnmaterial[]', 'პროგრამის განხორციელებისთვის არსებული სასწავლო მასალის ჩამონათვალი  - გამოყენებული ლიტერატურის საძიებო ლინკები, საკითხავი მასალა, ჰენდაუტები  და ა.შ.: ', ['class' => 'col-sm-12 control-label']) !!}
+                {!! Form::label(null, 'პროგრამის განხორციელებისთვის არსებული სასწავლო მასალის ჩამონათვალი  - გამოყენებული ლიტერატურის საძიებო ლინკები, საკითხავი მასალა, ჰენდაუტები  და ა.შ.: ', ['class' => 'col-sm-12 control-label']) !!}
                 <div class="col-sm-12">
                 <?php $checked = false; ?>
                 @foreach($learnmaterials as $learnmaterial)
                     <?php $checked = isset($dec_materials) && in_array($learnmaterial -> id, $dec_materials) ? true : false; ?>
-                    {!! Form::label('learnmaterial[]',$learnmaterial->material) !!}
                     {!! Form::checkbox('learnmaterial[]',$learnmaterial->id, $checked, [($type == 'add' || $editable) ? null : 'disabled']) !!}
+                    {!! Form::label('null',$learnmaterial->material) !!}
+                    <div class="clearfix"></div>
                 @endforeach
 
                 {!! Form::textarea('learn_materials_other',null, ['class' => 'form-control input-sm', ($type == 'add' || $editable) ? null : 'disabled', 'placeholder' => 'Learn Materials სხვა ']) !!}
@@ -338,7 +354,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-offset-2 col-sm-2">
+            <div class="col-sm-2" style="padding-left: 0; margin-bottom: 20px;">
                 {!! Form::submit($submitButton, ['class' => 'btn btn-info btn-block']) !!}
             </div>
         </div>

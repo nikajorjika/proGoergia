@@ -100,10 +100,10 @@ class CreateDeclarationTable extends Migration
                     'method' => 'დისკუსია'
                 ),
                 array(
-                    'method' => 'პრობლემაზე ორიენტირებული სწავლება'
+                    'method' => 'პრობლემაზე ორიენტირებული სწავლება'
                 ),
                 array(
-                    'method' => 'დემონსტრირებით სწავლება'
+                    'method' => 'დემონსტრირებით სწავლება'
                 ),
                 array(
                     'method' => 'პრეზენტაცია'

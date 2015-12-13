@@ -35,15 +35,22 @@
     </div>
     <div class="clearfix"></div>
 
-    <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample"
-                                    aria-expanded="false" aria-controls="collapseExample">
-        განცხადების დამატების ფორმა
-    </a>
+    <div style="margin: 0 0 20px;">
+        <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample"
+                                        aria-expanded="false" aria-controls="collapseExample">
+            განცხადების დამატების ფორმა
+        </a>
+
+        <span style="margin-left: 30px;">
+            განცხადების ჩამოტვირთვა 
+                <a href="{{ url('downloadannoucement') }}">
+                    <span class="glyphicon glyphicon-download-alt" style="font-size: 16px;"></span>
+                </a>
+        </span>
+    </div>
 
     <div class="collapse" id="collapseExample" style="width: 1000px; margin: 0 auto;">
         <div class="">
-            <a href="{{ url('downloadannoucement') }}">განცხადების ჩამოტვირთვა</a>
-
             {!! Form::open(['url' => '/add_user_form', 'class' => 'form-horizontal','files'=> 'true']) !!}
 
             @include('user.user_form',['submitButton' => 'რეგისტრაცია', 'editables' => [], 'type' => 'add'])

@@ -476,31 +476,49 @@ class UserController extends Controller
 
         $decleration = Decleration::findOrNew($id);
         $decleration->update($request->all());
-        $decleration->learnmaterials()->detach();
-        foreach (Input::get('learnmaterial') as $learnmaterial_id)
+
+        $learnmaterial = Input::get('learnmaterial');
+        if (isset($learnmaterial) && !empty($learnmaterial))
         {
-            $decleration->learnmaterials()->attach($learnmaterial_id);
+            $decleration->learnmaterials()->detach();
+            foreach (Input::get('learnmaterial') as $learnmaterial_id)
+            {
+                $decleration->learnmaterials()->attach($learnmaterial_id);
+            }
         }
-        $decleration->learnmethods()->detach();
-        foreach (Input::get('learn_method') as $learnmethod_id)
+
+        $learn_method = Input::get('learn_method');
+        if (isset($learn_method) && !empty($learn_method))
         {
+            $decleration->learnmethods()->detach();
+            foreach (Input::get('learn_method') as $learnmethod_id)
+            {
 
-            $decleration->learnmethods()->attach($learnmethod_id);
+                $decleration->learnmethods()->attach($learnmethod_id);
 
+            }
         }
-        $decleration->estimations()->detach();
 
-        foreach (Input::get('estimation') as $estimation_id)
+        $estimation = Input::get('estimation');
+        if (isset($estimation) && !empty($estimation))
         {
+            $decleration->estimations()->detach();
+            foreach (Input::get('estimation') as $estimation_id)
+            {
 
-            $decleration->estimations()->attach($estimation_id, ['min' => Input::get('min_' . $estimation_id), 'max'=>Input::get('max_' . $estimation_id)]);
+                $decleration->estimations()->attach($estimation_id, ['min' => Input::get('min_' . $estimation_id), 'max'=>Input::get('max_' . $estimation_id)]);
+            }
         }
-        $decleration->certificaterules()->detach();
-
-        foreach (Input::get('certificaterule') as $certificaterule_id)
+        
+        $certificaterule = Input::get('certificaterule');
+        if (isset($certificaterule) && !empty($certificaterule))
         {
+            $decleration->certificaterules()->detach();
+            foreach (Input::get('certificaterule') as $certificaterule_id)
+            {
 
-            $decleration->certificaterules()->attach($certificaterule_id, ['percentage' => Input::get('percentage_' . $certificaterule_id)]);
+                $decleration->certificaterules()->attach($certificaterule_id, ['percentage' => Input::get('percentage_' . $certificaterule_id)]);
+            }
         }
 
 
