@@ -29,19 +29,31 @@ class NewUsersTable extends Migration
         DB::table('users')->insert(
             array(
                 array(
-                    'name'     => 'admin1',
-                    'role'     => 1,
-                    'password' => bcrypt('WGxDu88mLx23'),
+                    'first_name'  => 'admin1',
+                    'last_name'   => 'admin1',
+                    'personal_id' => 'personal_id1',
+                    'email'       => 'admin1@gmail.com',
+                    'telephone'   => 'number1',
+                    'role'        => 1,
+                    'password'    => bcrypt('WGxDu88mLx23'),
                 ),
                 array(
-                    'name'     => 'admin2',
-                    'role'     => 2,
-                    'password' => bcrypt('KDxeP11cVx47'),
+                    'first_name'  => 'admin2',
+                    'last_name'   => 'admin2',
+                    'personal_id' => 'personal_id2',
+                    'email'       => 'admin2@gmail.com',
+                    'telephone'   => 'number2',
+                    'role'        => 2,
+                    'password'    => bcrypt('KDxeP11cVx47'),
                 ),
                 array(
-                    'name'     => 'admin3',
-                    'role'     => 3,
-                    'password' => bcrypt('Lob23pUh7Vdc'),
+                    'first_name'  => 'admin3',
+                    'last_name'   => 'admin3',
+                    'personal_id' => 'personal_id3',
+                    'email'       => 'admin3@gmail.com',
+                    'telephone'   => 'number3',
+                    'role'        => 3,
+                    'password'    => bcrypt('Lob23pUh7Vdc'),
                 ),
             )
         );
