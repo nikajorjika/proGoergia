@@ -38,16 +38,16 @@
                 </a>
                 @if(Auth::user())
                     @if(Auth::user() -> role != 100)
-                    <a href="{{ url('/admin') }}" class="col-sm-1" @if(isset($admin_active)) style="background-color: #298FD3;" @endif>
+                    <a href="{{ url('/admin') }}" class="col-sm-2" @if(isset($admin_active)) style="background-color: #298FD3;" @endif>
                         <li>ადმინი</li>
                     </a>
                     @else
-                    <a href="{{ url('/user_area') }}" class="col-sm-1" @if(isset($admin_active)) style="background-color: #298FD3;" @endif>
+                    <a href="{{ url('/user_area') }}" class="col-sm-2" @if(isset($admin_active)) style="background-color: #298FD3;" @endif>
                         <li>პროფილი</li>
                     </a>
                     @endif
                 @else
-                    <a href="{{ url('/user_auth') }}" class="col-sm-1" @if(isset($admin_active)) style="background-color: #298FD3;" @endif>
+                    <a href="{{ url('/user_auth') }}" class="col-sm-2" @if(isset($admin_active)) style="background-color: #298FD3;" @endif>
                         <li>ავტორიზაცია</li>
                     </a>
                 @endif
