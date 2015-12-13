@@ -31,7 +31,7 @@ class UserController extends Controller
     public function auth(Request $request)
     {
         $rules = array(
-            'name'     => 'required',
+            'name' => 'required',
             'password' => 'required'
         );
 
@@ -42,7 +42,7 @@ class UserController extends Controller
 
         $this->validate($request, $rules, $messages);
 
-        $user = User::where('name', Input::get('name'))
+        $user = User::where('first_name', Input::get('name'))
                     ->first();
 
         if (empty($user)) {

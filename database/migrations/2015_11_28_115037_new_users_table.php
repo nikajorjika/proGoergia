@@ -22,8 +22,29 @@ class NewUsersTable extends Migration
             $table->string('personal_id')->unique();
             $table->string('email')->unique();
             $table->string('telephone')->unique();
+            $table->rememberToken();
             $table->string('password',60);
         });
+
+        DB::table('users')->insert(
+            array(
+                array(
+                    'name'     => 'admin1',
+                    'role'     => 1,
+                    'password' => bcrypt('WGxDu88mLx23'),
+                ),
+                array(
+                    'name'     => 'admin2',
+                    'role'     => 2,
+                    'password' => bcrypt('KDxeP11cVx47'),
+                ),
+                array(
+                    'name'     => 'admin3',
+                    'role'     => 3,
+                    'password' => bcrypt('Lob23pUh7Vdc'),
+                ),
+            )
+        );
     }
 
     /**
