@@ -44,7 +44,7 @@
 
             {!! Form::open(['url' => '/add_user_form', 'class' => 'form-horizontal','files'=> 'true']) !!}
 
-            @include('user.user_form',['submitButton' => 'რეგისტრაცია'])
+            @include('user.user_form',['submitButton' => 'რეგისტრაცია', 'editables' => []])
 
             {!! Form::close() !!}
         </div>

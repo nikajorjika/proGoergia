@@ -187,16 +187,16 @@ form h1 {
 .add-form-btn {
     margin-top: 20px;
 }
-.centered-form{
-    margin-top: 60px;
+.centered-form {
+    margin-top: 20px;
 }
 
-.centered-form .panel{
+.centered-form .panel {
     background: rgba(255, 255, 255, 0.8);
     box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
 }
 
-.centered-form .panel-body{
+.centered-form .panel-body {
     background-color: #D3E1F1;
     padding: 20px 40px;
 }
@@ -303,6 +303,20 @@ label.label-floatlabel {
 
 .form-group-style {
     border-bottom: 1px solid gray;
-    background-color: lightgray;
+    border-radius: 5px;
+    background-color: #E8E8E8;
     padding: 10px 0 20px;
+}
+
+.editable {
+    border: 5px solid green;
+}
+
+.not-editable {
+    border: 5px solid red;
+}
+
+.heading-title {
+    margin-bottom: 20px;
+    text-align: center;
 }

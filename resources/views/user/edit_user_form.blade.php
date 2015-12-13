@@ -20,6 +20,7 @@
             'dec_estimations'      => $dec_estimations,
             'dec_certificaterules' => $dec_certificaterules,
             'dec_materials'        => $dec_materials,
+            'editables'            => $editables,
         ])
 
     {!! Form::close() !!}

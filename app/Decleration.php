@@ -24,6 +24,7 @@ class Decleration extends Model
     {
         return $this->belongsTo('App/User');
     }
+
     public function field()
     {
         return $this->belongsTo('App\Field');
@@ -38,20 +39,29 @@ class Decleration extends Model
     {
         return $this->belongsTo('App\Ratingsystem');
     }
+
     public function learnmethods()
     {
         return $this->belongsToMany('App\Learnmethod');
     }
+
     public function estimations()
     {
         return $this->belongsToMany('App\Estimation')->withPivot('min', 'max');
     }
+
     public function certificaterules()
     {
         return $this->belongsToMany('App\Certificaterule')->withPivot('percentage');
     }
+
     public function learnmaterials()
     {
         return $this->belongsToMany('App\Learnmaterial');
+    }
+
+    public function Editables()
+    {
+        return $this->hasMany('App\Editable');
     }
 }

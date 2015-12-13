@@ -439,6 +439,7 @@ class UserController extends Controller
         {
             $dec_materials[] = $material -> id;
         }
+        $editables = $decleration -> editables -> lists('field_name') -> toArray();
 
         return view('user.edit_user_form', [
             'decleration'          => $decleration,
@@ -453,6 +454,7 @@ class UserController extends Controller
             'dec_certificaterules' => $dec_certificaterules,
             'learnmaterials'       => $learnmaterials,
             'dec_materials'        => $dec_materials,
+            'editables'            => $editables,
         ]);
     }
     public function update(Request $request,$id)
